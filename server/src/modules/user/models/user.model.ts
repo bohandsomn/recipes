@@ -31,4 +31,7 @@ export class UserModel
     @Default(false)
     @Column(DataType.BOOLEAN)
     isActive: boolean
+
+    @Column(DataType.UUIDV4)
+    activationLink: string
 }

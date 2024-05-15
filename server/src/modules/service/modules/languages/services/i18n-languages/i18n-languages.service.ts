@@ -15,6 +15,12 @@ export class I18nLanguagesService implements ILanguagesService {
         return translation
     }
 
+    constant(key: string, options?: ILanguagesServiceOptions): string {
+        const fullPath = `constant.${key}`
+        const translation = this.translate(fullPath, options)
+        return translation
+    }
+
     getLanguage(): string {
         const current = I18nContext.current()
         const language = current?.lang

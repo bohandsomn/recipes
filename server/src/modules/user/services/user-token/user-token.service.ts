@@ -24,7 +24,7 @@ export class UserTokenService implements IUserTokenService {
         private readonly jwtService: JwtService,
         private readonly loggerService: LoggerService,
         private readonly appConfigService: AppConfigService,
-    ) { }
+    ) {}
 
     generate(input: IUserTokenPayload): IUserTokens {
         const accessToken = this.generateToken(
@@ -43,8 +43,9 @@ export class UserTokenService implements IUserTokenService {
 
     split(header: string): string {
         if (!header) {
-            const errorMessage =
-                this.languagesService.exception('user-token.split.not-found-header')
+            const errorMessage = this.languagesService.exception(
+                'user-token.split.not-found-header',
+            )
             throw new UnauthorizedException(errorMessage)
         }
         const [bearer, token] = header.split(' ')
