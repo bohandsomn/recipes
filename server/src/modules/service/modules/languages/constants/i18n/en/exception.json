@@ -1,1 +1,14 @@
-{}
+{
+    "user": {
+        "create": {
+            "exists": "User with this email {email} already exists",
+            "unknown": "Unable to create user due to unknown reasons"
+        },
+        "update": {
+            "unknown": "Unable to update user due to unknown reasons"
+        },
+        "get-one": {
+            "not-found": "User not found"
+        }
+    }
+}
