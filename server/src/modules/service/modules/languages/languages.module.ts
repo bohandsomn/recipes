@@ -18,5 +18,6 @@ import { I18nLanguagesService } from './services/i18n-languages/i18n-languages.s
         }),
     ],
     providers: [I18nLanguagesService],
+    exports: [I18nLanguagesService],
 })
-export class LanguagesModule {}
+export class LanguagesModule { }
