@@ -10,5 +10,24 @@
         "get-one": {
             "not-found": "User not found"
         }
+    },
+    "user-token": {
+        "get-secret-key": {
+            "unknown": "Unable to get secret key due to unknown reasons"
+        },
+        "get-expires-in": {
+            "unknown": "Unable to get expires in due to unknown reasons"
+        },
+        "generate-token": {
+            "unknown": "Unable to generate token due to unknown reasons"
+        },
+        "verify": {
+            "payload-not-valid": "Unfortunately, the user's data has been destroyed. Try logging in again",
+            "unknown": "Unable to verify token due to unknown reasons"
+        },
+        "split": {
+            "not-found-header": "Not found authorization header. Try to logging again",
+            "not-found-token": "Not found token from authorization header. Try to logging again"
+        }
     }
 }
