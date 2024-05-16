@@ -37,6 +37,15 @@
         "validation": {
             "email": "Invalid email",
             "password": "Password's length must be between {min} and {max} characters"
+        },
+        "user": {
+            "not-found": "User's payload not found in request"
+        },
+        "activation": {
+            "not-activated": "User is not activated. Go to email and click activate button. If there is no email, to to dashboard and click send confirmation email"
+        },
+        "password": {
+            "not-password": "Set your password in dashboard"
         }
     }
 }
