@@ -1,8 +1,11 @@
-import { Module } from '@nestjs/common'
+import { Module, forwardRef } from '@nestjs/common'
 
+import { UserModule } from '../user/user.module'
+import { ActivationService } from './services/activation/activation.service'
 import { BcryptjsPasswordService } from './services/bcryptjs-password/bcryptjs-password.service'
 
 @Module({
-    providers: [BcryptjsPasswordService],
+    imports: [forwardRef(() => UserModule)],
+    providers: [BcryptjsPasswordService, ActivationService],
 })
 export class AuthModule {}
