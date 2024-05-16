@@ -10,8 +10,8 @@ import { Environment } from '@/modules/service/modules/app-config/constants/envi
 import { AppConfigService } from '@/modules/service/modules/app-config/services/app-config/app-config.service'
 import { I18nLanguagesService } from '@/modules/service/modules/languages/services/i18n-languages/i18n-languages.service'
 import { UserTokenType } from '@/modules/user/constants/user-token-type'
-import { IUserModel } from '@/modules/user/interfaces/user-model.interface'
 import { UserPayloadDto } from '@/modules/user/dtos/user-payload-dto'
+import { IUserModel } from '@/modules/user/interfaces/user-model.interface'
 import { UserTokenService } from '@/modules/user/services/user-token/user-token.service'
 import { UserService } from '@/modules/user/services/user/user.service'
 
@@ -37,7 +37,7 @@ export class AuthService implements IAuthService {
         private readonly appConfigService: AppConfigService,
         private readonly mailService: MailService,
         private readonly languagesService: I18nLanguagesService,
-    ) { }
+    ) {}
 
     async registerUser(input: IRegisterUserInput): Promise<UserPayloadDto> {
         const activationPayload = this.activationService.initialActivate()

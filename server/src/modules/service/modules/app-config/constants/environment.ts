@@ -12,4 +12,5 @@ export enum Environment {
     SMTP_PORT = 'SMTP_PORT',
     CLIENT_URL = 'CLIENT_URL',
     CORS_ORIGIN = 'CORS_ORIGIN',
+    COOKIE_TOKEN_MAX_AGE = 'COOKIE_TOKEN_MAX_AGE',
 }
