@@ -2,12 +2,16 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common'
 
 import { I18nContext, I18nService } from 'nestjs-i18n'
 
+import { LoggerService } from '../../../logger/services/logger/logger.service'
 import { ILanguagesServiceOptions } from '../../interfaces/languages-service-options.interface'
 import { ILanguagesService } from '../../interfaces/languages-service.interface'
 
 @Injectable()
 export class I18nLanguagesService implements ILanguagesService {
-    constructor(private readonly i18nService: I18nService) {}
+    constructor(
+        private readonly i18nService: I18nService,
+        private readonly loggerService: LoggerService,
+    ) {}
 
     exception(key: string, options?: ILanguagesServiceOptions): string {
         const fullPath = `exception.${key}`
@@ -49,8 +53,7 @@ export class I18nLanguagesService implements ILanguagesService {
             }
             return translation
         } catch (error) {
-            // TODO: Add logger
-            // this.loggerService.error(error)
+            this.loggerService.error(error)
             throw new InternalServerErrorException(error)
         }
     }
