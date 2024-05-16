@@ -26,12 +26,10 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     async validate(
         _accessToken: string,
         _refreshToken: string,
-        { id, emails }: any,
+        { emails }: any,
         done: VerifyCallback,
     ): Promise<any> {
         done(null, {
-            provider: 'google',
-            providerId: id,
             email: emails[0].value,
         })
     }

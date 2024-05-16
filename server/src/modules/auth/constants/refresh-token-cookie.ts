@@ -1,1 +1,1 @@
-export const REFRESH_TOKEN_COOKIE = 'token'
+export const REFRESH_TOKEN_COOKIE = 'refreshToken'

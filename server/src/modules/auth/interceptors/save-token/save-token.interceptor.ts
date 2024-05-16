@@ -12,6 +12,7 @@ import { Environment } from '@/service/modules/app-config/constants/environment'
 import { AppConfigService } from '@/service/modules/app-config/services/app-config/app-config.service'
 import { UserPayloadDto } from '@/user/dtos/user-payload-dto'
 
+import { ACCESS_TOKEN_COOKIE } from '../../constants/access-token-cookie'
 import { REFRESH_TOKEN_COOKIE } from '../../constants/refresh-token-cookie'
 
 @Injectable()
@@ -29,6 +30,10 @@ export class SaveTokenInterceptor implements NestInterceptor {
                     this.appConfigService.get(Environment.COOKIE_TOKEN_MAX_AGE),
                 )
                 response.cookie(REFRESH_TOKEN_COOKIE, payload.refreshToken, {
+                    maxAge,
+                    httpOnly: true,
+                })
+                response.cookie(ACCESS_TOKEN_COOKIE, payload.accessToken, {
                     maxAge,
                     httpOnly: true,
                 })

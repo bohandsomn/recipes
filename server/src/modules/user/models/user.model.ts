@@ -1,4 +1,5 @@
 import {
+    AutoIncrement,
     Column,
     DataType,
     Default,
@@ -16,22 +17,23 @@ export class UserModel
     extends Model<IUserModel, ICreateUserModel>
     implements IUserModel
 {
+    @AutoIncrement
     @PrimaryKey
     @Column
     id: number
 
     @Unique
-    @Column(DataType.CHAR)
+    @Column(DataType.STRING)
     email: string
 
     @Default(null)
-    @Column(DataType.CHAR)
+    @Column(DataType.STRING)
     password: string | null
 
     @Default(false)
     @Column(DataType.BOOLEAN)
     isActive: boolean
 
-    @Column(DataType.UUIDV4)
+    @Column(DataType.STRING)
     activationLink: string
 }
