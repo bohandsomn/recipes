@@ -11,4 +11,5 @@ export enum Environment {
     SMTP_PASSWORD = 'SMTP_PASSWORD',
     SMTP_PORT = 'SMTP_PORT',
     CLIENT_URL = 'CLIENT_URL',
+    CORS_ORIGIN = 'CORS_ORIGIN',
 }
