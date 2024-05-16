@@ -3,6 +3,7 @@ import { Inject, Injectable, forwardRef } from '@nestjs/common'
 import * as uuid from 'uuid'
 
 import { IUserModel } from '@/modules/user/interfaces/user-model.interface'
+import { UserModel } from '@/modules/user/models/user.model'
 import { UserService } from '@/modules/user/services/user/user.service'
 
 import { IActivationPayload } from '../../interfaces/activation-payload.interface'
@@ -33,11 +34,11 @@ export class ActivationService implements IActivationService {
         }
     }
 
-    async activate(userId: number): Promise<IUserModel> {
-        const user = await this.userService.update({
-            id: userId,
-            isActive: true,
-        })
-        return user
+    async activate(activationLink: string): Promise<IUserModel> {
+        const user = (await this.userService.getOne({
+            activationLink,
+        })) as UserModel
+        user.isActive = true
+        return user.save()
     }
 }

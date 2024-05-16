@@ -10,4 +10,5 @@ export enum Environment {
     SMTP_USERNAME = 'SMTP_USERNAME',
     SMTP_PASSWORD = 'SMTP_PASSWORD',
     SMTP_PORT = 'SMTP_PORT',
+    CLIENT_URL = 'CLIENT_URL',
 }

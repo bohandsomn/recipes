@@ -1,5 +1,5 @@
 export interface IUserTokenPayload {
     readonly userId: number
-    readonly isActivate: boolean
+    readonly isActive: boolean
     readonly hasPassword: boolean
 }

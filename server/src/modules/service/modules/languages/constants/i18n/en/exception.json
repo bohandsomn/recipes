@@ -29,5 +29,10 @@
             "not-found-header": "Not found authorization header. Try to logging again",
             "not-found-token": "Not found token from authorization header. Try to logging again"
         }
+    },
+    "auth": {
+        "log-in": {
+            "incorrect-password": "Invalid password"
+        }
     }
 }

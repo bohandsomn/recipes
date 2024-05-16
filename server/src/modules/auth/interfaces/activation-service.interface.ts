@@ -5,5 +5,5 @@ import { IActivationPayload } from './activation-payload.interface'
 export interface IActivationService {
     initialActivate(): IActivationPayload
     externalActivate(): IActivationPayload
-    activate(userId: number): Promise<IUserModel>
+    activate(activationLink: string): Promise<IUserModel>
 }

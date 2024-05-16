@@ -75,6 +75,9 @@ export class UserService implements IUserService {
             if (input.email) {
                 conditions.email = input.email
             }
+            if (input.activationLink) {
+                conditions.activationLink = input.activationLink
+            }
             const candidate = await this.userModel.findOne({
                 where: conditions,
             })
