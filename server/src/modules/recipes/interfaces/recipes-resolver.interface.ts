@@ -12,12 +12,6 @@ export interface IRecipesResolver {
     getRecipe(recipeCredentials: string): Promise<RecipeDto>
     getSimilarRecipeList(recipeCredentials: string): Promise<RecipeListDto>
     searchRecipe(query: string): Promise<string[]>
-    addRecipe(
-        userId: number,
-        recipeCredentials: string,
-    ): Promise<string>
-    removeRecipe(
-        userId: number,
-        recipeCredentials: string,
-    ): Promise<string>
+    addRecipe(userId: number, recipeCredentials: string): Promise<string>
+    removeRecipe(userId: number, recipeCredentials: string): Promise<string>
 }
