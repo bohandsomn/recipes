@@ -32,7 +32,8 @@
     },
     "auth": {
         "log-in": {
-            "incorrect-password": "Invalid password"
+            "incorrect-password": "Invalid password",
+            "empty-password": "You can't log in because you registered with an external solution (eg google). Try to log in using this service and set a password"
         },
         "validation": {
             "email": "Invalid email",

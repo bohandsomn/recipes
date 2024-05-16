@@ -7,6 +7,8 @@ import {
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 
+import { Op } from 'sequelize'
+
 import { I18nLanguagesService } from '@/modules/service/modules/languages/services/i18n-languages/i18n-languages.service'
 import { LoggerService } from '@/modules/service/modules/logger/services/logger/logger.service'
 
@@ -47,7 +49,10 @@ export class UserService implements IUserService {
             if (error instanceof HttpException) {
                 throw error
             }
-            throw new InternalServerErrorException('user.create.unknown')
+            const errorMessage = this.languagesService.exception(
+                'user.create.unknown',
+            )
+            throw new InternalServerErrorException(errorMessage)
         }
     }
 
@@ -62,7 +67,10 @@ export class UserService implements IUserService {
             if (error instanceof HttpException) {
                 throw error
             }
-            throw new InternalServerErrorException('user.update.unknown')
+            const errorMessage = this.languagesService.exception(
+                'user.update.unknown',
+            )
+            throw new InternalServerErrorException(errorMessage)
         }
     }
 
@@ -79,7 +87,9 @@ export class UserService implements IUserService {
                 conditions.activationLink = input.activationLink
             }
             const candidate = await this.userModel.findOne({
-                where: conditions,
+                where: {
+                    [Op.or]: conditions,
+                },
             })
             return candidate
         } catch (error) {

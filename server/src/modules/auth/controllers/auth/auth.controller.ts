@@ -5,6 +5,7 @@ import {
     HttpCode,
     HttpStatus,
     Param,
+    Patch,
     Post,
     UseGuards,
     UseInterceptors,
@@ -24,6 +25,7 @@ import { GoogleOauthGuard } from '../../guards/google-oauth/google-oauth.guard'
 import { ClearTokenInterceptor } from '../../interceptors/clear-token/clear-token.interceptor'
 import { SaveTokenInterceptor } from '../../interceptors/save-token/save-token.interceptor'
 import { IAuthController } from '../../interfaces/auth-controller.interface'
+import { PasswordPipe } from '../../pipes/password/password.pipe'
 import { AuthService } from '../../services/auth/auth.service'
 
 @Controller('auth')
@@ -81,6 +83,16 @@ export class AuthController implements IAuthController {
     @UseGuards(AuthGuard)
     async sendConfirmEmail(@User('userId') userId: number): Promise<void> {
         return this.authService.sendConfirmEmail({ userId })
+    }
+
+    @Patch('password')
+    @HttpCode(HttpStatus.OK)
+    @UseGuards(AuthGuard)
+    async setUserPassword(
+        @User('userId') userId: number,
+        @Body('password', PasswordPipe) password: string,
+    ): Promise<UserPayloadDto> {
+        return this.authService.setUserPassword({ userId, password })
     }
 
     @Get('google')

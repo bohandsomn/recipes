@@ -23,6 +23,7 @@ import { ILogInUserInput } from '../../interfaces/log-in-user-input.interface'
 import { IRefreshTokenInput } from '../../interfaces/refresh-token-input.interface'
 import { IRegisterUserInput } from '../../interfaces/register-user-input.interface'
 import { ISendConfirmEmailInput } from '../../interfaces/send-confirm-email-input.interface'
+import { ISetUserPasswordInput } from '../../interfaces/set-user-password-input.interface'
 import { ActivationService } from '../activation/activation.service'
 import { BcryptjsPasswordService } from '../bcryptjs-password/bcryptjs-password.service'
 
@@ -59,17 +60,21 @@ export class AuthService implements IAuthService {
 
     async logInUser(input: ILogInUserInput): Promise<UserPayloadDto> {
         const user = await this.userService.getOne(input)
-        if (user.password) {
-            const isCorrectPassword = await this.passwordService.compare(
-                input.password,
-                user.password,
+        if (!user.password) {
+            const errorMessage = this.languagesService.exception(
+                'auth.log-in.empty-password',
             )
-            if (!isCorrectPassword) {
-                const errorMessage = this.languagesService.exception(
-                    'auth.log-in.incorrect-password',
-                )
-                throw new ForbiddenException(errorMessage)
-            }
+            throw new ForbiddenException(errorMessage)
+        }
+        const isCorrectPassword = await this.passwordService.compare(
+            input.password,
+            user.password,
+        )
+        if (!isCorrectPassword) {
+            const errorMessage = this.languagesService.exception(
+                'auth.log-in.incorrect-password',
+            )
+            throw new ForbiddenException(errorMessage)
         }
         const userPayload = this.getUserPayload(user)
         return userPayload
@@ -86,7 +91,14 @@ export class AuthService implements IAuthService {
     async externalLogInUser(
         input: IExternalLogInUserInput,
     ): Promise<UserPayloadDto> {
-        const user = await this.userService.getOne(input)
+        let user = await this.userService.findOne(input)
+        if (!user) {
+            const activationPayload = this.activationService.externalActivate()
+            user = await this.userService.create({
+                email: input.email,
+                ...activationPayload,
+            })
+        }
         const userPayload = this.getUserPayload(user)
         return userPayload
     }
@@ -117,6 +129,18 @@ export class AuthService implements IAuthService {
             email: user.email,
             activationLink,
         })
+    }
+
+    async setUserPassword(
+        input: ISetUserPasswordInput,
+    ): Promise<UserPayloadDto> {
+        const hashedPassword = await this.passwordService.hash(input.password)
+        const user = await this.userService.update({
+            id: input.userId,
+            password: hashedPassword,
+        })
+        const userPayload = this.getUserPayload(user)
+        return userPayload
     }
 
     private getUserPayload(user: IUserModel): UserPayloadDto {

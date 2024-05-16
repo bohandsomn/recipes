@@ -7,6 +7,7 @@ import { ILogInUserInput } from './log-in-user-input.interface'
 import { IRefreshTokenInput } from './refresh-token-input.interface'
 import { IRegisterUserInput } from './register-user-input.interface'
 import { ISendConfirmEmailInput } from './send-confirm-email-input.interface'
+import { ISetUserPasswordInput } from './set-user-password-input.interface'
 
 export interface IAuthService {
     registerUser(input: IRegisterUserInput): Promise<UserPayloadDto>
@@ -16,4 +17,5 @@ export interface IAuthService {
     refreshToken(input: IRefreshTokenInput): Promise<UserPayloadDto>
     activateUser(input: IActivateUserInput): Promise<void>
     sendConfirmEmail(input: ISendConfirmEmailInput): Promise<void>
+    setUserPassword(input: ISetUserPasswordInput): Promise<UserPayloadDto>
 }

@@ -12,6 +12,7 @@ export interface IAuthController {
     logOutUser(refreshToken: string): Promise<void>
     activateUser(activationLink: string): Promise<void>
     sendConfirmEmail(userId: number): Promise<void>
+    setUserPassword(userId: number, password: string): Promise<UserPayloadDto>
     google(): Promise<void>
     googleCallback(user: ExternalUserDto): Promise<UserPayloadDto>
 }
