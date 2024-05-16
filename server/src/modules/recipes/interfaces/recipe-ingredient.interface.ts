@@ -1,7 +1,7 @@
 /**
  * @description `section.component` from external api
  */
-export interface IExternalRecipeIngredient {
+export interface IRecipeIngredient {
     /**
      * @description `ingredient.name` from external api
      */

@@ -1,7 +1,7 @@
 /**
  * @description `instruction` from external api
  */
-export interface IExternalRecipeStage {
+export interface IRecipeStage {
     /**
      * @description `id` from external api
      * @unique

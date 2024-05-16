@@ -64,5 +64,13 @@
         "search": {
             "unknown": "Unable to search recipes due to unknown reasons"
         }
+    },
+    "wish": {
+        "add-one": {
+            "unknown": "Unable to add recipe to wish list due to unknown reasons"
+        },
+        "remove-one": {
+            "unknown": "Unable to remove recipe from wish list due to unknown reasons"
+        }
     }
 }

@@ -1,6 +1,6 @@
-import { IExternalRecipe } from './external-recipe.interface'
+import { IRecipe } from './recipe.interface'
 
 export interface IRecipeList {
     readonly count: number
-    readonly data: IExternalRecipe[]
+    readonly data: IRecipe[]
 }

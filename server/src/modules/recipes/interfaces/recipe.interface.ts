@@ -1,7 +1,7 @@
-import { IExternalRecipeIngredient } from './external-recipe-ingredient.interface'
-import { IExternalRecipeStage } from './external-recipe-stage.interface'
+import { IRecipeIngredient } from './recipe-ingredient.interface'
+import { IRecipeStage } from './recipe-stage.interface'
 
-export interface IExternalRecipe {
+export interface IRecipe {
     /**
      * @example "TASTY_12345678"
      * @description TASTY is enum `ExternalRecipe` and `recipeId` is external identifier ("ExternalRecipe_recipeId")
@@ -77,6 +77,6 @@ export interface IExternalRecipe {
      * @description `tag.display_name` from external api
      */
     readonly tags: string[] | null
-    readonly stages: IExternalRecipeStage[] | null
-    readonly ingredients: IExternalRecipeIngredient[] | null
+    readonly stages: IRecipeStage[] | null
+    readonly ingredients: IRecipeIngredient[] | null
 }

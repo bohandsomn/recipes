@@ -9,10 +9,10 @@ import { LoggerService } from '@/modules/service/modules/logger/services/logger/
 import { DEFAULT_RECIPE_PAGE } from '../../constants/default-recipe-page'
 import { DEFAULT_RECIPE_SIZE } from '../../constants/default-recipe-size'
 import { ExternalRecipe } from '../../constants/external-recipe'
-import { IExternalRecipe } from '../../interfaces/external-recipe.interface'
 import { IExternalRecipesService } from '../../interfaces/external-recipes-service.interface'
 import { IGetRecipesInput } from '../../interfaces/get-recipes-input.interface'
 import { IRecipeList } from '../../interfaces/recipe-list.interface'
+import { IRecipe } from '../../interfaces/recipe.interface'
 import { ITastyRecipeList } from '../../interfaces/tasty-recipe-list.interface'
 import { ITastyRecipe } from '../../interfaces/tasty-recipe.interface'
 
@@ -55,7 +55,7 @@ export class TastyRecipesService implements IExternalRecipesService {
         }
     }
 
-    async getRecipe(recipeCredentials: string): Promise<IExternalRecipe> {
+    async getRecipe(recipeCredentials: string): Promise<IRecipe> {
         try {
             const id = recipeCredentials.split('_')[1]
             const { data: recipe } = await lastValueFrom(
@@ -123,7 +123,7 @@ export class TastyRecipesService implements IExternalRecipesService {
         tags,
         instructions,
         sections,
-    }: ITastyRecipe): IExternalRecipe {
+    }: ITastyRecipe): IRecipe {
         return {
             recipeCredentials: `${ExternalRecipe.TASTY}_${id}`,
             name,
