@@ -48,5 +48,21 @@
         "password": {
             "not-password": "Set your password in dashboard"
         }
+    },
+    "recipes": {
+        "get-recipe-list": {
+            "unknown": "Unable to get recipe list due to unknown reasons"
+        },
+        "get-recipe": {
+            "unknown": "Unable to get recipe due to unknown reasons"
+        },
+        "get-similar-recipe-list": {
+            "unknown": "Unable to get similar recipe list due to unknown reasons"
+        }
+    },
+    "search-recipes": {
+        "search": {
+            "unknown": "Unable to search recipes due to unknown reasons"
+        }
     }
 }
