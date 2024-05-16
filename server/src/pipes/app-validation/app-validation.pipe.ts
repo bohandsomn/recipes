@@ -12,7 +12,7 @@ import { I18nLanguagesService } from '@/service/modules/languages/services/i18n-
 
 @Injectable()
 export class AppValidationPipe implements PipeTransform {
-    constructor(private readonly languagesService: I18nLanguagesService) { }
+    constructor(private readonly languagesService: I18nLanguagesService) {}
 
     async transform(value: object | undefined, { metatype }: ArgumentMetadata) {
         if (!metatype) {

@@ -1,11 +1,12 @@
+import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
+
 import * as cookieParser from 'cookie-parser'
 
 import { Environment } from '@/modules/service/modules/app-config/constants/environment'
 import { AppConfigService } from '@/modules/service/modules/app-config/services/app-config/app-config.service'
 
 import { AppModule } from './app.module'
-import { ConfigService } from '@nestjs/config'
 import { AppExceptionFilter } from './filters/app-exception/app-exception.filter'
 
 async function bootstrap() {
