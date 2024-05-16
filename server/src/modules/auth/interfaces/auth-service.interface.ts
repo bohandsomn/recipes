@@ -1,4 +1,4 @@
-import { IUserPayload } from '@/modules/user/interfaces/user-payload.interface'
+import { UserPayloadDto } from '@/modules/user/dtos/user-payload-dto'
 
 import { IActivateUserInput } from './activate-user-input.interface'
 import { IAutoLogInUserInput } from './auto-log-in-user-input.interface'
@@ -9,11 +9,11 @@ import { IRegisterUserInput } from './register-user-input.interface'
 import { ISendConfirmEmailInput } from './send-confirm-email-input.interface'
 
 export interface IAuthService {
-    registerUser(input: IRegisterUserInput): Promise<IUserPayload>
-    logInUser(input: ILogInUserInput): Promise<IUserPayload>
-    autoLogInUser(input: IAutoLogInUserInput): Promise<IUserPayload>
-    externalLogInUser(input: IExternalLogInUserInput): Promise<IUserPayload>
-    refreshToken(input: IRefreshTokenInput): Promise<IUserPayload>
+    registerUser(input: IRegisterUserInput): Promise<UserPayloadDto>
+    logInUser(input: ILogInUserInput): Promise<UserPayloadDto>
+    autoLogInUser(input: IAutoLogInUserInput): Promise<UserPayloadDto>
+    externalLogInUser(input: IExternalLogInUserInput): Promise<UserPayloadDto>
+    refreshToken(input: IRefreshTokenInput): Promise<UserPayloadDto>
     activateUser(input: IActivateUserInput): Promise<void>
     sendConfirmEmail(input: ISendConfirmEmailInput): Promise<void>
 }

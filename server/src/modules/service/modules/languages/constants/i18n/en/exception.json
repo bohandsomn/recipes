@@ -33,6 +33,10 @@
     "auth": {
         "log-in": {
             "incorrect-password": "Invalid password"
+        },
+        "validation": {
+            "email": "Invalid email",
+            "password": "Password's length must be between {min} and {max} characters"
         }
     }
 }

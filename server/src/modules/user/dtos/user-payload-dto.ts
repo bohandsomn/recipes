@@ -1,4 +1,4 @@
-export interface IUserPayload {
+export class UserPayloadDto {
     readonly email: string
     readonly isActive: boolean
     readonly hasPassword: boolean

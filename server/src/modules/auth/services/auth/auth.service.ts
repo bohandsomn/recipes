@@ -11,7 +11,7 @@ import { AppConfigService } from '@/modules/service/modules/app-config/services/
 import { I18nLanguagesService } from '@/modules/service/modules/languages/services/i18n-languages/i18n-languages.service'
 import { UserTokenType } from '@/modules/user/constants/user-token-type'
 import { IUserModel } from '@/modules/user/interfaces/user-model.interface'
-import { IUserPayload } from '@/modules/user/interfaces/user-payload.interface'
+import { UserPayloadDto } from '@/modules/user/dtos/user-payload-dto'
 import { UserTokenService } from '@/modules/user/services/user-token/user-token.service'
 import { UserService } from '@/modules/user/services/user/user.service'
 
@@ -37,9 +37,9 @@ export class AuthService implements IAuthService {
         private readonly appConfigService: AppConfigService,
         private readonly mailService: MailService,
         private readonly languagesService: I18nLanguagesService,
-    ) {}
+    ) { }
 
-    async registerUser(input: IRegisterUserInput): Promise<IUserPayload> {
+    async registerUser(input: IRegisterUserInput): Promise<UserPayloadDto> {
         const activationPayload = this.activationService.initialActivate()
         const hashedPassword = await this.passwordService.hash(input.password)
         const user = await this.userService.create({
@@ -57,7 +57,7 @@ export class AuthService implements IAuthService {
         return userPayload
     }
 
-    async logInUser(input: ILogInUserInput): Promise<IUserPayload> {
+    async logInUser(input: ILogInUserInput): Promise<UserPayloadDto> {
         const user = await this.userService.getOne(input)
         if (user.password) {
             const isCorrectPassword = await this.passwordService.compare(
@@ -75,7 +75,7 @@ export class AuthService implements IAuthService {
         return userPayload
     }
 
-    async autoLogInUser(input: IAutoLogInUserInput): Promise<IUserPayload> {
+    async autoLogInUser(input: IAutoLogInUserInput): Promise<UserPayloadDto> {
         const user = await this.userService.getOne({
             id: input.userId,
         })
@@ -85,13 +85,13 @@ export class AuthService implements IAuthService {
 
     async externalLogInUser(
         input: IExternalLogInUserInput,
-    ): Promise<IUserPayload> {
+    ): Promise<UserPayloadDto> {
         const user = await this.userService.getOne(input)
         const userPayload = this.getUserPayload(user)
         return userPayload
     }
 
-    async refreshToken(input: IRefreshTokenInput): Promise<IUserPayload> {
+    async refreshToken(input: IRefreshTokenInput): Promise<UserPayloadDto> {
         const userTokenPayload = this.userTokenService.verify({
             token: input.refreshToken,
             type: UserTokenType.REFRESH_TOKEN,
@@ -119,7 +119,7 @@ export class AuthService implements IAuthService {
         })
     }
 
-    private getUserPayload(user: IUserModel): IUserPayload {
+    private getUserPayload(user: IUserModel): UserPayloadDto {
         const tokens = this.userTokenService.generate({
             userId: user.id,
             isActive: user.isActive,
