@@ -15,7 +15,7 @@ export class TastySearchRecipesService implements ISearchRecipesService {
         private readonly httpService: HttpService,
         private readonly loggerService: LoggerService,
         private readonly languagesService: I18nLanguagesService,
-    ) {}
+    ) { }
 
     async search(query: string): Promise<string[]> {
         try {
@@ -29,7 +29,7 @@ export class TastySearchRecipesService implements ISearchRecipesService {
                     },
                 ),
             )
-            const hints = data.result.map(({ search_value: hint }) => hint)
+            const hints = data.results.map(({ search_value: hint }) => hint)
             return hints
         } catch (error) {
             this.loggerService.error(error)

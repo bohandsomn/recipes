@@ -1,5 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
 
+import { CacheRedisService } from '@/modules/service/modules/app-cache/services/cache-redis/cache-redis.service'
 import { I18nLanguagesService } from '@/modules/service/modules/languages/services/i18n-languages/i18n-languages.service'
 import { LoggerService } from '@/modules/service/modules/logger/services/logger/logger.service'
 
@@ -18,7 +19,6 @@ import { TastyRecipesService } from '../../services/tasty-recipes/tasty-recipes.
 import { TastySearchRecipesService } from '../../services/tasty-search-recipes/tasty-search-recipes.service'
 import { WishService } from '../wish/wish.service'
 
-// TODO: Add cache service
 @Injectable()
 export class RecipesService implements IRecipesService {
     constructor(
@@ -27,28 +27,56 @@ export class RecipesService implements IRecipesService {
         private readonly wishService: WishService,
         private readonly loggerService: LoggerService,
         private readonly languagesService: I18nLanguagesService,
-    ) {}
+        private readonly cacheService: CacheRedisService,
+    ) { }
 
     async getRecipeList(input: IGetRecipesInput): Promise<RecipeListDto> {
+        const key = (Object.keys(input) as (keyof IGetRecipesInput)[])
+            .filter((key) => input[key] !== undefined)
+            .map((key) => `${key}:${input[key]}`)
+            .join(';')
+        const cachedRecipeList = await this.cacheService.get<RecipeListDto>(key)
+        if (cachedRecipeList) {
+            return cachedRecipeList
+        }
         const recipeList =
             await this.externalRecipesService.getRecipeList(input)
+        this.cacheService.save(key, recipeList, Infinity)
+        recipeList.data.map((recipe) =>
+            this.cacheService.save(recipe.recipeCredentials, recipe, Infinity),
+        )
         return recipeList
     }
 
     async getRecipe(input: IGetRecipeInput): Promise<RecipeDto> {
+        const key = input.recipeCredentials
+        const cachedRecipe = await this.cacheService.get<RecipeDto>(key)
+        if (cachedRecipe) {
+            return cachedRecipe
+        }
         const recipe = await this.externalRecipesService.getRecipe(
             input.recipeCredentials,
         )
+        this.cacheService.save(key, recipe, Infinity)
         return recipe
     }
 
     async getSimilarRecipeList(
         input: IGetSimilarRecipeInput,
     ): Promise<RecipeListDto> {
+        const key = `similarList${input.recipeCredentials}`
+        const cachedRecipeList = await this.cacheService.get<RecipeListDto>(key)
+        if (cachedRecipeList) {
+            return cachedRecipeList
+        }
         const recipeList =
             await this.externalRecipesService.getSimilarRecipeList(
                 input.recipeCredentials,
             )
+        this.cacheService.save(key, recipeList, Infinity)
+        recipeList.data.map((recipe) =>
+            this.cacheService.save(recipe.recipeCredentials, recipe, Infinity),
+        )
         return recipeList
     }
 
@@ -74,6 +102,9 @@ export class RecipesService implements IRecipesService {
                 ),
             )
             const data = recipes.filter((recipe): recipe is IRecipe => !!recipe)
+            data.map((recipe) =>
+                this.cacheService.save(recipe.recipeCredentials, recipe, Infinity),
+            )
             return {
                 count: data.length,
                 data,
@@ -88,7 +119,13 @@ export class RecipesService implements IRecipesService {
     }
 
     async searchRecipe(input: ISearchRecipeInput): Promise<string[]> {
+        const key = `searchRecipe${input.query}`
+        const cachedHints = await this.cacheService.get<string[]>(key)
+        if (cachedHints) {
+            return cachedHints
+        }
         const hints = await this.searchRecipesService.search(input.query)
+        this.cacheService.save(key, hints)
         return hints
     }
 

@@ -2,6 +2,7 @@ import { HttpModule } from '@nestjs/axios'
 import { Module } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'
 
+import { AppCacheModule } from '../service/modules/app-cache/app-cache.module'
 import { Environment } from '../service/modules/app-config/constants/environment'
 import { AppConfigService } from '../service/modules/app-config/services/app-config/app-config.service'
 import { UserModule } from '../user/user.module'
@@ -31,6 +32,7 @@ import { WishService } from './services/wish/wish.service'
         }),
         SequelizeModule.forFeature([WishModel]),
         UserModule,
+        AppCacheModule,
     ],
     providers: [
         TastyRecipesService,
