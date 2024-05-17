@@ -1,4 +1,9 @@
+import { UseGuards } from '@nestjs/common'
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+
+import { ActivationGuard } from '@/modules/auth/guards/activation/activation.guard'
+import { AuthGuard } from '@/modules/auth/guards/auth/auth.guard'
+import { User } from '@/modules/user/decorators/user.decorator'
 
 import { SortRecipes } from '../../constants/sort-recipes'
 import { RecipeDto } from '../../dtos/recipe-dto'
@@ -43,6 +48,16 @@ export class RecipesResolver implements IRecipesResolver {
         })
     }
 
+    @Query(() => RecipeListDto)
+    @UseGuards(AuthGuard)
+    async getUserRecipeList(
+        @User('userId') userId: number,
+    ): Promise<RecipeListDto> {
+        return this.recipesService.getUserRecipeList({
+            userId,
+        })
+    }
+
     @Query(() => [String])
     async searchRecipe(@Args('query') query: string): Promise<string[]> {
         return this.recipesService.searchRecipe({
@@ -51,9 +66,10 @@ export class RecipesResolver implements IRecipesResolver {
     }
 
     @Mutation(() => String)
+    @UseGuards(AuthGuard, ActivationGuard)
     async addRecipe(
-        userId: number,
-        recipeCredentials: string,
+        @User('userId') userId: number,
+        @Args('recipeCredentials') recipeCredentials: string,
     ): Promise<string> {
         return this.recipesService.addRecipe({
             userId,
@@ -62,9 +78,10 @@ export class RecipesResolver implements IRecipesResolver {
     }
 
     @Mutation(() => String)
+    @UseGuards(AuthGuard, ActivationGuard)
     async removeRecipe(
-        userId: number,
-        recipeCredentials: string,
+        @User('userId') userId: number,
+        @Args('recipeCredentials') recipeCredentials: string,
     ): Promise<string> {
         return this.recipesService.removeRecipe({
             userId,

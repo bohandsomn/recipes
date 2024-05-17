@@ -4,6 +4,7 @@ import { SequelizeModule } from '@nestjs/sequelize'
 
 import { Environment } from '../service/modules/app-config/constants/environment'
 import { AppConfigService } from '../service/modules/app-config/services/app-config/app-config.service'
+import { UserModule } from '../user/user.module'
 import { WishModel } from './models/wish.model'
 import { RecipesResolver } from './resolvers/recipes/recipes.resolver'
 import { RecipesService } from './services/recipes/recipes.service'
@@ -29,6 +30,7 @@ import { WishService } from './services/wish/wish.service'
             inject: [AppConfigService],
         }),
         SequelizeModule.forFeature([WishModel]),
+        UserModule,
     ],
     providers: [
         TastyRecipesService,

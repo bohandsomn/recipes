@@ -58,6 +58,9 @@
         },
         "get-similar-recipe-list": {
             "unknown": "Unable to get similar recipe list due to unknown reasons"
+        },
+        "get-user-recipe-list": {
+            "unknown": "Unable to get user's recipe list due to unknown reasons"
         }
     },
     "search-recipes": {
@@ -71,6 +74,9 @@
         },
         "remove-one": {
             "unknown": "Unable to remove recipe from wish list due to unknown reasons"
+        },
+        "find-many": {
+            "unknown": "Unable to find wish list due to unknown reasons"
         }
     }
 }
