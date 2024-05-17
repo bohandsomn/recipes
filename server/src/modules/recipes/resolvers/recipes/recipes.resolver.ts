@@ -3,6 +3,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { ActivationGuard } from '@/modules/auth/guards/activation/activation.guard'
 import { AuthGuard } from '@/modules/auth/guards/auth/auth.guard'
+import { PasswordGuard } from '@/modules/auth/guards/password/password.guard'
 import { User } from '@/modules/user/decorators/user.decorator'
 
 import { SortRecipes } from '../../constants/sort-recipes'
@@ -66,7 +67,7 @@ export class RecipesResolver implements IRecipesResolver {
     }
 
     @Mutation(() => String)
-    @UseGuards(AuthGuard, ActivationGuard)
+    @UseGuards(AuthGuard, ActivationGuard, PasswordGuard)
     async addRecipe(
         @User('userId') userId: number,
         @Args('recipeCredentials') recipeCredentials: string,
@@ -78,7 +79,7 @@ export class RecipesResolver implements IRecipesResolver {
     }
 
     @Mutation(() => String)
-    @UseGuards(AuthGuard, ActivationGuard)
+    @UseGuards(AuthGuard, ActivationGuard, PasswordGuard)
     async removeRecipe(
         @User('userId') userId: number,
         @Args('recipeCredentials') recipeCredentials: string,

@@ -28,7 +28,7 @@ export class RecipesService implements IRecipesService {
         private readonly loggerService: LoggerService,
         private readonly languagesService: I18nLanguagesService,
         private readonly cacheService: CacheRedisService,
-    ) { }
+    ) {}
 
     async getRecipeList(input: IGetRecipesInput): Promise<RecipeListDto> {
         const key = (Object.keys(input) as (keyof IGetRecipesInput)[])
@@ -103,7 +103,11 @@ export class RecipesService implements IRecipesService {
             )
             const data = recipes.filter((recipe): recipe is IRecipe => !!recipe)
             data.map((recipe) =>
-                this.cacheService.save(recipe.recipeCredentials, recipe, Infinity),
+                this.cacheService.save(
+                    recipe.recipeCredentials,
+                    recipe,
+                    Infinity,
+                ),
             )
             return {
                 count: data.length,

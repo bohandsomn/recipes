@@ -22,7 +22,7 @@ export class TastyRecipesService implements IExternalRecipesService {
         private readonly httpService: HttpService,
         private readonly loggerService: LoggerService,
         private readonly languagesService: I18nLanguagesService,
-    ) { }
+    ) {}
 
     async getRecipeList(input: IGetRecipesInput): Promise<IRecipeList> {
         try {
@@ -143,7 +143,7 @@ export class TastyRecipesService implements IExternalRecipesService {
                 !ratings?.count_positive || !ratings.count_negative
                     ? null
                     : ratings?.count_positive /
-                    (ratings.count_positive + ratings.count_negative),
+                      (ratings.count_positive + ratings.count_negative),
             topics: topics
                 .map(({ name }) => name)
                 .filter((name): name is string => !!name),
@@ -175,7 +175,9 @@ export class TastyRecipesService implements IExternalRecipesService {
                         text,
                         measurements: measurements.map(
                             ({ quantity, unit: { name } }) =>
-                                [quantity, name].filter((value) => !!value).join(' ')
+                                [quantity, name]
+                                    .filter((value) => !!value)
+                                    .join(' '),
                         ),
                     }),
                 ),

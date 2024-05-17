@@ -15,7 +15,7 @@ export class TastySearchRecipesService implements ISearchRecipesService {
         private readonly httpService: HttpService,
         private readonly loggerService: LoggerService,
         private readonly languagesService: I18nLanguagesService,
-    ) { }
+    ) {}
 
     async search(query: string): Promise<string[]> {
         try {
