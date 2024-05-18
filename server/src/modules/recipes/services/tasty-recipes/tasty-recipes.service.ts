@@ -15,6 +15,7 @@ import { IRecipeList } from '../../interfaces/recipe-list.interface'
 import { IRecipe } from '../../interfaces/recipe.interface'
 import { ITastyRecipeList } from '../../interfaces/tasty-recipe-list.interface'
 import { ITastyRecipe } from '../../interfaces/tasty-recipe.interface'
+import { getRecipeListResult, getSimilarRecipeListResult } from './__mock__'
 
 @Injectable()
 export class TastyRecipesService implements IExternalRecipesService {
@@ -22,26 +23,26 @@ export class TastyRecipesService implements IExternalRecipesService {
         private readonly httpService: HttpService,
         private readonly loggerService: LoggerService,
         private readonly languagesService: I18nLanguagesService,
-    ) {}
+    ) { }
 
     async getRecipeList(input: IGetRecipesInput): Promise<IRecipeList> {
         try {
             const page = input.page ?? DEFAULT_RECIPE_PAGE
             const size = input.size ?? DEFAULT_RECIPE_SIZE
-            const { data: recipeList } = await lastValueFrom(
-                this.httpService.get<ITastyRecipeList>('recipes/list', {
-                    params: {
-                        from: page.toString(),
-                        size: size.toString(),
-                        q: input.query,
-                        sort: input.sort,
-                    },
-                }),
+            // const { data: recipeList } = await lastValueFrom(
+            //     this.httpService.get<ITastyRecipeList>('recipes/list', {
+            //         params: {
+            //             from: page.toString(),
+            //             size: size.toString(),
+            //             q: input.query,
+            //             sort: input.sort,
+            //         },
+            //     }),
+            // )
+            const data = getRecipeListResult.results.map((recipe) =>
+                this.mapRecipe(recipe as any),
             )
-            const data = recipeList.results.map((recipe) =>
-                this.mapRecipe(recipe),
-            )
-            const count = recipeList.count
+            const count = getRecipeListResult.count
             return {
                 count,
                 data,
@@ -81,20 +82,20 @@ export class TastyRecipesService implements IExternalRecipesService {
     ): Promise<IRecipeList> {
         try {
             const id = recipeCredentials.split('_')[1]
-            const { data: recipeList } = await lastValueFrom(
-                this.httpService.get<ITastyRecipeList>(
-                    'recipes/list-similarities',
-                    {
-                        params: {
-                            recipe_id: id,
-                        },
-                    },
-                ),
+            // const { data: recipeList } = await lastValueFrom(
+            //     this.httpService.get<ITastyRecipeList>(
+            //         'recipes/list-similarities',
+            //         {
+            //             params: {
+            //                 recipe_id: id,
+            //             },
+            //         },
+            //     ),
+            // )
+            const data = getSimilarRecipeListResult.results.map((recipe) =>
+                this.mapRecipe(recipe as any),
             )
-            const data = recipeList.results.map((recipe) =>
-                this.mapRecipe(recipe),
-            )
-            const count = recipeList.count
+            const count = getSimilarRecipeListResult.count
             return {
                 count,
                 data,
@@ -143,7 +144,7 @@ export class TastyRecipesService implements IExternalRecipesService {
                 !ratings?.count_positive || !ratings.count_negative
                     ? null
                     : ratings?.count_positive /
-                      (ratings.count_positive + ratings.count_negative),
+                    (ratings.count_positive + ratings.count_negative),
             topics: topics
                 .map(({ name }) => name)
                 .filter((name): name is string => !!name),

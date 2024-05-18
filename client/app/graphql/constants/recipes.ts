@@ -16,6 +16,7 @@ export const GET_RECIPE_PREVIEW = gql`
                 keywords
                 time
                 image
+                rating
             }
         }
     }
@@ -66,6 +67,7 @@ export const GET_SIMILAR_RECIPE_PREVIEW = gql`
                 keywords
                 time
                 image
+                rating
             }
         }
     }
@@ -82,6 +84,7 @@ export const GET_USER_RECIPE_PREVIEW = gql`
                 keywords
                 time
                 image
+                rating
             }
         }
     }

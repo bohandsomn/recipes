@@ -1,8 +1,24 @@
 import React from 'react'
 
-const Page = () => {
+// TODO: Add RecipeListPreview zustand state
+const Page = async () => {
+    // const recipeList = await getRecipePreview({
+    //     page: DEFAULT_PAGE,
+    //     size: DEFAULT_SIZE,
+    //     query: '',
+    //     sort: SortRecipes.POPULAR,
+    // })
     return (
-        <div>Page</div>
+        <section>
+            Page
+            {/* <ul>
+                {recipeList.data?.data.map((recipe) => (
+                    <li key={recipe.recipeCredentials}>
+                        <RecipePreview {...recipe} />
+                    </li>
+                ))}
+            </ul> */}
+        </section>
     )
 }
 

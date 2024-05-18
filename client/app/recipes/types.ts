@@ -14,6 +14,7 @@ export interface IRecipePreview {
     readonly keywords: string | null
     readonly time: number | null
     readonly image: string | null
+    readonly rating: number | null
 }
 
 export interface IRecipeListPreview {
