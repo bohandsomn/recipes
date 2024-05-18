@@ -1,15 +1,36 @@
-import { IServerErrorDto, authService } from './services'
+import { headers } from 'next/headers'
+import { checkEmail, checkPassword } from '@/auth'
+import { authService } from '@/services'
+import { getServerErrorMessage, parseAcceptLanguage } from '@/utils'
+import { getLanguages } from '@/utils/languages/server'
 
 export async function registerUser(formData: FormData) {
     'use server'
     try {
-        const email = formData.get('email')?.toString()!
-        const password = formData.get('password')?.toString()!
-        const confirmPassword = formData.get('confirm-password')?.toString()!
-        if (password !== confirmPassword) {
-            // TODO: Use i18n
+        const email = formData.get('email')?.toString() ?? ''
+        const password = formData.get('password')?.toString() ?? ''
+        const confirmPassword = formData.get('confirm-password')?.toString() ?? ''
+        const acceptLanguage = headers().get('accept-language')
+        const locale = parseAcceptLanguage(acceptLanguage)
+        const translate = await getLanguages(locale)
+        const isEmail = checkEmail(email)
+        const isValidPassword = checkPassword(password)
+        if (!isEmail) {
+            const errorMessage = translate('auth.validation.email')
             return {
-                failure: 'Mismatched password'
+                failure: errorMessage
+            }
+        }
+        if (!isValidPassword) {
+            const errorMessage = translate('auth.validation.password')
+            return {
+                failure: errorMessage
+            }
+        }
+        if (password !== confirmPassword) {
+            const errorMessage = translate('auth.validation.confirm-password')
+            return {
+                failure: errorMessage
             }
         }
         const response = await authService.registerUser({
@@ -20,8 +41,9 @@ export async function registerUser(formData: FormData) {
             success: response
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
@@ -29,8 +51,25 @@ export async function registerUser(formData: FormData) {
 export async function logInUser(formData: FormData) {
     'use server'
     try {
-        const email = formData.get('email')?.toString()!
-        const password = formData.get('password')?.toString()!
+        const email = formData.get('email')?.toString() ?? ''
+        const password = formData.get('password')?.toString() ?? ''
+        const acceptLanguage = headers().get('accept-language')
+        const locale = parseAcceptLanguage(acceptLanguage)
+        const translate = await getLanguages(locale)
+        const isEmail = checkEmail(email)
+        const isValidPassword = checkPassword(password)
+        if (!isEmail) {
+            const errorMessage = translate('auth.validation.email')
+            return {
+                failure: errorMessage
+            }
+        }
+        if (!isValidPassword) {
+            const errorMessage = translate('auth.validation.password')
+            return {
+                failure: errorMessage
+            }
+        }
         const response = await authService.logInUser({
             email,
             password,
@@ -39,8 +78,9 @@ export async function logInUser(formData: FormData) {
             success: response
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
@@ -53,8 +93,9 @@ export async function autoLogInUser() {
             success: response
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
@@ -67,8 +108,9 @@ export async function logOutUser() {
             success: response
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
@@ -88,8 +130,9 @@ export async function activateUser(activationLink: string) {
             success: null
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
@@ -102,8 +145,9 @@ export async function sendConfirmEmail() {
             success: response
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
@@ -111,7 +155,17 @@ export async function sendConfirmEmail() {
 export async function setPassword(formData: FormData) {
     'use server'
     try {
-        const password = formData.get('password')?.toString()!
+        const password = formData.get('password')?.toString() ?? ''
+        const acceptLanguage = headers().get('accept-language')
+        const locale = parseAcceptLanguage(acceptLanguage)
+        const translate = await getLanguages(locale)
+        const isValidPassword = checkPassword(password)
+        if (!isValidPassword) {
+            const errorMessage = translate('auth.validation.password')
+            return {
+                failure: errorMessage
+            }
+        }
         const response = await authService.setPassword({
             password,
         })
@@ -119,8 +173,9 @@ export async function setPassword(formData: FormData) {
             success: response
         }
     } catch (error) {
+        const errorMessage = getServerErrorMessage(error)
         return {
-            failure: error as IServerErrorDto | null
+            failure: errorMessage
         }
     }
 }
