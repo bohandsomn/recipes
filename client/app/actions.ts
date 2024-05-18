@@ -3,6 +3,10 @@ import { checkEmail, checkPassword } from '@/auth'
 import { authService } from '@/services'
 import { getServerErrorMessage, parseAcceptLanguage } from '@/utils'
 import { getLanguages } from '@/utils/languages/server'
+import { IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/recipes'
+import { getClient } from '@/context/graphql/getClient'
+import { GET_RECIPE, GET_RECIPE_PREVIEW, GET_SIMILAR_RECIPE_PREVIEW, GET_USER_RECIPE_PREVIEW, SEARCH_RECIPE, getGraphqlError } from '@/graphql'
+import { IServerResponse } from '@/types'
 
 export async function registerUser(formData: FormData) {
     'use server'
@@ -176,6 +180,114 @@ export async function setPassword(formData: FormData) {
         const errorMessage = getServerErrorMessage(error)
         return {
             failure: errorMessage
+        }
+    }
+}
+
+export async function getRecipePreview(input: IGetRecipePreviewInput): Promise<IServerResponse<IRecipeListPreview>> {
+    const client = getClient()
+    try {
+        const { data } = await client.query({
+            query: GET_RECIPE_PREVIEW,
+            variables: input
+        })
+        return {
+            data: data.getRecipeList,
+            error: null,
+        }
+    } catch (error) {
+        const errorMessage = getServerErrorMessage(getGraphqlError(error as any))!
+        return {
+            data: null,
+            error: errorMessage,
+        }
+    }
+}
+
+export async function getRecipe(recipeCredentials: string): Promise<IServerResponse<IRecipe>> {
+    const client = getClient()
+    try {
+        const { data } = await client.query({
+            query: GET_RECIPE,
+            variables: {
+                recipeCredentials,
+            }
+        })
+        return {
+            data: data.getRecipe,
+            error: null,
+        }
+    } catch (error) {
+        const errorMessage = getServerErrorMessage(getGraphqlError(error as any))!
+        return {
+            data: null,
+            error: errorMessage,
+        }
+    }
+}
+
+export async function getSimilarRecipePreview(recipeCredentials: string): Promise<IServerResponse<IRecipeListPreview>> {
+    const client = getClient()
+    try {
+        const { data } = await client.query({
+            query: GET_SIMILAR_RECIPE_PREVIEW,
+            variables: {
+                recipeCredentials
+            }
+        })
+        return {
+            data: data.getSimilarRecipeList,
+            error: null,
+        }
+    } catch (error) {
+        const errorMessage = getServerErrorMessage(getGraphqlError(error as any))!
+        return {
+            data: null,
+            error: errorMessage,
+        }
+    }
+}
+
+export async function getUserRecipePreview(recipeCredentials: string): Promise<IServerResponse<IRecipeListPreview>> {
+    const client = getClient()
+    try {
+        const { data } = await client.query({
+            query: GET_USER_RECIPE_PREVIEW,
+            variables: {
+                recipeCredentials
+            }
+        })
+        return {
+            data: data.getUserRecipeList,
+            error: null,
+        }
+    } catch (error) {
+        const errorMessage = getServerErrorMessage(getGraphqlError(error as any))!
+        return {
+            data: null,
+            error: errorMessage,
+        }
+    }
+}
+
+export async function searchRecipe(query: string): Promise<IServerResponse<string[]>> {
+    const client = getClient()
+    try {
+        const { data } = await client.query({
+            query: SEARCH_RECIPE,
+            variables: {
+                query
+            }
+        })
+        return {
+            data: data.searchRecipe,
+            error: null,
+        }
+    } catch (error) {
+        const errorMessage = getServerErrorMessage(getGraphqlError(error as any))!
+        return {
+            data: null,
+            error: errorMessage,
         }
     }
 }
