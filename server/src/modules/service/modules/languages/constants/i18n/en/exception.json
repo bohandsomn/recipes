@@ -1,0 +1,82 @@
+{
+    "user": {
+        "create": {
+            "exists": "User with this email {email} already exists",
+            "unknown": "Unable to create user due to unknown reasons"
+        },
+        "update": {
+            "unknown": "Unable to update user due to unknown reasons"
+        },
+        "get-one": {
+            "not-found": "User not found"
+        }
+    },
+    "user-token": {
+        "get-secret-key": {
+            "unknown": "Unable to get secret key due to unknown reasons"
+        },
+        "get-expires-in": {
+            "unknown": "Unable to get expires in due to unknown reasons"
+        },
+        "generate-token": {
+            "unknown": "Unable to generate token due to unknown reasons"
+        },
+        "verify": {
+            "payload-not-valid": "Unfortunately, the user's data has been destroyed. Try logging in again",
+            "unknown": "Unable to verify token due to unknown reasons"
+        },
+        "split": {
+            "not-found-header": "Not found authorization header. Try to logging again",
+            "not-found-token": "Not found token from authorization header. Try to logging again"
+        }
+    },
+    "auth": {
+        "log-in": {
+            "incorrect-password": "Invalid password",
+            "empty-password": "You can't log in because you registered with an external solution (eg google). Try to log in using this service and set a password"
+        },
+        "validation": {
+            "email": "Invalid email",
+            "password": "Password's length must be between {min} and {max} characters"
+        },
+        "user": {
+            "not-found": "User's payload not found in request"
+        },
+        "activation": {
+            "not-activated": "User is not activated. Go to email and click activate button. If there is no email, to to dashboard and click send confirmation email"
+        },
+        "password": {
+            "not-password": "Set your password in dashboard"
+        }
+    },
+    "recipes": {
+        "get-recipe-list": {
+            "unknown": "Unable to get recipe list due to unknown reasons"
+        },
+        "get-recipe": {
+            "unknown": "Unable to get recipe due to unknown reasons"
+        },
+        "get-similar-recipe-list": {
+            "unknown": "Unable to get similar recipe list due to unknown reasons"
+        },
+        "get-user-recipe-list": {
+            "unknown": "Unable to get user's recipe list due to unknown reasons"
+        }
+    },
+    "search-recipes": {
+        "search": {
+            "unknown": "Unable to search recipes due to unknown reasons"
+        }
+    },
+    "wish": {
+        "add-one": {
+            "unknown": "Unable to add recipe to wish list due to unknown reasons"
+        },
+        "remove-one": {
+            "unknown": "Unable to remove recipe from wish list due to unknown reasons"
+        },
+        "find-many": {
+            "unknown": "Unable to find wish list due to unknown reasons"
+        }
+    }
+}
