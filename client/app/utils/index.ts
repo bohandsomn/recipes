@@ -1,4 +1,5 @@
 export * from './appApi'
+export * from './combineProviders'
 export * from './context'
 export * from './exception'
 export * from './refresher'
