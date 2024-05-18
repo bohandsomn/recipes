@@ -1,0 +1,2 @@
+export const AUTH_SERVER_URL = process.env.NEXT_PUBLIC_AUTH_SERVER_URL
+export const GRAPHQL_SERVER_URL = process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URL
