@@ -1,7 +1,8 @@
 import { GraphqlProvider, ServerGraphqlProvider } from '@/context'
-import { combineProviders } from '@/utils'
+import { LanguagesProvider, combineProviders } from '@/utils'
 
 export const AppProvider = combineProviders([
+    LanguagesProvider,
     ServerGraphqlProvider,
     GraphqlProvider,
 ])

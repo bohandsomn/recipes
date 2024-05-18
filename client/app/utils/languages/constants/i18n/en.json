@@ -1,0 +1,52 @@
+{
+    "auth": {
+        "validation": {
+            "email": "Your email is not valid",
+            "password": "Password's length must be between {min} and {max} characters",
+            "confirm-password": "Passwords do not match"
+        },
+        "constants": {
+            "placeholder": {
+                "email": "Enter your email",
+                "password": "Enter your password",
+                "confirm-password": "Confirm your password"
+            },
+            "log-in": {
+                "loading": "The user's log-in request is in progress...",
+                "submit": "Log in",
+                "success": "You are successfully logged in"
+            },
+            "registration": {
+                "loading": "The user's registration request is in progress...",
+                "submit": "Register",
+                "success": "You are successfully registered"
+            },
+            "auto-log-in": {
+                "loading": "The user's auto-log-in request is in progress...",
+                "success": "You are successfully logged in"
+            },
+            "log-out": {
+                "loading": "The user's log-out request is in progress...",
+                "submit": "Log out",
+                "success": "You are successfully logged out"
+            },
+            "activation": {
+                "info": "Activate your email",
+                "description": "Click on the text if you want to send a confirmation email to activate your email",
+                "header": "Something went wrong during activation:",
+                "hint": "Please try to refresh the page or come back later"
+            },
+            "greeting": "Welcome!",
+            "auth-link": "Authenticate"
+        }
+    },
+    "common": {
+        "constants": {
+            "not-found": "The required page does not exist",
+            "link": "Go to the weather page",
+            "languages": {
+                "en": "English"
+            }
+        }
+    }
+}
