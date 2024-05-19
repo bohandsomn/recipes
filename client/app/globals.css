@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+.button {
+    @apply bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded
+}

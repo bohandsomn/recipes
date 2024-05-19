@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { headers } from 'next/headers'
+import Link from 'next/link'
 import React from 'react'
-import { Button, Container } from '@/components/common'
+import { Container } from '@/components/common'
 import { getLanguages } from '@/utils/languages/server'
 import { parseAcceptLanguage } from '@/utils'
 import { HeroSpan } from './HeroSpan'
@@ -35,10 +36,9 @@ export const HeroSection = async () => {
                         <h1 className="text-4xl font-bold text-white">
                             <HeroSpan /> {header}
                         </h1>
-                        {/** TODO: Add link to anchor */}
-                        <Button>
+                        <Link href="#popular-recipes" className="block w-fit button">
                             {button}
-                        </Button>
+                        </Link>
                     </figcaption>
                 </figure>
             </Container>

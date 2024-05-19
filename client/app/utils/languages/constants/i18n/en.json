@@ -56,6 +56,10 @@
             "cook": "Cook",
             "header": "dishes with the recipe hub",
             "button": "Find recipe"
+        },
+        "recipes": {
+            "header": "The most popular recipes",
+            "link": "See more"
         }
     }
 }

@@ -19,6 +19,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                 alt={name!}
                 width={280}
                 height={180}
+                draggable={false}
                 className="cursor-pointer rounded-tl-xl rounded-tr-xl w-[280px] h-[180px] object-cover"
             />
             <figcaption className="p-[10px] rounded-bl-xl rounded-br-xl">

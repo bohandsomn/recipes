@@ -1,1 +1,1 @@
-export * from './RecipePreview'
+export * from './RecipePreviewList'

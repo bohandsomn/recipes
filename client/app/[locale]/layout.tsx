@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, ReactNode } from 'react'
-import { Document } from '@/components'
+import { Document, SectionWrapper } from '@/components'
 import { Locale } from '@/utils'
 import { AppProvider } from '@/providers'
 
@@ -8,14 +8,23 @@ interface ILocaleProps extends PropsWithChildren {
         locale: Locale
     }
     hero: ReactNode
+    recipes: ReactNode
 }
 
-const LocaleLayout: FC<ILocaleProps> = ({ params: { locale }, hero, children }) => {
+const LocaleLayout: FC<ILocaleProps> = ({ 
+    params: { locale }, 
+    hero, 
+    recipes, 
+    children 
+}) => {
     return (
         <Document language={locale}>
             <AppProvider>
-                {hero}
-                {children}
+                <SectionWrapper>
+                    {hero}
+                    {recipes}
+                    {children}
+                </SectionWrapper>
             </AppProvider>
         </Document>
     )
