@@ -48,5 +48,14 @@
                 "en": "English"
             }
         }
+    },
+    "home": {
+        "hero": {
+            "search": "Search",
+            "wish": "Wish",
+            "cook": "Cook",
+            "header": "dishes with the recipe hub",
+            "button": "Find recipe"
+        }
     }
 }

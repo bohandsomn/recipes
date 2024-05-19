@@ -8,18 +8,19 @@ const Page = async () => {
     //     query: '',
     //     sort: SortRecipes.POPULAR,
     // })
-    return (
-        <section>
-            Page
-            {/* <ul>
-                {recipeList.data?.data.map((recipe) => (
-                    <li key={recipe.recipeCredentials}>
-                        <RecipePreview {...recipe} />
-                    </li>
-                ))}
-            </ul> */}
-        </section>
-    )
+    // return (
+    //     <section>
+    //         Page
+    //         <ul>
+    //             {recipeList.data?.data.map((recipe) => (
+    //                 <li key={recipe.recipeCredentials}>
+    //                     <RecipePreview {...recipe} />
+    //                 </li>
+    //             ))}
+    //         </ul>
+    //     </section>
+    // )
+    return null
 }
 
 export default Page
