@@ -1,6 +1,7 @@
 export * from './appApi'
 export * from './combineProviders'
 export * from './context'
+export * from './icon'
 export * from './exception'
 export * from './languages'
 export * from './notification'
