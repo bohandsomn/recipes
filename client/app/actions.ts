@@ -1,13 +1,13 @@
 import { headers } from 'next/headers'
 import { checkEmail, checkPassword, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
-import { authService } from '@/services'
+import { authService, IUserPayloadDto } from '@/services'
 import { getServerErrorMessage, parseAcceptLanguage } from '@/utils'
 import { getLanguages } from '@/utils/languages/server'
 import { getClient } from '@/context/graphql/getClient'
 import { GET_RECIPE, GET_RECIPE_PREVIEW, GET_SIMILAR_RECIPE_PREVIEW, GET_USER_RECIPE_PREVIEW, SEARCH_RECIPE, getGraphqlError } from '@/graphql'
 import { IServerResponse } from '@/types'
 
-export async function registerUser(formData: FormData) {
+export async function registerUser(formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const email = formData.get('email')?.toString() ?? ''
@@ -21,19 +21,22 @@ export async function registerUser(formData: FormData) {
         if (!isEmail) {
             const errorMessage = translate('auth.validation.email')
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         if (!isValidPassword) {
             const errorMessage = translate('auth.validation.password')
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         if (password !== confirmPassword) {
             const errorMessage = translate('auth.validation.confirm-password')
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         const response = await authService.registerUser({
@@ -41,17 +44,19 @@ export async function registerUser(formData: FormData) {
             password,
         })
         return {
-            success: response
+            data: response,
+            error: null
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
 
-export async function logInUser(formData: FormData) {
+export async function logInUser(formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const email = formData.get('email')?.toString() ?? ''
@@ -64,13 +69,15 @@ export async function logInUser(formData: FormData) {
         if (!isEmail) {
             const errorMessage = translate('auth.validation.email')
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         if (!isValidPassword) {
             const errorMessage = translate('auth.validation.password')
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         const response = await authService.logInUser({
@@ -78,47 +85,53 @@ export async function logInUser(formData: FormData) {
             password,
         })
         return {
-            success: response
+            data: response,
+            error: null,
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
 
-export async function autoLogInUser() {
+export async function autoLogInUser(): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const response = await authService.autoLogInUser()
         return {
-            success: response
+            data: response,
+            error: null,
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
 
-export async function logOutUser() {
+export async function logOutUser(): Promise<IServerResponse<void>> {
     'use server'
     try {
         const response = await authService.logOutUser()
         return {
-            success: response
+            data: response,
+            error: null,
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
 
-export async function activateUser(activationLink: string) {
+export async function activateUser(activationLink: string): Promise<IServerResponse<void>> {
     'use server'
     try {
         const errorMessage = await authService.activateUser({
@@ -126,36 +139,41 @@ export async function activateUser(activationLink: string) {
         })
         if (errorMessage) {
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         return {
-            success: null
+            data: undefined,
+            error: null
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
 
-export async function sendConfirmEmail() {
+export async function sendConfirmEmail(): Promise<IServerResponse<void>> {
     'use server'
     try {
         const response = await authService.sendConfirmEmail()
         return {
-            success: response
+            data: response,
+            error: null,
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
 
-export async function setPassword(formData: FormData) {
+export async function setPassword(formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const password = formData.get('password')?.toString() ?? ''
@@ -166,19 +184,22 @@ export async function setPassword(formData: FormData) {
         if (!isValidPassword) {
             const errorMessage = translate('auth.validation.password')
             return {
-                failure: errorMessage
+                data: null,
+                error: errorMessage
             }
         }
         const response = await authService.setPassword({
             password,
         })
         return {
-            success: response
+            data: response,
+            error: null,
         }
     } catch (error) {
-        const errorMessage = getServerErrorMessage(error)
+        const errorMessage = getServerErrorMessage(error)!
         return {
-            failure: errorMessage
+            data: null,
+            error: errorMessage
         }
     }
 }
