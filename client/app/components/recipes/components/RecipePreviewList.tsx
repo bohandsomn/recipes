@@ -1,16 +1,19 @@
 import React, { FC } from 'react'
-import { ErrorBoundary } from '@/components/common'
+import { EmptyList, ErrorBoundary } from '@/components/common'
 import { IClientResponse } from '@/types'
 import { IRecipeListPreview } from '../types'
 import { RecipePreview } from './RecipePreview'
 import { RecipeSkeletonList } from './RecipeSkeletonList'
 
-type IRecipePreviewListProps = IClientResponse<IRecipeListPreview>
+type IRecipePreviewListProps = IClientResponse<IRecipeListPreview> & {
+    emptyErrorMessage: string
+}
 
 export const RecipePreviewList: FC<IRecipePreviewListProps> = ({
     data,
     error,
     isLoading,
+    emptyErrorMessage,
 }) => {
     if (isLoading) {
         return <RecipeSkeletonList />
@@ -18,7 +21,9 @@ export const RecipePreviewList: FC<IRecipePreviewListProps> = ({
     if (error) {
         return <ErrorBoundary errorMessage={error} />
     }
-    // TODO: Add empty list
+    if (data?.data.length === 0) {
+        return <EmptyList message={emptyErrorMessage} />
+    }
     return (
         <ul className="flex flex-wrap justify-center">
             {data?.data.map((recipe) => (

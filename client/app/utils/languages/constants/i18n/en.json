@@ -50,7 +50,8 @@
         },
         "recipes": {
             "header": "The most popular recipes",
-            "link": "See more"
+            "link": "See more",
+            "empty": "There are no recipes. Please try to refresh the page or go to the search page"
         }
     },
     "header": {
