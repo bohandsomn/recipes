@@ -59,3 +59,32 @@ export const accountIconProps: IIconProps = {
         'M12 3a4 4 0 1 0 0 8 4 4 0 1 0 0-8z',
     ],
 }
+
+export const starIconProps: IIconProps = {
+    width: 36,
+    height: 36,
+    fill: 'none',
+    viewBox: '0 0 24 24',
+    stroke: '#000000',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    strokeWidth: '1',
+    d: [
+        'm12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
+    ],
+}
+
+export const clockIconProps: IIconProps = {
+    width: 36,
+    height: 36,
+    fill: 'none',
+    viewBox: '0 0 24 24',
+    stroke: '#000000',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    strokeWidth: '1',
+    d: [
+        'M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z',
+        'M12 6v6l4 2'
+    ],
+}

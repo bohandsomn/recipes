@@ -40,15 +40,6 @@
             "auth-link": "Authenticate"
         }
     },
-    "common": {
-        "constants": {
-            "not-found": "The required page does not exist",
-            "link": "Go to the weather page",
-            "languages": {
-                "en": "English"
-            }
-        }
-    },
     "home": {
         "hero": {
             "search": "Search",

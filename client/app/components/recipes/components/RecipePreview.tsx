@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import React, { FC } from 'react'
 import { IRecipePreview } from '../types'
+import { FiveStars } from './FiveStars'
+import { Time } from './Time'
+import Link from 'next/link'
+import { Page } from '@/constants'
+import { WishRecipe } from './WishRecipe'
 
 interface IRecipePreviewProps extends IRecipePreview { }
 
@@ -13,27 +18,34 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
     rating,
 }) => {
     return (
-        <figure className="w-[280px] rounded-xl hover:shadow-slate-400 hover:shadow-lg transition-all">
-            <Image
-                src={image!}
-                alt={name!}
-                width={280}
-                height={180}
-                draggable={false}
-                className="cursor-pointer rounded-tl-xl rounded-tr-xl w-[280px] h-[180px] object-cover"
-            />
+        <figure className="w-[280px] rounded-xl hover:shadow-black-400 hover:shadow-lg transition-all bg-white relative">
+            <Link href={`${Page.RECIPES}/${recipeCredentials}`}>
+                <Image
+                    src={image!}
+                    alt={name!}
+                    title={name!}
+                    width={280}
+                    height={180}
+                    draggable={false}
+                    className="cursor-pointer rounded-tl-xl rounded-tr-xl w-[280px] h-[180px] object-cover"
+                />
+            </Link>
             <figcaption className="p-[10px] rounded-bl-xl rounded-br-xl">
-                {/** TODO: Add link to recipe */}
-                <h3 className="cursor-pointer w-fit">{name}</h3>
-                <blockquote>
+                <Link href={`${Page.RECIPES}/${recipeCredentials}`}>
+                    <h3 className="cursor-pointer w-fit" title={name!}>{name}</h3>
+                </Link>
+                <div className="space-y-1">
                     {description && <p className="text-ellipsis overflow-hidden whitespace-nowrap">{description}</p>}
-                    {/** TODO: Add clock icon */}
-                    {time && <p>{time}</p>}
-                    {/** TODO: Add 5-stars view */}
-                    {rating && <p>{rating}</p>}
+                    <div className="flex flex-row justify-between items-center">
+                        {time ? <Time time={time} /> : null}
+                        {rating ? <FiveStars rating={rating} /> : null}
+                    </div>
                     {/** TODO: Add wish button */}
-                </blockquote>
+                </div>
             </figcaption>
+            <div className="absolute top-2 right-2">
+                <WishRecipe />
+            </div>
         </figure>
     )
 }
