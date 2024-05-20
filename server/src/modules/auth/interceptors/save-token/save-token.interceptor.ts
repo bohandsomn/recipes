@@ -31,11 +31,9 @@ export class SaveTokenInterceptor implements NestInterceptor {
                 )
                 response.cookie(REFRESH_TOKEN_COOKIE, payload.refreshToken, {
                     maxAge,
-                    httpOnly: true,
                 })
                 response.cookie(ACCESS_TOKEN_COOKIE, payload.accessToken, {
                     maxAge,
-                    httpOnly: true,
                 })
                 return payload
             }),

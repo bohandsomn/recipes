@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import React, { FC } from 'react'
-import { IRecipePreview } from '../types'
-import { FiveStars } from './FiveStars'
-import { Time } from './Time'
 import Link from 'next/link'
 import { Page } from '@/constants'
+import { FiveStars } from './FiveStars'
+import { Time } from './Time'
 import { WishRecipe } from './WishRecipe'
+import { IRecipePreview } from '../types'
 
 interface IRecipePreviewProps extends IRecipePreview { }
 

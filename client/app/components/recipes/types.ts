@@ -55,3 +55,7 @@ export interface IRecipe {
     readonly ingredients: IIngredient[] | null
     readonly stages: IStage[] | null
 }
+
+export interface IToggleRecipeInput {
+    readonly recipeCredentials: string
+}

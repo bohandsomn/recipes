@@ -6,6 +6,9 @@ import { devtools } from 'zustand/middleware'
 import { withSetter } from '@/utils'
 import { IWishContext, IWishState } from './types'
 import { IUseState } from '@/types'
+import { client } from '@/context'
+import { GET_USER_RECIPE_PREVIEW } from '@/graphql'
+import { IRecipeListPreview } from '@/components/recipes/types'
 
 const useState = create<IWishContext>()(
     devtools(
@@ -26,6 +29,23 @@ export const WishProvider: FC<IWishProviderProps> = ({
     state 
 }) => {
     const setState = useState((state) => state.setState)
+    useEffect(() => {
+        return client.cache.watch<{ getUserRecipeList: IRecipeListPreview }>({
+            query: GET_USER_RECIPE_PREVIEW,
+            callback(data) {
+                const wishList = data.result?.getUserRecipeList
+                if (!wishList) {
+                    return
+                }
+                setState({
+                    data: wishList,
+                    isLoading: false,
+                    error: null,
+                })
+            },
+            optimistic: true,
+        })
+    }, [])
     useEffect(() => {
         setState({
             isLoading: false,

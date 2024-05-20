@@ -13,7 +13,7 @@ export const FooterSection = async () => {
     const copyright = translate('footer.copyright')
     return (
         <footer className="py-5">
-            <Container className="grid grid-cols-3 grid-flow-row">
+            <Container className="grid grid-cols-[1fr_2fr]">
                 <h3 className="flex flex-row items-center space-x-2 w-fit">
                     <Image 
                         src="/assets/images/logo.webp" 

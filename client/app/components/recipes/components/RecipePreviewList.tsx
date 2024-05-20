@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React, { FC } from 'react'
 import { IRecipeListPreview } from '../types'
 import { IClientResponse } from '@/types'

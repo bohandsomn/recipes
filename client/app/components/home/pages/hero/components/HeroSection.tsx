@@ -22,6 +22,7 @@ export const HeroSection = async () => {
                 height="768" 
                 draggable={false}
                 className="hidden sm:block"
+                priority
             />
             <Container className="sm:absolute sm:left-0 sm:right-0">
                 <figure className="flex items-center flex-row-reverse">
