@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
-import { IRecipeListPreview } from '../types'
+import { ErrorBoundary } from '@/components/common'
 import { IClientResponse } from '@/types'
+import { IRecipeListPreview } from '../types'
 import { RecipePreview } from './RecipePreview'
 import { RecipeSkeletonList } from './RecipeSkeletonList'
 
@@ -14,7 +15,10 @@ export const RecipePreviewList: FC<IRecipePreviewListProps> = ({
     if (isLoading) {
         return <RecipeSkeletonList />
     }
-    // TODO: Add error boundary and empty list
+    if (error) {
+        return <ErrorBoundary errorMessage={error} />
+    }
+    // TODO: Add empty list
     return (
         <ul className="flex flex-wrap justify-center">
             {data?.data.map((recipe) => (
