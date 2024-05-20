@@ -1,4 +1,4 @@
-import { headers } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { checkEmail, checkPassword, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
 import { authService, IUserPayloadDto } from '@/services'
 import { getServerErrorMessage, parseAcceptLanguage } from '@/utils'
@@ -268,13 +268,16 @@ export async function getSimilarRecipePreview(recipeCredentials: string): Promis
     }
 }
 
-export async function getUserRecipePreview(recipeCredentials: string): Promise<IServerResponse<IRecipeListPreview>> {
+export async function getUserRecipePreview(): Promise<IServerResponse<IRecipeListPreview>> {
     const client = getClient()
     try {
+        const accessToken = cookies().get('accessToken')?.value
         const { data } = await client.query({
             query: GET_USER_RECIPE_PREVIEW,
-            variables: {
-                recipeCredentials
+            context: {
+                headers: {
+                    authorization: `Bearer ${accessToken}`
+                }
             }
         })
         return {

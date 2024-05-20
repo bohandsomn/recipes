@@ -40,11 +40,10 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                         {time ? <Time time={time} /> : null}
                         {rating ? <FiveStars rating={rating} /> : null}
                     </div>
-                    {/** TODO: Add wish button */}
                 </div>
             </figcaption>
             <div className="absolute top-2 right-2">
-                <WishRecipe />
+                <WishRecipe recipeCredentials={recipeCredentials} />
             </div>
         </figure>
     )
