@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren } from 'react'
+import 'react-loading-skeleton/dist/skeleton.css'
 import './globals.css'
 
 interface IRootProps extends PropsWithChildren {}
