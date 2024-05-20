@@ -6,6 +6,7 @@ import { FiveStars } from './FiveStars'
 import { Time } from './Time'
 import { WishRecipe } from './WishRecipe'
 import { IRecipePreview } from '../types'
+import { fontCommon } from '@/fonts'
 
 interface IRecipePreviewProps extends IRecipePreview { }
 
@@ -32,7 +33,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
             </Link>
             <figcaption className="p-[10px] rounded-bl-xl rounded-br-xl">
                 <Link href={`${Page.RECIPES}/${recipeCredentials}`}>
-                    <h3 className="cursor-pointer w-fit" title={name!}>{name}</h3>
+                    <h3 className={`${fontCommon.className} font-bold cursor-pointer w-fit`} title={name!}>{name}</h3>
                 </Link>
                 <div className="space-y-1">
                     {description && <p className="text-ellipsis overflow-hidden whitespace-nowrap">{description}</p>}

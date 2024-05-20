@@ -1,5 +1,6 @@
 'use client'
 
+import { fontHeader } from '@/fonts'
 import { useLanguages } from '@/utils'
 import React, { useEffect, useMemo, useState } from 'react'
 
@@ -24,6 +25,6 @@ export const HeroSpan = () => {
         }
     }, [spans, span, setSpan])
     return (
-        <span className="text-yellow-600">{span}</span>
+        <span className={`text-yellow-600 ${fontHeader.className}`}>{span}</span>
     )
 }

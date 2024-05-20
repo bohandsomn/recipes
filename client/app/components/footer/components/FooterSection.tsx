@@ -14,7 +14,7 @@ export const FooterSection = async () => {
     return (
         <footer className="py-5">
             <Container className="grid grid-cols-[1fr_2fr]">
-                <h3 className="flex flex-row items-center space-x-2 w-fit">
+                <p className="flex flex-row items-center space-x-2 w-fit">
                     <Image 
                         src="/assets/images/logo.webp" 
                         alt="Logo" 
@@ -22,7 +22,7 @@ export const FooterSection = async () => {
                         height="36"
                     />
                     {title}
-                </h3>
+                </p>
                 <p>{copyright}</p>
             </Container>
         </footer>
