@@ -19,10 +19,11 @@ export const HeroSection = async () => {
                 src="/assets/images/hero-bg.webp" 
                 alt="Hero" 
                 width="1920" 
-                height="1080" 
+                height="768" 
                 draggable={false}
+                className="hidden sm:block"
             />
-            <Container className="absolute left-0 right-0">
+            <Container className="sm:absolute sm:left-0 sm:right-0">
                 <figure className="flex items-center flex-row-reverse">
                     <Image
                         src="/assets/images/hero.webp"
@@ -33,7 +34,7 @@ export const HeroSection = async () => {
                         className="hidden lg:block"
                     />
                     <figcaption className="space-y-4 flex-1 lg:flex-0">
-                        <h1 className="text-4xl font-bold text-white">
+                        <h1 className="text-4xl font-bold sm:text-white">
                             <HeroSpan /> {header}
                         </h1>
                         <Link href="#popular-recipes" className="block w-fit button">

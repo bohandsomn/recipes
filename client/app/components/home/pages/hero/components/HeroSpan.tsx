@@ -24,6 +24,6 @@ export const HeroSpan = () => {
         }
     }, [spans, span, setSpan])
     return (
-        <span className="text-yellow-400">{span}</span>
+        <span className="text-yellow-600">{span}</span>
     )
 }
