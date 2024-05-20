@@ -71,5 +71,8 @@
             "search": "Search recipes",
             "auth": "Dashboard"
         }
+    },
+    "footer": {
+        "copyright": "The \"Recipes\" is a pet project to show my skills"
     }
 }
