@@ -61,5 +61,15 @@
             "header": "The most popular recipes",
             "link": "See more"
         }
+    },
+    "header": {
+        "logo": {
+            "title": "Recipes"
+        },
+        "icons": {
+            "wish": "Wish list",
+            "search": "Search recipes",
+            "auth": "Dashboard"
+        }
     }
 }

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, ReactNode } from 'react'
-import { AuthProvider, Document, SectionWrapper } from '@/components'
+import { AuthProvider, Document, HeaderSection, SectionWrapper } from '@/components'
 import { Locale } from '@/utils'
 import { AppProvider } from '@/providers'
 import { autoLogInUser } from '@/actions'
@@ -21,15 +21,16 @@ const LocaleLayout: FC<ILocaleProps> = async ({
     const userPayload = await autoLogInUser()
     return (
         <Document language={locale}>
-            <SectionWrapper>
-                <AppProvider>
-                    <AuthProvider state={userPayload}>
+            <AppProvider>
+                <AuthProvider state={userPayload}>
+                    <HeaderSection />
+                    <SectionWrapper>
                         {hero}
                         {recipes}
                         {children}
-                    </AuthProvider>
-                </AppProvider>
-            </SectionWrapper>
+                    </SectionWrapper>
+                </AuthProvider>
+            </AppProvider>
         </Document>
     )
 }
