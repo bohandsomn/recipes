@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { cookies } from 'next/headers'
 import { configuration } from '@/config'
 import { IUserPayloadDto } from '@/services'
 import { IRefresherService, ISolveRefresherInput } from './types'
@@ -18,19 +17,14 @@ export class RefresherService implements IRefresherService {
             return previousResponse
         }
         this.isRefreshed = true
-        const accessToken = await this.refresh()
-        if (typeof accessToken === 'string') {
-            cookies().set('accessToken', accessToken)
-        } else {
-            cookies().delete('accessToken')
-        }
-        if (accessToken) {
+        const hasResponse = await this.refresh()
+        if (hasResponse) {
             return requestBack()
         }
         return previousResponse
     }
 
-    private async refresh(): Promise<string | null> {
+    private async refresh(): Promise<boolean> {
         try {
             const axiosResponse = await axios.post<IUserPayloadDto>(
                 `${configuration.authServerUrl}/refresh`,
@@ -40,10 +34,11 @@ export class RefresherService implements IRefresherService {
                     responseType: 'json',
                 },
             )
-            const accessToken = axiosResponse.data.accessToken
-            return accessToken
+            const userPayload = axiosResponse.data
+            const hasResponse = !!userPayload
+            return hasResponse
         } catch (error) {
-            return null
+            return false
         }
     }
 }

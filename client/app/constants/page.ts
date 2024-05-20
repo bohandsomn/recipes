@@ -2,5 +2,6 @@ export enum Page {
     HOME = '',
     RECIPES = 'recipes',
     WISH = 'wish',
-    AUTH = 'dashboard',
+    DASHBOARD = 'dashboard',
+    AUTH = 'auth',
 }

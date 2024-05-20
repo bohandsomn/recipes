@@ -1,6 +1,6 @@
 import React from 'react'
 import { headers } from 'next/headers'
-import { AccountIcon, SearchIcon, WishIcon } from '@/components/common'
+import { SearchIcon } from '@/components/common'
 import { parseAcceptLanguage } from '@/utils'
 import { getLanguages } from '@/utils/languages/server'
 import { Page } from '@/constants'
@@ -13,6 +13,7 @@ export const HeaderLinks = async () => {
     const translate = await getLanguages(locale)
     const wish = translate('header.icons.wish')
     const search = translate('header.icons.search')
+    const dashboard = translate('header.icons.dashboard')
     const auth = translate('header.icons.auth')
     return (
         <ul className="flex flex-row space-x-2">
@@ -21,7 +22,12 @@ export const HeaderLinks = async () => {
                 title={search} 
                 path={`${locale}/${Page.RECIPES}`} 
             />
-            <AuthLinks wish={wish} auth={auth} locale={locale} />
+            <AuthLinks 
+                wish={wish} 
+                dashboard={dashboard} 
+                auth={auth}
+                locale={locale} 
+            />
         </ul>
     )
 }

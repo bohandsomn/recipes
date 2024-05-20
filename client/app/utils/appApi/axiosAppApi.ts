@@ -25,19 +25,18 @@ export class AxiosAppApi implements IAppApi {
             if (headers) {
                 config.headers = headers
             }
+            api = axios.create(config)
             if (refresher) {
-                axios.interceptors.response.use(null, (error: AxiosError) => {
-                    const requestBack = () => {
-                        return axios.request(error.config!)
-                    }
+                api.interceptors.response.use(null, (error: AxiosError) => {
                     return refresher.solve({
                         previousResponse: error.response,
                         statusCode: error.response?.status || 500,
-                        requestBack,
+                        requestBack() {
+                            return axios.request(error.config!)
+                        },
                     })
                 })
             }
-            api = axios.create(config)
         }
         this.api = api
     }

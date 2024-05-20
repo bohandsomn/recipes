@@ -29,7 +29,7 @@ export const wishIconProps: IIconProps = {
     ],
 }
 
-export const logInIconProps: IIconProps = {
+export const authIconProps: IIconProps = {
     width: 36,
     height: 36,
     fill: 'none',
@@ -45,7 +45,7 @@ export const logInIconProps: IIconProps = {
     ],
 }
 
-export const accountIconProps: IIconProps = {
+export const dashboardIconProps: IIconProps = {
     width: 36,
     height: 36,
     fill: 'none',

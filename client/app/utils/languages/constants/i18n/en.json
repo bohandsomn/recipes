@@ -60,7 +60,8 @@
         "icons": {
             "wish": "Wish list",
             "search": "Search recipes",
-            "auth": "Dashboard"
+            "dashboard": "Dashboard",
+            "auth": "Auth"
         }
     },
     "footer": {
