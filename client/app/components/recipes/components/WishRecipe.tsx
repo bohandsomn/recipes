@@ -3,7 +3,7 @@
 import React, { FC, useState } from 'react'
 import { WishIcon } from '@/components/common'
 import { useToggleRecipeMutation } from '@/graphql'
-import { useWishState } from '../pages'
+import { useWishState } from '../pages/wish'
 
 interface IWishRecipeProps {
     recipeCredentials: string
@@ -30,7 +30,7 @@ export const WishRecipe: FC<IWishRecipeProps> = ({
         }
     }
     return (
-        <button onClick={clickHandler}>
+        <button onClick={clickHandler} type="button">
             <WishIcon 
                 width={24} 
                 hanging={24} 

@@ -67,5 +67,20 @@
     },
     "footer": {
         "copyright": "The \"Recipes\" is a pet project to show my skills"
+    },
+    "recipes": {
+        "search": {
+            "empty": "There are no recipes. Try another recipe's name",
+            "form": {
+                "sort": {
+                    "": "Popular",
+                    "approved_at:asc": "Ascending",
+                    "approved_at:desc": "Descending"
+                },
+                "input-placeholder": "Holidays, Easter, Christmas...",
+                "sort-label": "Sort by:",
+                "submit": "Search"
+            }
+        }
     }
 }

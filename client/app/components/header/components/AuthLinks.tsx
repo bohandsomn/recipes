@@ -1,10 +1,10 @@
 'use client'
 
 import React, { FC } from 'react'
-import { withAuth } from '@/components/auth'
-import { HeaderLink } from './HeaderLink'
-import { DashboardIcon, AuthIcon, WishIcon } from '@/components/common'
 import { Page } from '@/constants'
+import { withAuth } from '@/components/auth/hocs'
+import { DashboardIcon, AuthIcon, WishIcon } from '@/components/common'
+import { HeaderLink } from './HeaderLink'
 
 interface IAuthLinks {
     wish: string

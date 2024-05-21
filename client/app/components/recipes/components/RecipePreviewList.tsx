@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { EmptyList, ErrorBoundary } from '@/components/common'
+import { EmptyList } from '@/components/common'
+import { ErrorBoundary } from '@/components/common/ErrorBoundary'
 import { IClientResponse } from '@/types'
 import { IRecipeListPreview } from '../types'
 import { RecipePreview } from './RecipePreview'

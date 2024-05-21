@@ -3,15 +3,12 @@
 import { useSyncExternalStore } from 'react'
 import {
     ICreateContextOptions,
-    IDispatch,
-    IDispatchCallback,
     IState,
     IStateCreatorResult,
-    IUseDispatch,
     IUseDispatchCallback,
-    IUseState,
     IUseStateContext,
 } from './types'
+import { IDispatch, IDispatchCallback, IUseDispatch, IUseState } from '@/types'
 
 export function stateCreator<State extends IState>(
     initialState: State,

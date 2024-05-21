@@ -4,10 +4,10 @@ import { FC, PropsWithChildren, useEffect } from 'react'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { withSetter } from '@/utils'
-import { IHomeRecipesContext, IHomeRecipesState } from './types'
+import { IRecipesContext, IRecipesState } from './types'
 import { IUseState } from '@/types'
 
-const useState = create<IHomeRecipesContext>()(
+const useState = create<IRecipesContext>()(
     devtools(
         withSetter((_) => ({
             data: null,
@@ -17,11 +17,11 @@ const useState = create<IHomeRecipesContext>()(
     ),
 )
 
-export interface IHomeRecipesProviderProps extends PropsWithChildren {
-    state: IHomeRecipesState
+export interface IRecipesProviderProps extends PropsWithChildren {
+    state: IRecipesState
 }
 
-export const HomeRecipesProvider: FC<IHomeRecipesProviderProps> = ({ 
+export const RecipesProvider: FC<IRecipesProviderProps> = ({ 
     children, 
     state 
 }) => {
@@ -36,7 +36,7 @@ export const HomeRecipesProvider: FC<IHomeRecipesProviderProps> = ({
 }
 
 // @ts-ignore
-export const useHomeRecipesState: IUseState<IHomeRecipesContext> = (
+export const useRecipesState: IUseState<IRecipesContext> = (
     selector,
 ) => {
     return useState(selector)

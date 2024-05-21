@@ -1,8 +1,9 @@
 import React from 'react'
 import { getRecipePreview } from '@/actions'
-import { DEFAULT_PAGE, DEFAULT_SIZE, HeroSection, HomeRecipesProvider, HomeRecipesSection, SectionWrapper, SortRecipes } from '@/components'
+import { DEFAULT_PAGE, DEFAULT_SIZE, HeroSection, HomeRecipesSection, SectionWrapper, SortRecipes } from '@/components'
+import { RecipesProvider } from '@/components/recipes/pages/preview'
 
-const Page = async () => {
+const HomePage = async () => {
     const recipeList = await getRecipePreview({
         page: DEFAULT_PAGE,
         size: DEFAULT_SIZE,
@@ -11,12 +12,12 @@ const Page = async () => {
     })
     return (
         <SectionWrapper>
-            <HomeRecipesProvider state={recipeList}>
+            <RecipesProvider state={recipeList}>
                 <HeroSection />
                 <HomeRecipesSection />
-            </HomeRecipesProvider>
+            </RecipesProvider>
         </SectionWrapper>
     )
 }
 
-export default Page
+export default HomePage
