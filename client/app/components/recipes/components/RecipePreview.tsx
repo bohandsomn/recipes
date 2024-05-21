@@ -37,7 +37,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                 </Link>
                 <div className="space-y-1">
                     {description && <p className="text-ellipsis overflow-hidden whitespace-nowrap">{description}</p>}
-                    <div className="flex flex-row justify-between items-center">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         {time ? <Time time={time} /> : null}
                         {rating ? <FiveStars rating={rating} /> : null}
                     </div>
