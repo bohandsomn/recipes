@@ -24,8 +24,8 @@ export const SearchRecipePages = () => {
         }
         return pages
     })
-    const query = useSearchParams().get('query')
-    const sort = useSearchParams().get('sort')
+    const query = useSearchParams().get('query') || ''
+    const sort = useSearchParams().get('sort') || ''
     return (
         <ul className="flex justify-between w-[100%]">
             {pages.map((index) => (
