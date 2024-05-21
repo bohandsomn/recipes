@@ -22,8 +22,9 @@ const Recipes: FC<IRecipesProps> = async ({
 }) => {
     const isSort = checkSortRecipes(sort)
     const checkedSort = isSort ? sort : SortRecipes.POPULAR
+    const pageNumber = parseInt(page || (DEFAULT_PAGE + 1).toString())
     const recipeList = await getRecipePreview({
-        page: parseInt(page || DEFAULT_PAGE.toString()),
+        page: pageNumber - 1,
         size: DEFAULT_SIZE,
         query,
         sort: checkedSort,
