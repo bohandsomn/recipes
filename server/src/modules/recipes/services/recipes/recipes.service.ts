@@ -4,6 +4,7 @@ import { CacheRedisService } from '@/modules/service/modules/app-cache/services/
 import { I18nLanguagesService } from '@/modules/service/modules/languages/services/i18n-languages/i18n-languages.service'
 import { LoggerService } from '@/modules/service/modules/logger/services/logger/logger.service'
 
+import { RECIPE_TTL } from '../../constants/recipe-ttl'
 import { RecipeDto } from '../../dtos/recipe-dto'
 import { RecipeListDto } from '../../dtos/recipe-list-dto'
 import { IAddOneWishInput } from '../../interfaces/add-one-wish-input.interface'
@@ -41,9 +42,13 @@ export class RecipesService implements IRecipesService {
         }
         const recipeList =
             await this.externalRecipesService.getRecipeList(input)
-        this.cacheService.save(key, recipeList, Infinity)
+        this.cacheService.save(key, recipeList, RECIPE_TTL)
         recipeList.data.map((recipe) =>
-            this.cacheService.save(recipe.recipeCredentials, recipe, Infinity),
+            this.cacheService.save(
+                recipe.recipeCredentials,
+                recipe,
+                RECIPE_TTL,
+            ),
         )
         return recipeList
     }
@@ -57,7 +62,7 @@ export class RecipesService implements IRecipesService {
         const recipe = await this.externalRecipesService.getRecipe(
             input.recipeCredentials,
         )
-        this.cacheService.save(key, recipe, Infinity)
+        this.cacheService.save(key, recipe, RECIPE_TTL)
         return recipe
     }
 
@@ -73,9 +78,13 @@ export class RecipesService implements IRecipesService {
             await this.externalRecipesService.getSimilarRecipeList(
                 input.recipeCredentials,
             )
-        this.cacheService.save(key, recipeList, Infinity)
+        this.cacheService.save(key, recipeList, RECIPE_TTL)
         recipeList.data.map((recipe) =>
-            this.cacheService.save(recipe.recipeCredentials, recipe, Infinity),
+            this.cacheService.save(
+                recipe.recipeCredentials,
+                recipe,
+                RECIPE_TTL,
+            ),
         )
         return recipeList
     }
@@ -106,7 +115,7 @@ export class RecipesService implements IRecipesService {
                 this.cacheService.save(
                     recipe.recipeCredentials,
                     recipe,
-                    Infinity,
+                    RECIPE_TTL,
                 ),
             )
             return {
