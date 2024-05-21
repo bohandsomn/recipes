@@ -28,10 +28,10 @@ export const ErrorBoundary: FC<IErrorBoundaryProps> = ({
     }, [errorMessage, notNotify])
     return (
         <div
-            className={`${className} ${rightElement ? 'border-l-yellow-800 bg-yellow-600' : 'border-l-red-700 bg-red-500'} flex items-center space-x-5 border-l-4 p-5`}
+            className={`${className} ${rightElement ? 'border-l-yellow-800 bg-yellow-600' : 'border-l-red-500 bg-red-400'} flex items-center space-x-5 border-l-4 p-5`}
         >
             {onClick && <LinkIcon />}
-            <div className="flex flex-1 justify-between">
+            <div className="flex flex-1 justify-between text-white">
                 <p
                     onClick={onClick}
                     className={`${onClick ? 'cursor-pointer underline' : ''}`}

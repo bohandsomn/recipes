@@ -11,7 +11,7 @@ export const SearchRecipeSection = async () => {
     const span = translate('home.hero.search')
     const restHeader = translate('home.hero.header')
     return (
-        <Container className="space-y-4">
+        <Container className="space-y-2">
             <h1 className="text-4xl font-bold">
                 <span className={`text-yellow-600 ${fontHeader.className}`}>
                     {span}

@@ -1,4 +1,5 @@
 export * from './clientState'
+export * from './events'
 export * from './exception'
 export * from './serverState'
 export * from './state'
