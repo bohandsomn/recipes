@@ -1,8 +1,8 @@
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
 import { checkEmail, checkPassword, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
 import { authService, IUserPayloadDto } from '@/services'
-import { getServerErrorMessage, parseAcceptLanguage } from '@/utils'
-import { getLanguages } from '@/utils/languages/server'
+import { getServerErrorMessage } from '@/utils'
+import { getLanguages } from '@/utils/languages/getLanguages'
 import { getClient } from '@/context/graphql/getClient'
 import { GET_RECIPE, GET_RECIPE_PREVIEW, GET_SIMILAR_RECIPE_PREVIEW, GET_USER_RECIPE_PREVIEW, SEARCH_RECIPE, getGraphqlError } from '@/graphql'
 import { IServerResponse } from '@/types'
@@ -13,9 +13,7 @@ export async function registerUser(formData: FormData): Promise<IServerResponse<
         const email = formData.get('email')?.toString() ?? ''
         const password = formData.get('password')?.toString() ?? ''
         const confirmPassword = formData.get('confirm-password')?.toString() ?? ''
-        const acceptLanguage = headers().get('accept-language')
-        const locale = parseAcceptLanguage(acceptLanguage)
-        const translate = await getLanguages(locale)
+        const translate = await getLanguages()
         const isEmail = checkEmail(email)
         const isValidPassword = checkPassword(password)
         if (!isEmail) {
@@ -61,9 +59,7 @@ export async function logInUser(formData: FormData): Promise<IServerResponse<IUs
     try {
         const email = formData.get('email')?.toString() ?? ''
         const password = formData.get('password')?.toString() ?? ''
-        const acceptLanguage = headers().get('accept-language')
-        const locale = parseAcceptLanguage(acceptLanguage)
-        const translate = await getLanguages(locale)
+        const translate = await getLanguages()
         const isEmail = checkEmail(email)
         const isValidPassword = checkPassword(password)
         if (!isEmail) {
@@ -177,9 +173,7 @@ export async function setPassword(formData: FormData): Promise<IServerResponse<I
     'use server'
     try {
         const password = formData.get('password')?.toString() ?? ''
-        const acceptLanguage = headers().get('accept-language')
-        const locale = parseAcceptLanguage(acceptLanguage)
-        const translate = await getLanguages(locale)
+        const translate = await getLanguages()
         const isValidPassword = checkPassword(password)
         if (!isValidPassword) {
             const errorMessage = translate('auth.validation.password')
@@ -209,7 +203,7 @@ export async function getRecipePreview(input: IGetRecipePreviewInput): Promise<I
     try {
         const { data } = await client.query({
             query: GET_RECIPE_PREVIEW,
-            variables: input
+            variables: input,
         })
         return {
             data: data.getRecipeList,

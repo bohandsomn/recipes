@@ -1,16 +1,12 @@
 import Image from 'next/image'
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 import { Container } from '@/components/common'
-import { getLanguages } from '@/utils/languages/server'
-import { parseAcceptLanguage } from '@/utils'
+import { getLanguages } from '@/utils/languages/getLanguages'
 import { HeroSpan } from './HeroSpan'
 
 export const HeroSection = async () => {
-    const acceptLanguage = headers().get('Accept-Language')
-    const locale = parseAcceptLanguage(acceptLanguage)
-    const translate = await getLanguages(locale)
+    const translate = await getLanguages()
     const header = translate('home.hero.header')
     const button = translate('home.hero.button')
     return (

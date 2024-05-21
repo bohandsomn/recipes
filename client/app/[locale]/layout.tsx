@@ -1,4 +1,6 @@
-import { FC, PropsWithChildren, ReactNode } from 'react'
+import { FC, PropsWithChildren } from 'react'
+import { getMessages } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
 import { AuthProvider, Document, FooterSection, HeaderSection, SectionWrapper, WishProvider } from '@/components'
 import { Locale } from '@/utils'
 import { AppProvider } from '@/providers'
@@ -8,32 +10,29 @@ interface ILocaleProps extends PropsWithChildren {
     params: {
         locale: Locale
     }
-    hero: ReactNode
-    recipes: ReactNode
 }
 
 const LocaleLayout: FC<ILocaleProps> = async ({ 
     params: { locale }, 
-    hero, 
-    recipes, 
-    children 
+    children,
 }) => {
     const userPayload = await autoLogInUser()
     const wishList = await getUserRecipePreview()
+    const messages = await getMessages({ locale })
     return (
         <Document language={locale}>
             <AppProvider>
-                <AuthProvider state={userPayload}>
-                    <WishProvider state={wishList}>
+                <NextIntlClientProvider locale={locale} messages={messages}>
+                    <AuthProvider state={userPayload}>
                         <HeaderSection />
                         <SectionWrapper>
-                            {hero}
-                            {recipes}
-                            {children}
+                            <WishProvider state={wishList}>
+                                {children}
+                            </WishProvider>
                             <FooterSection />
                         </SectionWrapper>
-                    </WishProvider>
-                </AuthProvider>
+                    </AuthProvider>
+                </NextIntlClientProvider>
             </AppProvider>
         </Document>
     )

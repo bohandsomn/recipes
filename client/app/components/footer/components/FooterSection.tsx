@@ -1,14 +1,10 @@
-import { headers } from 'next/headers'
 import Image from 'next/image'
 import React from 'react'
-import { parseAcceptLanguage } from '@/utils'
-import { getLanguages } from '@/utils/languages/server'
+import { getLanguages } from '@/utils/languages/getLanguages'
 import { Container } from '@/components/common'
 
 export const FooterSection = async () => {
-    const acceptLanguage = headers().get('accept-language')
-    const locale = parseAcceptLanguage(acceptLanguage)
-    const translate = await getLanguages(locale)
+    const translate = await getLanguages()
     const title = translate('header.logo.title')
     const copyright = translate('footer.copyright')
     return (

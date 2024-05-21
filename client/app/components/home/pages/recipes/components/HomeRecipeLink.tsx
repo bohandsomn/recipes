@@ -1,18 +1,14 @@
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
-import { parseAcceptLanguage } from '@/utils'
 import { Page } from '@/constants'
-import { getLanguages } from '@/utils/languages/server'
+import { getLanguages } from '@/utils/languages/getLanguages'
 
 export const HomeRecipeLink = async () => {
-    const acceptLanguage = headers().get('Accept-Language')
-    const locale = parseAcceptLanguage(acceptLanguage)
-    const translate = await getLanguages(locale)
+    const translate = await getLanguages()
     const link = translate('home.recipes.link')
     return (
         <div className="flex justify-center">
-            <Link href={`/${locale}/${Page.RECIPES}`} className="button block">{link}</Link>
+            <Link href={`/${Page.RECIPES}`} className="button block">{link}</Link>
         </div>
     )
 }
