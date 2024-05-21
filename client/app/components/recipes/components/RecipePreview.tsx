@@ -36,7 +36,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                     <h3 className={`${fontCommon.className} font-bold cursor-pointer w-fit`} title={name!}>{name}</h3>
                 </Link>
                 <div className="space-y-1">
-                    {description && <p className="text-ellipsis overflow-hidden whitespace-nowrap">{description}</p>}
+                    {description && <p className="max-h-[72px] overflow-hidden">{description}</p>}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         {time ? <Time time={time} /> : null}
                         {rating ? <FiveStars rating={rating} /> : null}
