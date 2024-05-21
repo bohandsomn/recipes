@@ -38,8 +38,8 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                 <div className="space-y-1">
                     {description && <p className="max-h-[72px] overflow-hidden">{description}</p>}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                        {time ? <Time time={time} /> : null}
                         {rating ? <FiveStars rating={rating} /> : null}
+                        {time ? <Time time={time} /> : null}
                     </div>
                 </div>
             </figcaption>
