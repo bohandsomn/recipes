@@ -19,16 +19,16 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
     rating,
 }) => {
     return (
-        <figure className="w-[280px] rounded-xl hover:shadow-black-400 hover:shadow-lg transition-all bg-white relative">
+        <figure className="w-[164px] sm:w-[272px] md:w-[368px] lg:w-[480px] xl:w-[280px] rounded-xl hover:shadow-black-400 hover:shadow-lg transition-all bg-white relative">
             <Link href={`${Page.RECIPES}/${recipeCredentials}`}>
                 <Image
                     src={image!}
                     alt={name!}
                     title={name!}
-                    width={280}
+                    width={480}
                     height={180}
                     draggable={false}
-                    className="cursor-pointer rounded-tl-xl rounded-tr-xl w-[280px] h-[180px] object-cover"
+                    className="cursor-pointer rounded-tl-xl rounded-tr-xl w-[480px] h-[180px] object-cover"
                 />
             </Link>
             <figcaption className="p-[10px] rounded-bl-xl rounded-br-xl">
