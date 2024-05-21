@@ -22,7 +22,7 @@ export const SearchRecipeForm = async () => {
             </div>
             <label className="flex flex-row space-x-2">
                 <p>{sortLabel}</p>
-                <select name="sort" className="bg-yellow-600 text-white">
+                <select name="sort" className="bg-yellow-600 hover:bg-yellow-700 text-white px-2 py-1 rounded">
                     {sortRecipesValues.map((value) => (
                         <option key={value} value={value}>
                             {translate(`recipes.search.form.sort.${value}`)}
