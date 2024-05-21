@@ -1,9 +1,9 @@
-export interface ISolveRefresherInput<Response> {
-    requestBack(): Promise<Response>
-    previousResponse: Response
+export interface ISolveRefresherInput<S, F> {
+    requestBack(): Promise<S>
+    previousResponse: F
     statusCode: number
 }
 
 export interface IRefresherService {
-    solve<Response>(input: ISolveRefresherInput<Response>): Promise<Response>
+    solve<S, F>(input: ISolveRefresherInput<S, F>): Promise<S | F>
 }

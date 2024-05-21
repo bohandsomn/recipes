@@ -6,22 +6,22 @@ import { IRefresherService, ISolveRefresherInput } from './types'
 export class RefresherService implements IRefresherService {
     private isRefreshed = false
 
-    async solve<Response>({
+    async solve<S, F>({
         statusCode,
         previousResponse,
         requestBack,
-    }: ISolveRefresherInput<Response>): Promise<Response> {
+    }: ISolveRefresherInput<S, F>): Promise<S> {
         const isNotUnauthorized = statusCode !== 401
         if (isNotUnauthorized || this.isRefreshed) {
             this.isRefreshed = false
-            return previousResponse
+            throw previousResponse
         }
         this.isRefreshed = true
         const hasResponse = await this.refresh()
         if (hasResponse) {
             return requestBack()
         }
-        return previousResponse
+        throw previousResponse
     }
 
     private async refresh(): Promise<boolean> {

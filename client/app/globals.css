@@ -7,7 +7,7 @@ html {
 }
 
 .button {
-    @apply bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded
+    @apply bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded
 }
 
 h1, h2, h3, h4, h5, h6 {

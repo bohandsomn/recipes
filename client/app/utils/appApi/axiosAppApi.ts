@@ -45,20 +45,19 @@ export class AxiosAppApi implements IAppApi {
         dto: IRequestDto,
     ): Promise<ISuccessResponseDto<Data> | IFailureResponseDto<Error>> {
         try {
-            const axiosResponse = await this.api.request<Data>({
+            const { data } = await this.api.request<Data>({
                 data: dto.body,
                 params: dto.query,
                 ...dto,
             })
-            const data = axiosResponse.data
             return {
                 data,
                 error: null,
             }
-        } catch (error) {
+        } catch (error: any) {
             let errorResponse: Error | null = null
-            if (error instanceof AxiosError) {
-                errorResponse = error.response?.data ?? null
+            if (error.data) {
+                errorResponse = error.data ?? null
             }
             return {
                 data: null,
