@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { Page } from '@/constants'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 
 export const HomeRecipeLink = async () => {
     const translate = await getLanguages()

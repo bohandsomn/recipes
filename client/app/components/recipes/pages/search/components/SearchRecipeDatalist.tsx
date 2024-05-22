@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { SEARCH_RECIPE } from '@/graphql'
-import { useLanguages } from '@/utils'
+import { useLanguages } from '@/utils/languages/useLanguages'
 import { IEventTargetValue } from '@/types'
 import { useDebounce } from '@/hooks'
 

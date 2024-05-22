@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 
 export const HomeRecipesHeader = async () => {
     const translate = await getLanguages()

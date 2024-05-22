@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { sortRecipesValues } from '@/components/recipes'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 import { SearchRecipeDatalist } from './SearchRecipeDatalist'
 
 export const SearchRecipeForm = async () => {

@@ -1,13 +1,13 @@
 import { cookies } from 'next/headers'
-import { checkEmail, checkPassword, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
+import { checkEmail, checkPassword, DEFAULT_EXPIRES, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
 import { authService, IUserPayloadDto } from '@/services'
 import { getServerErrorMessage } from '@/utils'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 import { getClient } from '@/context/graphql/getClient'
 import { GET_RECIPE, GET_RECIPE_PREVIEW, GET_SIMILAR_RECIPE_PREVIEW, GET_USER_RECIPE_PREVIEW, SEARCH_RECIPE, getGraphqlError } from '@/graphql'
 import { IServerResponse } from '@/types'
 
-export async function registerUser(formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
+export async function registerUser(_prevState: unknown, formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const email = formData.get('email')?.toString() ?? ''
@@ -41,6 +41,12 @@ export async function registerUser(formData: FormData): Promise<IServerResponse<
             email,
             password,
         })
+        cookies().set('accessToken', response.accessToken, {
+            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
+        })
+        cookies().set('refreshToken', response.refreshToken, {
+            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
+        })
         return {
             data: response,
             error: null
@@ -54,7 +60,7 @@ export async function registerUser(formData: FormData): Promise<IServerResponse<
     }
 }
 
-export async function logInUser(formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
+export async function logInUser(_prevState: unknown, formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const email = formData.get('email')?.toString() ?? ''
@@ -79,6 +85,12 @@ export async function logInUser(formData: FormData): Promise<IServerResponse<IUs
         const response = await authService.logInUser({
             email,
             password,
+        })
+        cookies().set('accessToken', response.accessToken, {
+            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
+        })
+        cookies().set('refreshToken', response.refreshToken, {
+            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
         })
         return {
             data: response,
@@ -184,6 +196,12 @@ export async function setPassword(formData: FormData): Promise<IServerResponse<I
         }
         const response = await authService.setPassword({
             password,
+        })
+        cookies().set('accessToken', response.accessToken, {
+            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
+        })
+        cookies().set('refreshToken', response.refreshToken, {
+            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
         })
         return {
             data: response,

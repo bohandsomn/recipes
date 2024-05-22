@@ -1,7 +1,7 @@
 'use client'
 
 import React, { FC, ReactElement, useEffect } from 'react'
-import { useNotification } from '@/utils'
+import { useNotification } from '@/utils/notification'
 import { LinkIcon } from './icons'
 
 interface IErrorBoundaryProps {

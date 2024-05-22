@@ -14,12 +14,19 @@
             "log-in": {
                 "loading": "The user's log-in request is in progress...",
                 "submit": "Log in",
-                "success": "You are successfully logged in"
+                "success": "You are successfully logged in",
+                "header": "Log in",
+                "already": "New user?"
             },
-            "registration": {
+            "register": {
                 "loading": "The user's registration request is in progress...",
                 "submit": "Register",
-                "success": "You are successfully registered"
+                "success": "You are successfully registered",
+                "header": "Register",
+                "already": "Already have an account? "
+            },
+            "external": {
+                "google": "Google"
             },
             "auto-log-in": {
                 "loading": "The user's auto-log-in request is in progress...",
@@ -84,6 +91,13 @@
         },
         "wish": {
             "empty": "There are no recipes. Please try to refresh the page or go to the search page"
+        }
+    },
+    "common": {
+        "auth": {
+            "form": {
+                "external-log-in": "Or"
+            }
         }
     }
 }

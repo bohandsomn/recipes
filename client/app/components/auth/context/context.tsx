@@ -5,7 +5,7 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { withSetter } from '@/utils'
 import { IAuthContext, IAuthState } from './types'
-import { IUseState } from '@/types'
+import { IUseDispatch, IUseState } from '@/types'
 
 const useState = create<IAuthContext>()(
     devtools(
@@ -40,4 +40,9 @@ export const useAuthState: IUseState<IAuthContext> = (
     selector,
 ) => {
     return useState(selector)
+}
+
+export const useAuthDispatch: IUseDispatch<IAuthContext> = () => {
+    const dispatch = useState((state) => state.setState)
+    return dispatch
 }

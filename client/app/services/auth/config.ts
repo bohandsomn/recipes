@@ -1,6 +1,5 @@
 import { configuration } from '@/config'
-import { AxiosAppApi, IAppApi } from '@/utils'
-import { RefresherService } from '@/utils/refresher'
+import { AxiosAppApi, IAppApi, RefresherService } from '@/utils'
 
 export const authApi: IAppApi = new AxiosAppApi({
     baseUrl: configuration.authServerUrl,

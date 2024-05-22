@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { RecipePreviewList } from '@/components/recipes'
-import { useLanguages } from '@/utils'
+import { useLanguages } from '@/utils/languages/useLanguages'
 import { useRecipesState } from '@/components/recipes/pages/preview/context'
 
 export const HomeRecipeList = () => {

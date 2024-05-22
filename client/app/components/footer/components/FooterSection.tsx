@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 import { Container } from '@/components/common'
 
 export const FooterSection = async () => {

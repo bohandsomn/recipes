@@ -1,5 +1,6 @@
 import { GraphqlProvider, ServerGraphqlProvider } from '@/context'
-import { NotificationProvider, combineProviders } from '@/utils'
+import { combineProviders } from '@/utils'
+import { NotificationProvider } from '@/utils/notification'
 
 export const AppProvider = combineProviders([
     NotificationProvider,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { fontHeader } from '@/fonts'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 import { Container } from '@/components/common'
 import { SearchRecipeList } from './SearchRecipeList'
 import { SearchRecipeForm } from './SearchRecipeForm'

@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react'
-import { defaultLocale, Locale } from '@/utils'
+import { defaultLocale, Locale } from '@/utils/languages/constants'
 import { fontHeader, fontCommon } from '@/fonts'
 
 interface IDocumentProps extends PropsWithChildren {

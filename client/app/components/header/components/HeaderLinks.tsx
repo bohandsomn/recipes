@@ -1,6 +1,6 @@
 import React from 'react'
 import { SearchIcon } from '@/components/common'
-import { getLanguages } from '@/utils/languages/getLanguages'
+import { getLanguages } from '@/utils/languages'
 import { Page } from '@/constants'
 import { HeaderLink } from './HeaderLink'
 import { AuthLinks } from './AuthLinks'

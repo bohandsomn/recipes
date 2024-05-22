@@ -2,7 +2,7 @@
 
 import { FC, PropsWithChildren } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { createContext } from '@/utils'
+import { createContext } from '@/utils/context'
 import { HotToastNotificationService } from '../services'
 import { INotificationContext } from './types'
 

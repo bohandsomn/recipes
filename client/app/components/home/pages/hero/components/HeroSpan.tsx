@@ -1,7 +1,7 @@
 'use client'
 
 import { fontHeader } from '@/fonts'
-import { useLanguages } from '@/utils'
+import { useLanguages } from '@/utils/languages/useLanguages'
 import React, { useEffect, useMemo, useState } from 'react'
 
 export const HeroSpan = () => {

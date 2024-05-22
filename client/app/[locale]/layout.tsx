@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { Document, FooterSection, HeaderSection, SectionWrapper } from '@/components'
 import { AuthProvider } from '@/components/auth/context'
 import { WishProvider } from '@/components/recipes/pages/wish/context'
-import { Locale } from '@/utils'
+import { Locale } from '@/utils/languages'
 import { AppProvider } from '@/providers'
 import { autoLogInUser, getUserRecipePreview } from '@/actions'
 

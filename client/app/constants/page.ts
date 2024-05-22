@@ -3,5 +3,6 @@ export enum Page {
     RECIPES = 'recipes',
     WISH = 'wish',
     DASHBOARD = 'dashboard',
-    AUTH = 'auth',
+    AUTH = 'register',
+    LOG_IN = 'log-in',
 }
