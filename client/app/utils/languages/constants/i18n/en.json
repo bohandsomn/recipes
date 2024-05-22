@@ -124,5 +124,15 @@
             "header": "Similar recipes:",
             "empty":"There are no recipes. Please try to refresh the page or go to the search page"
         }
+    },
+    "dashboard": {
+        "password": {
+            "header": "Change your password",
+            "submit": "Submit"
+        },
+        "email": {
+            "header": "Confirm your email",
+            "submit": "Send email"
+        }
     }
 }

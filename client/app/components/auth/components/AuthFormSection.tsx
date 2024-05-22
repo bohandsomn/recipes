@@ -10,6 +10,7 @@ import { useLanguages } from '@/utils/languages/useLanguages'
 import { useFormState } from 'react-dom'
 import { useAuthDispatch } from '../context'
 import { useRouter } from 'next/navigation'
+import { useNotification } from '@/utils/notification'
 
 interface IAuthFormSectionProps {
     header: string
@@ -36,6 +37,7 @@ export const AuthFormSection: FC<IAuthFormSectionProps> = ({
     const [state, formAction] = useFormState(action, initialState)
     const dispatch = useAuthDispatch()
     const router = useRouter()
+    const notify = useNotification()
     useEffect(() => {
         dispatch({
             isLoading: false,
@@ -43,6 +45,9 @@ export const AuthFormSection: FC<IAuthFormSectionProps> = ({
         })
         if (state.data) {
             router.push('/')
+        }
+        if (state.error) {
+            notify.error(state.error)
         }
     }, [state])
     const translate = useLanguages()

@@ -164,12 +164,12 @@ export async function activateUser(activationLink: string): Promise<IServerRespo
     }
 }
 
-export async function sendConfirmEmail(): Promise<IServerResponse<void>> {
+export async function sendConfirmEmail(): Promise<IServerResponse<200>> {
     'use server'
     try {
-        const response = await authService.sendConfirmEmail()
+        await authService.sendConfirmEmail()
         return {
-            data: response,
+            data: 200,
             error: null,
         }
     } catch (error) {
@@ -181,7 +181,7 @@ export async function sendConfirmEmail(): Promise<IServerResponse<void>> {
     }
 }
 
-export async function setPassword(formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
+export async function setPassword(_prevState: unknown, formData: FormData): Promise<IServerResponse<IUserPayloadDto>> {
     'use server'
     try {
         const password = formData.get('password')?.toString() ?? ''

@@ -100,7 +100,7 @@ export class AuthService implements IAuthService {
                 authorization: `Bearer ${accessToken}`,
             },
         })
-        if (data) {
+        if (data !== null) {
             return data
         }
         throw error
