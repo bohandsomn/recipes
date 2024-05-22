@@ -1,1 +1,5 @@
 export * from './hero'
+export * from './ingredients'
+export * from './similar'
+export * from './stages'
+export * from './video'

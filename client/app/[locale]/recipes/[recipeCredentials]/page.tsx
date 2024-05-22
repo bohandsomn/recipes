@@ -1,13 +1,11 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import React, { FC } from 'react'
-import { getSimilarRecipePreview } from '@/actions'
-import { IRecipe } from '@/components'
-import { mockRecipe } from '@/components/recipes/__mock__'
-import { RecipesProvider } from '@/context/preview'
-import { IServerResponse } from '@/types'
+import { Container } from '@/components'
 import { RecipeProvider } from '@/components/recipes/pages/recipe/context'
-import { RecipeHeroSection } from '@/components/recipes/pages/recipe'
+import { getRecipe, getSimilarRecipePreview } from '@/actions'
+import { RecipesProvider } from '@/context/preview'
+import { IngredientsSection, RecipeHeroSection, RecipeTopics, SimilarRecipesSection, StagesSection, VideoSection } from '@/components/recipes/pages'
 
 interface IRecipeProps {
     params: {
@@ -20,11 +18,7 @@ export async function generateMetadata({
         recipeCredentials
     }
 }: IRecipeProps): Promise<Metadata> {
-    // const recipe = await getRecipe(recipeCredentials)
-    const { data: recipe }: IServerResponse<IRecipe> = {
-        data: mockRecipe,
-        error: null,
-    }
+    const { data: recipe } = await getRecipe(recipeCredentials)
     if (!recipe) {
         return notFound()
     }
@@ -40,11 +34,7 @@ const RecipePage: FC<IRecipeProps> = async ({
         recipeCredentials
     }
 }) => {
-    // const recipe = await getRecipe(recipeCredentials)
-    const recipe = {
-        data: mockRecipe,
-        error: null,
-    }
+    const recipe = await getRecipe(recipeCredentials)
     if (!recipe.data) {
         return notFound()
     }
@@ -53,6 +43,15 @@ const RecipePage: FC<IRecipeProps> = async ({
         <RecipeProvider state={recipe}>
             <RecipesProvider state={similarRecipes}>
                 <RecipeHeroSection />
+                <RecipeTopics />
+                <Container className="grid lg:grid-cols-2">
+                    <div className="order-1 lg:order-[0]">
+                        <IngredientsSection />
+                        <StagesSection />
+                    </div>
+                    <VideoSection />
+                </Container>
+                <SimilarRecipesSection />
             </RecipesProvider>
         </RecipeProvider>
     )

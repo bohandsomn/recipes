@@ -103,5 +103,26 @@
             "errorMessage": "Page not found. The page you are looking for does not exist",
             "link": "Home page"
         }
+    },
+    "recipe": {
+        "video": {
+            "header": "Nutrition",
+            "calories": "Calories",
+            "carbohydrate": "Carbohydrate",
+            "fat": "Fat",
+            "fiber": "Fiber",
+            "protein": "Protein",
+            "sugar": "Sugar"
+        },
+        "ingredients": {
+            "header": "Ingredients:"
+        },
+        "stages": {
+            "header": "Stages:"
+        },
+        "similar": {
+            "header": "Similar recipes:",
+            "empty":"There are no recipes. Please try to refresh the page or go to the search page"
+        }
     }
 }

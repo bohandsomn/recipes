@@ -11,7 +11,7 @@ export const HeroSection = async () => {
     const button = translate('home.hero.button')
     return (
         <Hero imageClassName="sm:block">
-            <Container>
+            <Container className="sm:absolute sm:left-0 sm:right-0">
                 <figure className="flex items-center flex-row-reverse">
                     <Image
                         src="/assets/images/hero.webp"
