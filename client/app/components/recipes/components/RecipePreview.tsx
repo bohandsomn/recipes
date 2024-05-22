@@ -20,7 +20,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
 }) => {
     return (
         <figure className="w-[164px] sm:w-[272px] md:w-[368px] lg:w-[480px] xl:w-[280px] rounded-xl hover:shadow-black-400 hover:shadow-lg transition-all bg-white relative">
-            <Link href={`${Page.RECIPES}/${recipeCredentials}`}>
+            <Link href={`/${Page.RECIPES}/${recipeCredentials}`}>
                 <Image
                     src={image!}
                     alt={name!}
@@ -32,7 +32,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                 />
             </Link>
             <figcaption className="p-[10px] rounded-bl-xl rounded-br-xl">
-                <Link href={`${Page.RECIPES}/${recipeCredentials}`}>
+                <Link href={`/${Page.RECIPES}/${recipeCredentials}`}>
                     <h3 className={`${fontCommon.className} font-bold cursor-pointer w-fit`} title={name!}>{name}</h3>
                 </Link>
                 <div className="space-y-1">

@@ -16,7 +16,7 @@ export const StagesSection = () => {
                 {stages?.map(({ id, name, time }) => (
                     <li key={id}>
                         <p>{name}</p>
-                        {time && <Time time={Math.round(time / 1000)} />}
+                        {time && <Time time={time} />}
                     </li>
                 ))}
             </ul>

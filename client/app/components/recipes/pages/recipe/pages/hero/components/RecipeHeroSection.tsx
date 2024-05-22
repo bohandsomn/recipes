@@ -35,11 +35,11 @@ export const RecipeHeroSection = () => {
                 <Image 
                     src={image} 
                     alt={name} 
-                    width={1066} 
-                    height={600} 
+                    width={600} 
+                    height={338} 
                     draggable={false}
                     priority
-                    className="hidden lg:block rounded"
+                    className="hidden lg:block rounded w-[600px] h-[338px] object-cover"
                 />
             </Container>
         </Hero>
