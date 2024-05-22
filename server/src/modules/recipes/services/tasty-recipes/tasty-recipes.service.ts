@@ -114,7 +114,6 @@ export class TastyRecipesService implements IExternalRecipesService {
         description,
         keywords,
         price,
-        total_time_minutes: time,
         original_video_url: video,
         thumbnail_url: image,
         nutrition,
@@ -124,13 +123,33 @@ export class TastyRecipesService implements IExternalRecipesService {
         instructions,
         sections,
     }: ITastyRecipe): IRecipe {
+        const stages = instructions.map(
+            ({ id, display_text: name, start_time: start, end_time: end }) => ({
+                id,
+                name,
+                time: !end || !start ? null : end - start,
+            }),
+        )
+        const ingredients = sections
+            .map(({ components }) => components)
+            .flat()
+            .map(({ ingredient: { name }, raw_text: text, measurements }) => ({
+                name,
+                text,
+                measurements: measurements.map(({ quantity, unit: { name } }) =>
+                    [quantity, name].filter((value) => !!value).join(' '),
+                ),
+            }))
         return {
             recipeCredentials: `${ExternalRecipe.TASTY}_${id}`,
             name,
             description,
             keywords,
             price: price?.total ?? null,
-            time,
+            time: stages.reduce(
+                (accumulator, { time }) => accumulator + (time ?? 0) / 1000,
+                0,
+            ),
             video,
             image,
             calories: nutrition?.calories ?? null,
@@ -150,37 +169,8 @@ export class TastyRecipesService implements IExternalRecipesService {
             tags: tags
                 .map(({ display_name: name }) => name)
                 .filter((name): name is string => !!name),
-            stages: instructions.map(
-                ({
-                    id,
-                    display_text: name,
-                    start_time: start,
-                    end_time: end,
-                }) => ({
-                    id,
-                    name,
-                    time: !end || !start ? null : end - start,
-                }),
-            ),
-            ingredients: sections
-                .map(({ components }) => components)
-                .flat()
-                .map(
-                    ({
-                        ingredient: { name },
-                        raw_text: text,
-                        measurements,
-                    }) => ({
-                        name,
-                        text,
-                        measurements: measurements.map(
-                            ({ quantity, unit: { name } }) =>
-                                [quantity, name]
-                                    .filter((value) => !!value)
-                                    .join(' '),
-                        ),
-                    }),
-                ),
+            stages,
+            ingredients,
         }
     }
 }
