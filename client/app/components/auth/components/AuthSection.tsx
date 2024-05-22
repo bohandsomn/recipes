@@ -13,10 +13,10 @@ export const AuthSection: FC<PropsWithChildren> = async ({
     return (
         <section className="flex items-center">
             <Image 
-                src="/assets/images/auth-bg.webp" 
+                src="/assets/images/hero-bg.webp" 
                 alt="Hero" 
                 width="1920" 
-                height="1080" 
+                height="768" 
                 draggable={false}
                 className="hidden sm:block"
                 priority
