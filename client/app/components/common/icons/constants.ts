@@ -94,12 +94,27 @@ export const linkIconProps: IIconProps = {
     height: 36,
     fill: 'none',
     viewBox: '0 0 24 24',
-    stroke: '#FFFFFF',
+    stroke: '#000000',
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     strokeWidth: '2',
     d: [
         'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71',
         'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71',
+    ],
+}
+
+export const priceIconProps: IIconProps = {
+    width: 36,
+    height: 36,
+    fill: 'none',
+    viewBox: '0 0 24 24',
+    stroke: '#000000',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    strokeWidth: '2',
+    d: [
+        'M12 1v22',
+        'M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6',
     ],
 }

@@ -1,5 +1,5 @@
 import { createIcon } from '@/utils'
-import { dashboardIconProps, searchIconProps, wishIconProps, authIconProps, starIconProps, clockIconProps, linkIconProps } from './constants'
+import { dashboardIconProps, searchIconProps, wishIconProps, authIconProps, starIconProps, clockIconProps, linkIconProps, priceIconProps } from './constants'
 
 export const SearchIcon = createIcon(searchIconProps)
 export const WishIcon = createIcon(wishIconProps)
@@ -8,3 +8,4 @@ export const AuthIcon = createIcon(authIconProps)
 export const StarIcon = createIcon(starIconProps)
 export const ClockIcon = createIcon(clockIconProps)
 export const LinkIcon = createIcon(linkIconProps)
+export const PriceIcon = createIcon(priceIconProps)

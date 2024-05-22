@@ -3,7 +3,7 @@
 import React from 'react'
 import { RecipePreviewList } from '@/components/recipes'
 import { useLanguages } from '@/utils/languages/useLanguages'
-import { useRecipesState } from '@/components/recipes/pages/preview/context'
+import { useRecipesState } from '@/context/preview/context'
 
 export const HomeRecipeList = () => {
     const state = useRecipesState()

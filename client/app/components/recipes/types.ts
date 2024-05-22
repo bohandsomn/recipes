@@ -31,7 +31,7 @@ export interface IIngredient {
 export interface IStage {
     readonly id: number | null
     readonly name: string | null
-    readonly time: string | null
+    readonly time: number | null
 }
 
 export interface IRecipe {

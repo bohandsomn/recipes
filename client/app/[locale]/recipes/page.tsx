@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { getRecipePreview } from '@/actions'
 import { DEFAULT_PAGE, DEFAULT_SIZE, SortRecipes, checkSortRecipes } from '@/components'
 import { SearchRecipeSection } from '@/components/recipes/pages/search'
-import { RecipesProvider } from '@/components/recipes/pages/preview'
+import { RecipesProvider } from '@/context/preview'
 
 interface IRecipesProps {
     searchParams: {

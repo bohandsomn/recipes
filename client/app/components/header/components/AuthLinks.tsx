@@ -2,9 +2,9 @@
 
 import React, { FC } from 'react'
 import { Page } from '@/constants'
-import { withAuth } from '@/components/auth/hocs'
 import { DashboardIcon, AuthIcon, WishIcon } from '@/components/common'
 import { HeaderLink } from './HeaderLink'
+import { useAuthState } from '@/components/auth/context'
 
 interface IAuthLinks {
     wish: string
@@ -12,12 +12,12 @@ interface IAuthLinks {
     auth: string
 }
 
-export const AuthLinks: FC<IAuthLinks> = withAuth(({ 
-    isAuth,
+export const AuthLinks: FC<IAuthLinks> = ({ 
     wish,
     dashboard,
     auth,
 }) => {
+    const isAuth = useAuthState((state) => !!state.data)
     if (!isAuth) {
         return (
             <HeaderLink 
@@ -41,4 +41,4 @@ export const AuthLinks: FC<IAuthLinks> = withAuth(({
             />
         </>
     )
-})
+}

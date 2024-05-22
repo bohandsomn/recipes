@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '@/components/recipes/constants'
-import { useRecipesState } from '../../preview'
+import { useRecipesState } from '@/context/preview'
 
 export const SearchRecipePages = () => {
     const currentPage = useSearchParams().get('page')
