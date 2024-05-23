@@ -36,5 +36,10 @@
         "prettier-plugin-tailwindcss": "^0.5.14",
         "tailwindcss": "^3.4.1",
         "typescript": "^5.4.5"
+    },
+    "engines": {
+        "node": "18.10.0",
+        "npm": "8.19.2",
+        "yarn": "1.22.5"
     }
 }

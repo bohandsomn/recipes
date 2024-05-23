@@ -19,5 +19,4 @@ export enum Environment {
     TASTY_URL = 'TASTY_URL',
     TASTY_KEY = 'TASTY_KEY',
     TASTY_HOST = 'TASTY_HOST',
-    CACHING_TTL = 'CACHING_TTL',
 }

@@ -138,7 +138,7 @@ export class RecipesService implements IRecipesService {
             return cachedHints
         }
         const hints = await this.searchRecipesService.search(input.query)
-        this.cacheService.save(key, hints)
+        this.cacheService.save(key, hints, RECIPE_TTL)
         return hints
     }
 

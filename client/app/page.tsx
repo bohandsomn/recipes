@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { parseAcceptLanguage } from '@/utils'
+import { parseAcceptLanguage } from '@/utils/languages'
 
 const Page = () => {
     const acceptLanguage = headers().get('accept-language')
