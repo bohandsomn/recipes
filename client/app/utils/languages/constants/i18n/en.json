@@ -1,0 +1,145 @@
+{
+    "auth": {
+        "validation": {
+            "email": "Your email is not valid",
+            "password": "Password's length must be between {min} and {max} characters",
+            "confirm-password": "Passwords do not match"
+        },
+        "constants": {
+            "placeholder": {
+                "email": "Enter your email",
+                "password": "Enter your password",
+                "confirm-password": "Confirm your password"
+            },
+            "log-in": {
+                "loading": "The user's log-in request is in progress...",
+                "submit": "Log in",
+                "success": "You are successfully logged in",
+                "header": "Log in",
+                "already": "New user?"
+            },
+            "register": {
+                "loading": "The user's registration request is in progress...",
+                "submit": "Register",
+                "success": "You are successfully registered",
+                "header": "Register",
+                "already": "Already have an account? "
+            },
+            "external": {
+                "google": "Google"
+            },
+            "auto-log-in": {
+                "loading": "The user's auto-log-in request is in progress...",
+                "success": "You are successfully logged in"
+            },
+            "log-out": {
+                "loading": "The user's log-out request is in progress...",
+                "submit": "Log out",
+                "success": "You are successfully logged out"
+            },
+            "activation": {
+                "info": "Activate your email",
+                "description": "Click on the text if you want to send a confirmation email to activate your email",
+                "header": "Something went wrong during activation:",
+                "hint": "Please try to refresh the page or come back later"
+            },
+            "greeting": "Welcome!",
+            "auth-link": "Authenticate"
+        }
+    },
+    "home": {
+        "hero": {
+            "search": "Search",
+            "wish": "Wish",
+            "cook": "Cook",
+            "header": "dishes with the recipe hub",
+            "button": "Find recipe"
+        },
+        "recipes": {
+            "header": "The most popular recipes",
+            "link": "See more",
+            "empty": "There are no recipes. Please try to refresh the page or go to the search page"
+        }
+    },
+    "header": {
+        "logo": {
+            "title": "Recipes"
+        },
+        "icons": {
+            "wish": "Wish list",
+            "search": "Search recipes",
+            "dashboard": "Dashboard",
+            "auth": "Auth"
+        }
+    },
+    "footer": {
+        "copyright": "The \"Recipes\" is a pet project to show my skills"
+    },
+    "recipes": {
+        "search": {
+            "empty": "There are no recipes. Try another recipe's name",
+            "form": {
+                "sort": {
+                    "": "Popular",
+                    "approved_at:asc": "Ascending",
+                    "approved_at:desc": "Descending"
+                },
+                "input-placeholder": "Holidays, Easter, Christmas...",
+                "sort-label": "Sort by:",
+                "submit": "Search"
+            }
+        },
+        "wish": {
+            "empty": "There are no recipes. Please try to refresh the page or go to the search page"
+        }
+    },
+    "common": {
+        "auth": {
+            "form": {
+                "external-log-in": "Or"
+            }
+        },
+        "not-found": {
+            "errorMessage": "Page not found. The page you are looking for does not exist",
+            "link": "Home page"
+        }
+    },
+    "recipe": {
+        "video": {
+            "header": "Nutrition",
+            "calories": "Calories",
+            "carbohydrate": "Carbohydrate",
+            "fat": "Fat",
+            "fiber": "Fiber",
+            "protein": "Protein",
+            "sugar": "Sugar"
+        },
+        "ingredients": {
+            "header": "Ingredients:"
+        },
+        "stages": {
+            "header": "Stages:"
+        },
+        "similar": {
+            "header": "Similar recipes:",
+            "empty": "There are no recipes. Please try to refresh the page or go to the search page"
+        }
+    },
+    "dashboard": {
+        "password": {
+            "header": "Change your password",
+            "submit": "Submit",
+            "success": "You are successfully changed your password"
+        },
+        "email": {
+            "header": "Confirm your email",
+            "submit": "Send email",
+            "success": "You are successfully sent confirmation email"
+        },
+        "log-out": {
+            "header": "Log out",
+            "submit": "Log out",
+            "success": "You are successfully logged out"
+        }
+    }
+}
