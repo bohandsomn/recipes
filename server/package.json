@@ -102,8 +102,8 @@
         "testEnvironment": "node"
     },
     "engines": {
-        "node": "18.10.0",
-        "npm": "8.19.2",
+        "node": "20.12.2",
+        "npm": "10.8.0",
         "yarn": "1.22.22"
     }
 }
