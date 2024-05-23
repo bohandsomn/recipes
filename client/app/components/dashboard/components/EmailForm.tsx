@@ -1,11 +1,11 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import React, { FC, useEffect } from 'react'
 import { useFormState } from 'react-dom'
-import { useRouter } from 'next/navigation'
-import { useNotification } from '@/utils/notification'
-import { IServerResponse } from '@/types'
 import { useAuthDispatch } from '@/components/auth'
+import { IServerResponse } from '@/types'
+import { useNotification } from '@/utils/notification'
 
 interface IEmailFormProps {
     submit: string
@@ -18,11 +18,7 @@ const initialState = {
     error: null,
 } as never as IServerResponse<200>
 
-export const EmailForm: FC<IEmailFormProps> = ({
-    submit,
-    success,
-    action
-}) => {
+export const EmailForm: FC<IEmailFormProps> = ({ submit, success, action }) => {
     const [state, formAction] = useFormState(action, initialState)
     const router = useRouter()
     const notify = useNotification()

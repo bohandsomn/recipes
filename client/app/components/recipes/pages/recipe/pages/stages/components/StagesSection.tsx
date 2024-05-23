@@ -1,15 +1,15 @@
 'use client'
 
 import React from 'react'
-import { useLanguages } from '@/utils/languages/useLanguages'
 import { Time } from '@/components/recipes/components'
 import { getUniqueList } from '@/components/recipes/utils'
-import { useRecipeState } from '../../../context'
+import { useLanguages } from '@/utils/languages/useLanguages'
 import { RecalculationSection } from '../../../components'
+import { useRecipeState } from '../../../context'
 
 export const StagesSection = () => {
     const stages = useRecipeState((state) => {
-        const stages = state.data?.stages 
+        const stages = state.data?.stages
         if (!stages) {
             return null
         }

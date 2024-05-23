@@ -1,7 +1,7 @@
 'use client'
 
-import { useLanguages } from '@/utils/languages/useLanguages'
 import React, { useEffect, useMemo, useState } from 'react'
+import { useLanguages } from '@/utils/languages/useLanguages'
 
 export const HeroSpan = () => {
     const translate = useLanguages()
@@ -23,7 +23,5 @@ export const HeroSpan = () => {
             clearInterval(intervalId)
         }
     }, [spans, span, setSpan])
-    return (
-        <>{span}</>
-    )
+    return <>{span}</>
 }

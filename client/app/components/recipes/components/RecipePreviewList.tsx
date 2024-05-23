@@ -28,7 +28,7 @@ export const RecipePreviewList: FC<IRecipePreviewListProps> = ({
     return (
         <ul className="flex flex-wrap">
             {data?.data.map((recipe) => (
-                <li key={recipe.recipeCredentials} className="flex m-2">
+                <li key={recipe.recipeCredentials} className="m-2 flex">
                     <RecipePreview {...recipe} />
                 </li>
             ))}

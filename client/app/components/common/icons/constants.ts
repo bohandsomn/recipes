@@ -9,10 +9,7 @@ export const searchIconProps: IIconProps = {
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     strokeWidth: '1',
-    d: [
-        'M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z',
-        'm21 21-4.35-4.35',
-    ],
+    d: ['M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z', 'm21 21-4.35-4.35'],
 }
 
 export const wishIconProps: IIconProps = {
@@ -41,7 +38,7 @@ export const authIconProps: IIconProps = {
     d: [
         'M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4',
         'm10 17 5-5-5-5',
-        'M15 12H3'
+        'M15 12H3',
     ],
 }
 
@@ -83,10 +80,7 @@ export const clockIconProps: IIconProps = {
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     strokeWidth: '1',
-    d: [
-        'M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z',
-        'M12 6v6l4 2'
-    ],
+    d: ['M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z', 'M12 6v6l4 2'],
 }
 
 export const priceIconProps: IIconProps = {
@@ -98,8 +92,5 @@ export const priceIconProps: IIconProps = {
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     strokeWidth: '2',
-    d: [
-        'M12 1v22',
-        'M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6',
-    ],
+    d: ['M12 1v22', 'M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'],
 }

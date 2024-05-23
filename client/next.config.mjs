@@ -1,8 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin'
- 
-const withNextIntl = createNextIntlPlugin(
-    './app/utils/languages/config.ts'
-)
+
+const withNextIntl = createNextIntlPlugin('./app/utils/languages/config.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

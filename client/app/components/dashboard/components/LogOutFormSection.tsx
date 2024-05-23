@@ -1,6 +1,6 @@
 import React from 'react'
-import { getLanguages } from '@/utils/languages'
 import { logOutUser } from '@/actions'
+import { getLanguages } from '@/utils/languages'
 import { DashboardFormSection } from './DashboardFormSection'
 import { LogOutForm } from './LogOutForm'
 

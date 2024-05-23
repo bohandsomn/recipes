@@ -9,12 +9,12 @@ interface IWishRecipeProps {
     recipeCredentials: string
 }
 
-export const WishRecipe: FC<IWishRecipeProps> = ({
-    recipeCredentials
-}) => {
+export const WishRecipe: FC<IWishRecipeProps> = ({ recipeCredentials }) => {
     const [isLoading, setIsLoading] = useState(false)
     const isWished = useWishState((state) => {
-        const isWished = !!state.data?.data.find((recipe) => recipe.recipeCredentials === recipeCredentials)
+        const isWished = !!state.data?.data.find(
+            (recipe) => recipe.recipeCredentials === recipeCredentials,
+        )
         return isWished
     })
     const toggleWish = useToggleRecipeMutation(isWished)
@@ -31,12 +31,12 @@ export const WishRecipe: FC<IWishRecipeProps> = ({
     }
     return (
         <button onClick={clickHandler} type="button">
-            <WishIcon 
-                width={24} 
-                hanging={24} 
-                fill={isLoading ? '#E2E2E2' : isWished ? '#BF1A1E' : '#fff'} 
+            <WishIcon
+                width={24}
+                hanging={24}
+                fill={isLoading ? '#E2E2E2' : isWished ? '#BF1A1E' : '#fff'}
                 stroke={isLoading ? '#E2E2E2' : isWished ? '#BF1A1E' : '#000'}
-                className="cursor-pointer" 
+                className="cursor-pointer"
             />
         </button>
     )

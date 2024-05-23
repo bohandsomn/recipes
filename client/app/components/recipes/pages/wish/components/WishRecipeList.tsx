@@ -10,9 +10,6 @@ export const WishRecipeList = () => {
     const translate = useLanguages()
     const emptyErrorMessage = translate('recipes.wish.empty')
     return (
-        <RecipePreviewList 
-            emptyErrorMessage={emptyErrorMessage} 
-            {...state} 
-        />
+        <RecipePreviewList emptyErrorMessage={emptyErrorMessage} {...state} />
     )
 }

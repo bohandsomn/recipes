@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
+import { useLanguages } from '@/utils/languages/useLanguages'
+import { RecipeTags } from '../../../components'
 import { Nutrition } from './Nutrition'
 import { RecipeVideo } from './RecipeVideo'
-import { RecipeTags } from '../../../components'
-import { useLanguages } from '@/utils/languages/useLanguages'
 
 export const VideoSection = () => {
     const translate = useLanguages()

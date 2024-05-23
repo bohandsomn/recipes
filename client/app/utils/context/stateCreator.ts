@@ -1,6 +1,7 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
+import { IDispatch, IDispatchCallback, IUseDispatch, IUseState } from '@/types'
 import {
     ICreateContextOptions,
     IState,
@@ -8,7 +9,6 @@ import {
     IUseDispatchCallback,
     IUseStateContext,
 } from './types'
-import { IDispatch, IDispatchCallback, IUseDispatch, IUseState } from '@/types'
 
 export function stateCreator<State extends IState>(
     initialState: State,

@@ -22,7 +22,9 @@ export const ErrorBoundary: FC<IErrorBoundaryProps> = ({
         notify.error(errorMessage)
     }, [errorMessage, notNotify])
     return (
-        <div className={`${className} border-l-red-500 bg-red-400 border-l-4 p-5 text-white`}>
+        <div
+            className={`${className} border-l-4 border-l-red-500 bg-red-400 p-5 text-white`}
+        >
             {errorMessage}
         </div>
     )

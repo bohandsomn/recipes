@@ -1,14 +1,14 @@
 'use client'
 
 import React from 'react'
-import { useLanguages } from '@/utils/languages/useLanguages'
 import { getUniqueList } from '@/components/recipes/utils'
-import { useRecipeState } from '../../../context'
+import { useLanguages } from '@/utils/languages/useLanguages'
 import { RecalculationSection } from '../../../components'
+import { useRecipeState } from '../../../context'
 
 export const IngredientsSection = () => {
     const ingredients = useRecipeState((state) => {
-        const ingredients = state.data?.ingredients 
+        const ingredients = state.data?.ingredients
         if (!ingredients) {
             return null
         }
@@ -28,7 +28,9 @@ export const IngredientsSection = () => {
                             <summary className="block w-fit cursor-pointer">
                                 <h4 className="text-xl">{name}</h4>
                             </summary>
-                            <p>{text}. ({measurements?.join(', ')})</p>
+                            <p>
+                                {text}. ({measurements?.join(', ')})
+                            </p>
                         </details>
                     </li>
                 ))}

@@ -8,7 +8,9 @@ export const HomeRecipeLink = async () => {
     const link = translate('home.recipes.link')
     return (
         <div className="flex justify-center">
-            <Link href={`/${Page.RECIPES}`} className="button block">{link}</Link>
+            <Link href={`/${Page.RECIPES}`} className="button block">
+                {link}
+            </Link>
         </div>
     )
 }

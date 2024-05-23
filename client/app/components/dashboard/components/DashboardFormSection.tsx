@@ -6,7 +6,7 @@ interface IDashboardFormSectionProps extends PropsWithChildren {
 
 export const DashboardFormSection: FC<IDashboardFormSectionProps> = ({
     header,
-    children
+    children,
 }) => {
     return (
         <section className="space-y-2">

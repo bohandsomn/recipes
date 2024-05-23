@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import React from 'react'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '@/components/recipes/constants'
 import { useRecipesState } from '@/context/preview'
 
@@ -27,10 +27,15 @@ export const SearchRecipePages = () => {
     const query = useSearchParams().get('query') || ''
     const sort = useSearchParams().get('sort') || ''
     return (
-        <ul className="flex justify-between w-[100%]">
+        <ul className="flex w-[100%] justify-between">
             {pages.map((index) => (
-                <li key={index} className="flex items-center justify-center bg-white rounded-full w-8 h-8">
-                    <Link href={`?query=${query}&sort=${sort}&page=${index + 1}`}>
+                <li
+                    key={index}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white"
+                >
+                    <Link
+                        href={`?query=${query}&sort=${sort}&page=${index + 1}`}
+                    >
                         {index + 1}
                     </Link>
                 </li>

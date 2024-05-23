@@ -1,11 +1,11 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import React, { FC, useEffect } from 'react'
 import { useFormState } from 'react-dom'
-import { useRouter } from 'next/navigation'
-import { useNotification } from '@/utils/notification'
-import { IServerResponse } from '@/types'
 import { useAuthDispatch } from '@/components/auth/context'
+import { IServerResponse } from '@/types'
+import { useNotification } from '@/utils/notification'
 
 interface ILogOutFormProps {
     submit: string
@@ -21,7 +21,7 @@ const initialState = {
 export const LogOutForm: FC<ILogOutFormProps> = ({
     submit,
     success,
-    action
+    action,
 }) => {
     const [state, formAction] = useFormState(action, initialState)
     const router = useRouter()

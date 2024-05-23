@@ -15,14 +15,20 @@ export const SearchRecipeForm = async () => {
         redirect(`?query=${query}&sort=${sort}`)
     }
     return (
-        <form action={sendHandler} className="flex flex-col items-start space-y-2">
+        <form
+            action={sendHandler}
+            className="flex flex-col items-start space-y-2"
+        >
             <div className="flex flex-row space-x-1">
                 <SearchRecipeDatalist />
                 <button type="submit">{submit}</button>
             </div>
             <label className="flex flex-row space-x-2">
                 <p>{sortLabel}</p>
-                <select name="sort" className="bg-yellow-600 hover:bg-yellow-700 text-white px-2 py-1 rounded">
+                <select
+                    name="sort"
+                    className="rounded bg-yellow-600 px-2 py-1 text-white hover:bg-yellow-700"
+                >
                     {sortRecipesValues.map((value) => (
                         <option key={value} value={value}>
                             {translate(`recipes.search.form.sort.${value}`)}

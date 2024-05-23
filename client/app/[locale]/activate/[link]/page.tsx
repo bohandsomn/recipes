@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { FC } from 'react'
-import { Document } from '@/components'
 import { activateUser } from '@/actions'
+import { Document } from '@/components'
 import { getLanguages } from '@/utils/languages'
 
 interface IActivateProps {
@@ -13,7 +13,7 @@ interface IActivateProps {
 const Activate: FC<IActivateProps> = async ({ params: { link } }) => {
     const { error: errorMessage } = await activateUser(link)
     if (!errorMessage) {
-        redirect("/")
+        redirect('/')
     }
     const translate = await getLanguages()
     const header = translate('auth.constants.activation.header')

@@ -7,11 +7,7 @@ interface IHeaderLinkProps {
     path: string
 }
 
-export const HeaderLink: FC<IHeaderLinkProps> = ({
-    icon,
-    title,
-    path,
-}) => {
+export const HeaderLink: FC<IHeaderLinkProps> = ({ icon, title, path }) => {
     return (
         <li>
             <Link href={path} title={title}>

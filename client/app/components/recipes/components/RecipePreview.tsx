@@ -1,14 +1,14 @@
 import Image from 'next/image'
-import React, { FC } from 'react'
 import Link from 'next/link'
+import React, { FC } from 'react'
 import { Page } from '@/constants'
+import { fontCommon } from '@/fonts'
+import { IRecipePreview } from '../types'
 import { FiveStars } from './FiveStars'
 import { Time } from './Time'
 import { WishRecipe } from './WishRecipe'
-import { IRecipePreview } from '../types'
-import { fontCommon } from '@/fonts'
 
-interface IRecipePreviewProps extends IRecipePreview { }
+interface IRecipePreviewProps extends IRecipePreview {}
 
 export const RecipePreview: FC<IRecipePreviewProps> = ({
     recipeCredentials,
@@ -19,7 +19,7 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
     rating,
 }) => {
     return (
-        <figure className="w-[164px] sm:w-[272px] md:w-[368px] lg:w-[480px] xl:w-[280px] rounded-xl hover:shadow-black-400 hover:shadow-lg transition-all bg-white relative">
+        <figure className="hover:shadow-black-400 relative w-[164px] rounded-xl bg-white transition-all hover:shadow-lg sm:w-[272px] md:w-[368px] lg:w-[480px] xl:w-[280px]">
             <Link href={`/${Page.RECIPES}/${recipeCredentials}`}>
                 <Image
                     src={image!}
@@ -28,22 +28,31 @@ export const RecipePreview: FC<IRecipePreviewProps> = ({
                     width={480}
                     height={180}
                     draggable={false}
-                    className="cursor-pointer rounded-tl-xl rounded-tr-xl w-[480px] h-[180px] object-cover"
+                    className="h-[180px] w-[480px] cursor-pointer rounded-tl-xl rounded-tr-xl object-cover"
                 />
             </Link>
-            <figcaption className="p-[10px] rounded-bl-xl rounded-br-xl">
+            <figcaption className="rounded-bl-xl rounded-br-xl p-[10px]">
                 <Link href={`/${Page.RECIPES}/${recipeCredentials}`}>
-                    <h3 className={`${fontCommon.className} font-bold cursor-pointer w-fit`} title={name!}>{name}</h3>
+                    <h3
+                        className={`${fontCommon.className} w-fit cursor-pointer font-bold`}
+                        title={name!}
+                    >
+                        {name}
+                    </h3>
                 </Link>
                 <div className="space-y-1">
-                    {description && <p className="max-h-[72px] overflow-hidden">{description}</p>}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                    {description && (
+                        <p className="max-h-[72px] overflow-hidden">
+                            {description}
+                        </p>
+                    )}
+                    <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
                         {rating ? <FiveStars rating={rating} /> : null}
                         {time ? <Time time={time} /> : null}
                     </div>
                 </div>
             </figcaption>
-            <div className="absolute top-2 right-2">
+            <div className="absolute right-2 top-2">
                 <WishRecipe recipeCredentials={recipeCredentials} />
             </div>
         </figure>

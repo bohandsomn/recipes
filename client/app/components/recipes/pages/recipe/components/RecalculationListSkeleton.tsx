@@ -11,6 +11,11 @@ export const RecalculationListSkeleton: FC<IRecalculationListSkeletonProps> = ({
     height = 28,
 }) => {
     return (
-        <Skeleton containerClassName="space-y-2" width={width} height={height} count={10} />
+        <Skeleton
+            containerClassName="space-y-2"
+            width={width}
+            height={height}
+            count={10}
+        />
     )
 }

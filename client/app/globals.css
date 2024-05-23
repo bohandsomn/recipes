@@ -6,32 +6,41 @@ html {
     scroll-behavior: smooth;
 }
 
-html, body {
-    background-color: #FCD9C5;
+html,
+body {
+    background-color: #fcd9c5;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-header);
 }
 
-*, *::after, *::before, *:not(h1, h2, h3, h4, h5, h6) {
+*,
+*::after,
+*::before,
+*:not(h1, h2, h3, h4, h5, h6) {
     font-family: var(--font-common);
 }
 
 .button {
-    @apply bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded
+    @apply rounded bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700;
 }
 
-button:not([type="button"]) {
-    @apply button
+button:not([type='button']) {
+    @apply button;
 }
 
 .input {
-    @apply py-2 px-4 rounded border border-[#FCD9C5] border-solid
+    @apply rounded border border-solid border-[#FCD9C5] px-4 py-2;
 }
 
 input {
-    @apply input
+    @apply input;
 }
 
 .hide-scrollbar {
@@ -39,6 +48,6 @@ input {
     scrollbar-width: none;
 }
 
-.hide-scrollbar::-webkit-scrollbar { 
+.hide-scrollbar::-webkit-scrollbar {
     display: none;
 }

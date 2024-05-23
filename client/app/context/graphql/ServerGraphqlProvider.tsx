@@ -15,14 +15,15 @@ function makeClient() {
     const link = httpLink.concat(authLink)
     return new NextSSRApolloClient({
         cache: new NextSSRInMemoryCache(),
-        link: typeof window === 'undefined'
-            ? ApolloLink.from([
-                new SSRMultipartLink({
-                    stripDefer: true,
-                }),
-                link,
-            ])
-            : link,
+        link:
+            typeof window === 'undefined'
+                ? ApolloLink.from([
+                      new SSRMultipartLink({
+                          stripDefer: true,
+                      }),
+                      link,
+                  ])
+                : link,
     })
 }
 

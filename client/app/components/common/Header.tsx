@@ -7,13 +7,11 @@ interface IHeaderProps {
     lg?: boolean
 }
 
-export const Header: FC<IHeaderProps> = ({
-    span,
-    restHeader,
-    lg = false
-}) => {
+export const Header: FC<IHeaderProps> = ({ span, restHeader, lg = false }) => {
     return (
-        <h1 className={`text-4xl font-bold ${lg ? 'lg:text-white' : 'sm:text-white'}`}>
+        <h1
+            className={`text-4xl font-bold ${lg ? 'lg:text-white' : 'sm:text-white'}`}
+        >
             <span className={`text-yellow-600 ${fontHeader.className}`}>
                 {span}
             </span>{' '}

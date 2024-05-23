@@ -1,10 +1,16 @@
-import { FC, PropsWithChildren } from 'react'
-import { getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
-import { Document, FooterSection, HeaderSection, SectionWrapper, AuthProvider } from '@/components'
+import { getMessages } from 'next-intl/server'
+import { FC, PropsWithChildren } from 'react'
 import { autoLogInUser, getUserRecipePreview } from '@/actions'
-import { AppProvider } from '@/providers'
+import {
+    AuthProvider,
+    Document,
+    FooterSection,
+    HeaderSection,
+    SectionWrapper,
+} from '@/components'
 import { WishProvider } from '@/components/recipes/pages'
+import { AppProvider } from '@/providers'
 import { Locale } from '@/utils/languages'
 
 interface ILocaleProps extends PropsWithChildren {
@@ -13,8 +19,8 @@ interface ILocaleProps extends PropsWithChildren {
     }
 }
 
-const LocaleLayout: FC<ILocaleProps> = async ({ 
-    params: { locale }, 
+const LocaleLayout: FC<ILocaleProps> = async ({
+    params: { locale },
     children,
 }) => {
     const userPayload = await autoLogInUser()

@@ -2,9 +2,7 @@ import React from 'react'
 import { LogInSection } from '@/components'
 
 const LogInPage = () => {
-    return (
-        <LogInSection />
-    )
+    return <LogInSection />
 }
 
 export default LogInPage

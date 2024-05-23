@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
+import React, { useState } from 'react'
 import { SEARCH_RECIPE } from '@/graphql'
-import { useLanguages } from '@/utils/languages/useLanguages'
-import { IEventTargetValue } from '@/types'
 import { useDebounce } from '@/hooks'
+import { IEventTargetValue } from '@/types'
+import { useLanguages } from '@/utils/languages/useLanguages'
 
 export const SearchRecipeDatalist = () => {
     const [search, setState] = useState('')
@@ -17,20 +17,20 @@ export const SearchRecipeDatalist = () => {
     }
     const { data } = useQuery<{ searchRecipe: string[] }>(SEARCH_RECIPE, {
         variables: {
-            query: debouncedSearch
+            query: debouncedSearch,
         },
-        skip:!debouncedSearch,
-        fetchPolicy: 'cache-and-network'
+        skip: !debouncedSearch,
+        fetchPolicy: 'cache-and-network',
     })
     return (
         <>
-            <input 
-                name="query" 
+            <input
+                name="query"
                 value={search}
                 onChange={changeHandler}
-                list="search" 
-                type="text" 
-                placeholder={placeholder} 
+                list="search"
+                type="text"
+                placeholder={placeholder}
             />
             <datalist id="search">
                 {data?.searchRecipe.map((value) => (

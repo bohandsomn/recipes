@@ -13,7 +13,10 @@ export const Price: FC<IPriceProps> = ({
     iconClassName = '',
 }) => {
     return (
-        <p title={price.toString()} className={`${className} flex flex-row space-x-1 items-center`}>
+        <p
+            title={price.toString()}
+            className={`${className} flex flex-row items-center space-x-1`}
+        >
             <PriceIcon width={16} height={16} className={iconClassName} />
             <span>{price}</span>
         </p>

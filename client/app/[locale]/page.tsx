@@ -1,6 +1,13 @@
 import React from 'react'
 import { getRecipePreview } from '@/actions'
-import { DEFAULT_PAGE, DEFAULT_SIZE, HeroSection, HomeRecipesSection, SectionWrapper, SortRecipes } from '@/components'
+import {
+    DEFAULT_PAGE,
+    DEFAULT_SIZE,
+    HeroSection,
+    HomeRecipesSection,
+    SectionWrapper,
+    SortRecipes,
+} from '@/components'
 import { RecipesProvider } from '@/context'
 
 const LocalePage = async () => {

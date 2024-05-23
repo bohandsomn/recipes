@@ -10,11 +10,14 @@ export const HeaderSection = async () => {
     const title = translate('header.logo.title')
     return (
         <header className="sticky top-0 z-50 bg-[#FCD9C5]">
-            <Container className="py-5 flex flex-row justify-between">
-                <Link href="/" className="flex flex-row items-center space-x-2 w-fit">
-                    <Image 
-                        src="/assets/images/logo.webp" 
-                        alt="Logo" 
+            <Container className="flex flex-row justify-between py-5">
+                <Link
+                    href="/"
+                    className="flex w-fit flex-row items-center space-x-2"
+                >
+                    <Image
+                        src="/assets/images/logo.webp"
+                        alt="Logo"
                         width="36"
                         height="36"
                     />

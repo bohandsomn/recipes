@@ -3,9 +3,9 @@ import { defaultLocale, locales } from './app/utils/languages'
 
 export default createMiddleware({
     locales: locales,
-    defaultLocale: defaultLocale
+    defaultLocale: defaultLocale,
 })
 
 export const config = {
-    matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)']
+    matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)'],
 }

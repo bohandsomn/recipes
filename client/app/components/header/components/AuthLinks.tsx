@@ -1,10 +1,10 @@
 'use client'
 
 import React, { FC } from 'react'
-import { Page } from '@/constants'
-import { DashboardIcon, AuthIcon, WishIcon } from '@/components/common'
-import { HeaderLink } from './HeaderLink'
 import { useAuthState } from '@/components/auth/context'
+import { AuthIcon, DashboardIcon, WishIcon } from '@/components/common'
+import { Page } from '@/constants'
+import { HeaderLink } from './HeaderLink'
 
 interface IAuthLinks {
     wish: string
@@ -12,32 +12,28 @@ interface IAuthLinks {
     auth: string
 }
 
-export const AuthLinks: FC<IAuthLinks> = ({ 
-    wish,
-    dashboard,
-    auth,
-}) => {
+export const AuthLinks: FC<IAuthLinks> = ({ wish, dashboard, auth }) => {
     const isAuth = useAuthState((state) => !!state.data)
     if (!isAuth) {
         return (
-            <HeaderLink 
-                icon={<AuthIcon />} 
-                title={auth} 
-                path={`/${Page.AUTH}`} 
+            <HeaderLink
+                icon={<AuthIcon />}
+                title={auth}
+                path={`/${Page.AUTH}`}
             />
         )
     }
     return (
         <>
-            <HeaderLink 
-                icon={<WishIcon />} 
-                title={wish} 
-                path={`/${Page.WISH}`}  
+            <HeaderLink
+                icon={<WishIcon />}
+                title={wish}
+                path={`/${Page.WISH}`}
             />
-            <HeaderLink 
-                icon={<DashboardIcon />} 
-                title={dashboard} 
-                path={`/${Page.DASHBOARD}`} 
+            <HeaderLink
+                icon={<DashboardIcon />}
+                title={dashboard}
+                path={`/${Page.DASHBOARD}`}
             />
         </>
     )

@@ -3,9 +3,9 @@
 import { FC, PropsWithChildren, useEffect } from 'react'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
+import { IUseState } from '@/types'
 import { withSetter } from '@/utils'
 import { IRecipeContext, IRecipeState } from './types'
-import { IUseState } from '@/types'
 
 const useState = create<IRecipeContext>()(
     devtools(
@@ -16,7 +16,7 @@ const useState = create<IRecipeContext>()(
         })),
         {
             name: 'recipe',
-        }
+        },
     ),
 )
 
@@ -24,9 +24,9 @@ export interface IRecipeProviderProps extends PropsWithChildren {
     state: IRecipeState
 }
 
-export const RecipeProvider: FC<IRecipeProviderProps> = ({ 
-    children, 
-    state 
+export const RecipeProvider: FC<IRecipeProviderProps> = ({
+    children,
+    state,
 }) => {
     const setState = useState((state) => state.setState)
     useEffect(() => {
@@ -39,8 +39,6 @@ export const RecipeProvider: FC<IRecipeProviderProps> = ({
 }
 
 // @ts-ignore
-export const useRecipeState: IUseState<IRecipeContext> = (
-    selector,
-) => {
+export const useRecipeState: IUseState<IRecipeContext> = (selector) => {
     return useState(selector)
 }

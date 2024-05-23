@@ -1,6 +1,11 @@
 import React, { FC } from 'react'
 import { getRecipePreview } from '@/actions'
-import { DEFAULT_PAGE, DEFAULT_SIZE, SortRecipes, checkSortRecipes } from '@/components'
+import {
+    checkSortRecipes,
+    DEFAULT_PAGE,
+    DEFAULT_SIZE,
+    SortRecipes,
+} from '@/components'
 import { SearchRecipeSection } from '@/components/recipes/pages/search'
 import { RecipesProvider } from '@/context/preview'
 
@@ -14,11 +19,7 @@ interface IRecipesProps {
 }
 
 const Recipes: FC<IRecipesProps> = async ({
-    searchParams: {
-        page,
-        query = '',
-        sort,
-    }
+    searchParams: { page, query = '', sort },
 }) => {
     const isSort = checkSortRecipes(sort)
     const checkedSort = isSort ? sort : SortRecipes.POPULAR

@@ -1,5 +1,5 @@
-import { AuthService } from './service'
 import { authApi } from './config'
+import { AuthService } from './service'
 
 export * from './types'
 

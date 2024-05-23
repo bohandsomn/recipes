@@ -3,12 +3,12 @@
 import { FC, PropsWithChildren, useEffect } from 'react'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { withSetter } from '@/utils'
-import { IWishContext, IWishState } from './types'
-import { IUseState } from '@/types'
+import { IRecipeListPreview } from '@/components/recipes/types'
 import { client } from '@/context'
 import { GET_USER_RECIPE_PREVIEW } from '@/graphql'
-import { IRecipeListPreview } from '@/components/recipes/types'
+import { IUseState } from '@/types'
+import { withSetter } from '@/utils'
+import { IWishContext, IWishState } from './types'
 
 const useState = create<IWishContext>()(
     devtools(
@@ -27,10 +27,7 @@ export interface IWishProviderProps extends PropsWithChildren {
     state: IWishState
 }
 
-export const WishProvider: FC<IWishProviderProps> = ({ 
-    children, 
-    state 
-}) => {
+export const WishProvider: FC<IWishProviderProps> = ({ children, state }) => {
     const setState = useState((state) => state.setState)
     useEffect(() => {
         return client.cache.watch<{ getUserRecipeList: IRecipeListPreview }>({
@@ -59,8 +56,6 @@ export const WishProvider: FC<IWishProviderProps> = ({
 }
 
 // @ts-ignore
-export const useWishState: IUseState<IWishContext> = (
-    selector,
-) => {
+export const useWishState: IUseState<IWishContext> = (selector) => {
     return useState(selector)
 }

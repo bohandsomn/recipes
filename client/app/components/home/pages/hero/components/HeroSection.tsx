@@ -12,7 +12,7 @@ export const HeroSection = async () => {
     return (
         <Hero>
             <Container className="sm:absolute sm:left-0 sm:right-0">
-                <figure className="flex items-center flex-row-reverse">
+                <figure className="flex flex-row-reverse items-center">
                     <Image
                         src="/assets/images/hero.webp"
                         alt="Hero"
@@ -21,9 +21,12 @@ export const HeroSection = async () => {
                         draggable={false}
                         className="hidden lg:block"
                     />
-                    <figcaption className="space-y-4 flex-1 lg:flex-0">
+                    <figcaption className="lg:flex-0 flex-1 space-y-4">
                         <Header span={<HeroSpan />} restHeader={restHeader} />
-                        <Link href="#popular-recipes" className="block w-fit button">
+                        <Link
+                            href="#popular-recipes"
+                            className="button block w-fit"
+                        >
                             {button}
                         </Link>
                     </figcaption>

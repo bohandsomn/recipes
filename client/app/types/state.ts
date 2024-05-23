@@ -7,10 +7,7 @@ export interface IDispatch<State> {
     (value: Partial<State>): void
 }
 
-export interface IDispatchCallback<
-    State,
-    SelectorOutput = State,
-> {
+export interface IDispatchCallback<State, SelectorOutput = State> {
     /**
      * A function for updating data that accepts a callback function with the previous state.
      * This function uses the state under the hood,

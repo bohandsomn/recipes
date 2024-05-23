@@ -21,12 +21,12 @@ export const Nutrition = () => {
     const proteinTitle = translate('recipe.video.protein')
     const sugarTitle = translate('recipe.video.sugar')
     const nutrition = [
-        {value: calories, title: caloriesTitle}, 
-        {value: carbohydrate, title: carbohydrateTitle}, 
-        {value: fat, title: fatTitle}, 
-        {value: fiber, title: fiberTitle}, 
-        {value: protein, title: proteinTitle}, 
-        {value: sugar, title: sugarTitle}
+        { value: calories, title: caloriesTitle },
+        { value: carbohydrate, title: carbohydrateTitle },
+        { value: fat, title: fatTitle },
+        { value: fiber, title: fiberTitle },
+        { value: protein, title: proteinTitle },
+        { value: sugar, title: sugarTitle },
     ].filter(({ value }) => !!value)
     if (isLoading) {
         return <NutritionSkeleton />
@@ -36,14 +36,11 @@ export const Nutrition = () => {
     }
     return (
         <ul className="flex flex-wrap">
-            {nutrition.map(({value, title}) => (
-                <li key={`${value} - ${title}`} className="flex m-1">
-                    <strong>
-                        {value}
-                    </strong>{'-'}
-                    <p>
-                        {title}
-                    </p>
+            {nutrition.map(({ value, title }) => (
+                <li key={`${value} - ${title}`} className="m-1 flex">
+                    <strong>{value}</strong>
+                    {'-'}
+                    <p>{title}</p>
                 </li>
             ))}
         </ul>

@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
-import { getServerErrorMessage, HttpMethod, IAppApi } from '@/utils'
 import { DEFAULT_EXPIRES } from '@/components'
+import { getServerErrorMessage, HttpMethod, IAppApi } from '@/utils'
 import {
     IActivateUserDto,
     IAuthService,
@@ -12,7 +12,7 @@ import {
 } from './types'
 
 export class AuthService implements IAuthService {
-    constructor(private readonly appApi: IAppApi) { }
+    constructor(private readonly appApi: IAppApi) {}
 
     async registerUser(dto: IRegisterUserDto): Promise<IUserPayloadDto> {
         const { data, error } = await this.appApi.request<
@@ -27,10 +27,10 @@ export class AuthService implements IAuthService {
         if (data) {
             cookies()
                 .set('accessToken', data.accessToken, {
-                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES),
                 })
                 .set('refreshToken', data.refreshToken, {
-                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES),
                 })
             return data
         }
@@ -50,10 +50,10 @@ export class AuthService implements IAuthService {
         if (data) {
             cookies()
                 .set('accessToken', data.accessToken, {
-                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES),
                 })
                 .set('refreshToken', data.refreshToken, {
-                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES),
                 })
             return data
         }
@@ -134,15 +134,15 @@ export class AuthService implements IAuthService {
             headers: {
                 authorization: `Bearer ${accessToken}`,
             },
-            body: dto
+            body: dto,
         })
         if (data) {
             cookies()
                 .set('accessToken', data.accessToken, {
-                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES),
                 })
                 .set('refreshToken', data.refreshToken, {
-                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES),
                 })
             return data
         }

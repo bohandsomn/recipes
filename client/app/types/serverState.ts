@@ -8,4 +8,6 @@ export interface IFailureServerResponse {
     readonly error: string
 }
 
-export type IServerResponse<Data> = ISuccessfulServerResponse<Data> | IFailureServerResponse
+export type IServerResponse<Data> =
+    | ISuccessfulServerResponse<Data>
+    | IFailureServerResponse

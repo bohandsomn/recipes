@@ -16,4 +16,7 @@ export interface IFailureClientResponse {
     readonly error: string
 }
 
-export type IClientResponse<Data> = ISuccessfulClientResponse<Data> | IPendingClientResponse | IFailureClientResponse
+export type IClientResponse<Data> =
+    | ISuccessfulClientResponse<Data>
+    | IPendingClientResponse
+    | IFailureClientResponse

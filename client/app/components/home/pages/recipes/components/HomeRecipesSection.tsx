@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from '@/components/common'
-import { HomeRecipesHeader } from './HomeRecipesHeader'
-import { HomeRecipeList } from './HomeRecipeList'
 import { HomeRecipeLink } from './HomeRecipeLink'
+import { HomeRecipeList } from './HomeRecipeList'
+import { HomeRecipesHeader } from './HomeRecipesHeader'
 
 export const HomeRecipesSection = () => {
     return (

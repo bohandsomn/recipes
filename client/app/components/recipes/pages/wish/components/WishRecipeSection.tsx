@@ -1,7 +1,7 @@
 import React from 'react'
+import { Container } from '@/components/common'
 import { fontHeader } from '@/fonts'
 import { getLanguages } from '@/utils/languages'
-import { Container } from '@/components/common'
 import { WishRecipeList } from './WishRecipeList'
 
 export const WishRecipeSection = async () => {

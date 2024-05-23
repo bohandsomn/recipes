@@ -1,13 +1,13 @@
 import { gql } from '@apollo/client'
 
 export const GET_RECIPE_PREVIEW = gql`
-    query GetRecipePreview($page: Float!, $size: Float!, $query: String!, $sort: String!) {
-        getRecipeList(
-            page: $page,
-            size: $size,
-            query: $query,
-            sort: $sort,
-        ) {
+    query GetRecipePreview(
+        $page: Float!
+        $size: Float!
+        $query: String!
+        $sort: String!
+    ) {
+        getRecipeList(page: $page, size: $size, query: $query, sort: $sort) {
             count
             data {
                 recipeCredentials
@@ -97,17 +97,13 @@ export const SEARCH_RECIPE = gql`
 `
 
 export const ADD_RECIPE = gql`
-    mutation AddRecipe(
-        $recipeCredentials: String!
-    ) {
+    mutation AddRecipe($recipeCredentials: String!) {
         addRecipe(recipeCredentials: $recipeCredentials)
     }
 `
 
 export const REMOVE_RECIPE = gql`
-    mutation RemoveRecipe(
-        $recipeCredentials: String!
-    ) {
+    mutation RemoveRecipe($recipeCredentials: String!) {
         removeRecipe(recipeCredentials: $recipeCredentials)
     }
 `

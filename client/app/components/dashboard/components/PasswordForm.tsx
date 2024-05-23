@@ -3,17 +3,20 @@
 import { useRouter } from 'next/navigation'
 import React, { FC, useEffect } from 'react'
 import { useFormState } from 'react-dom'
+import { MAX_PASSWORD, MIN_PASSWORD } from '@/components/auth/constants'
+import { useAuthDispatch } from '@/components/auth/context'
 import { IUserPayloadDto } from '@/services'
 import { IServerResponse } from '@/types'
-import { useAuthDispatch } from '@/components/auth/context'
 import { useNotification } from '@/utils/notification'
-import { MAX_PASSWORD, MIN_PASSWORD } from '@/components/auth/constants'
 
 interface IPasswordFormProps {
     submit: string
     placeholder: string
     success: string
-    action: (prevState: unknown, formData: FormData) => Promise<IServerResponse<IUserPayloadDto>>
+    action: (
+        prevState: unknown,
+        formData: FormData,
+    ) => Promise<IServerResponse<IUserPayloadDto>>
 }
 
 const initialState = {
@@ -25,7 +28,7 @@ export const PasswordForm: FC<IPasswordFormProps> = ({
     submit,
     placeholder,
     success,
-    action
+    action,
 }) => {
     const [state, formAction] = useFormState(action, initialState)
     const dispatch = useAuthDispatch()
@@ -45,14 +48,14 @@ export const PasswordForm: FC<IPasswordFormProps> = ({
         }
     }, [state])
     return (
-        <form action={formAction} className="flex flex-col space-y-2 w-fit">
-            <input 
-                name="password" 
-                type="password" 
+        <form action={formAction} className="flex w-fit flex-col space-y-2">
+            <input
+                name="password"
+                type="password"
                 required
                 minLength={MIN_PASSWORD}
                 maxLength={MAX_PASSWORD}
-                placeholder={placeholder} 
+                placeholder={placeholder}
             />
             <button>{submit}</button>
         </form>

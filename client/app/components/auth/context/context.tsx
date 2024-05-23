@@ -3,9 +3,9 @@
 import { FC, PropsWithChildren, useEffect } from 'react'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
+import { IUseDispatch, IUseState } from '@/types'
 import { withSetter } from '@/utils'
 import { IAuthContext, IAuthState } from './types'
-import { IUseDispatch, IUseState } from '@/types'
 
 const useState = create<IAuthContext>()(
     devtools(
@@ -16,7 +16,7 @@ const useState = create<IAuthContext>()(
         })),
         {
             name: 'auth',
-        }
+        },
     ),
 )
 
@@ -24,10 +24,7 @@ export interface IAuthProviderProps extends PropsWithChildren {
     state: IAuthState
 }
 
-export const AuthProvider: FC<IAuthProviderProps> = ({ 
-    children, 
-    state 
-}) => {
+export const AuthProvider: FC<IAuthProviderProps> = ({ children, state }) => {
     const setState = useState((state) => state.setState)
     useEffect(() => {
         setState({
@@ -39,9 +36,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({
 }
 
 // @ts-ignore
-export const useAuthState: IUseState<IAuthContext> = (
-    selector,
-) => {
+export const useAuthState: IUseState<IAuthContext> = (selector) => {
     return useState(selector)
 }
 

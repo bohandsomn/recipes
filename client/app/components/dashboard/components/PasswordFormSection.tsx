@@ -1,8 +1,8 @@
 import React from 'react'
-import { getLanguages } from '@/utils/languages'
 import { setPassword } from '@/actions'
-import { PasswordForm } from './PasswordForm'
+import { getLanguages } from '@/utils/languages'
 import { DashboardFormSection } from './DashboardFormSection'
+import { PasswordForm } from './PasswordForm'
 
 export const PasswordFormSection = async () => {
     const translate = await getLanguages()
@@ -12,7 +12,12 @@ export const PasswordFormSection = async () => {
     const success = translate('dashboard.password.success')
     return (
         <DashboardFormSection header={header}>
-            <PasswordForm submit={submit} success={success} placeholder={placeholder} action={setPassword} />
+            <PasswordForm
+                submit={submit}
+                success={success}
+                placeholder={placeholder}
+                action={setPassword}
+            />
         </DashboardFormSection>
     )
 }

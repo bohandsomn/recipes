@@ -1,9 +1,9 @@
 import React from 'react'
+import { Container } from '@/components/common'
 import { fontHeader } from '@/fonts'
 import { getLanguages } from '@/utils/languages'
-import { Container } from '@/components/common'
-import { SearchRecipeList } from './SearchRecipeList'
 import { SearchRecipeForm } from './SearchRecipeForm'
+import { SearchRecipeList } from './SearchRecipeList'
 import { SearchRecipePages } from './SearchRecipePages'
 
 export const SearchRecipeSection = async () => {

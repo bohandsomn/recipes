@@ -14,15 +14,17 @@ export const RecalculationSection: FC<IRecalculationSectionProps> = ({
     header,
     width,
     height,
-    children
+    children,
 }) => {
     const isLoading = useRecipeState((state) => state.isLoading)
     return (
         <section>
             <h2 className="text-3xl">{header}</h2>
-            {isLoading 
-                ? <RecalculationListSkeleton width={width} height={height} /> 
-                : children}
+            {isLoading ? (
+                <RecalculationListSkeleton width={width} height={height} />
+            ) : (
+                children
+            )}
         </section>
     )
 }

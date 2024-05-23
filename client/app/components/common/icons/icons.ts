@@ -1,5 +1,13 @@
 import { createIcon } from '@/utils'
-import { dashboardIconProps, searchIconProps, wishIconProps, authIconProps, starIconProps, clockIconProps, priceIconProps } from './constants'
+import {
+    authIconProps,
+    clockIconProps,
+    dashboardIconProps,
+    priceIconProps,
+    searchIconProps,
+    starIconProps,
+    wishIconProps,
+} from './constants'
 
 export const SearchIcon = createIcon(searchIconProps)
 export const WishIcon = createIcon(wishIconProps)
