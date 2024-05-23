@@ -14,6 +14,9 @@ const useState = create<IRecipesContext>()(
             isLoading: true,
             error: null,
         })),
+        {
+            name: 'recipes',
+        },
     ),
 )
 

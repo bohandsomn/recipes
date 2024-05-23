@@ -14,6 +14,9 @@ const useState = create<IAuthContext>()(
             isLoading: true,
             error: null,
         })),
+        {
+            name: 'auth',
+        }
     ),
 )
 

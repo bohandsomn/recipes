@@ -1,5 +1,5 @@
-import { AuthSection } from '@/components'
 import React, { FC, PropsWithChildren } from 'react'
+import { AuthSection } from '@/components'
 
 const AuthLayout: FC<PropsWithChildren> = ({
     children,

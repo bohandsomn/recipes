@@ -1,12 +1,11 @@
 import { FC, PropsWithChildren } from 'react'
 import { getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
-import { Document, FooterSection, HeaderSection, SectionWrapper } from '@/components'
-import { AuthProvider } from '@/components/auth/context'
-import { WishProvider } from '@/components/recipes/pages/wish/context'
-import { Locale } from '@/utils/languages'
-import { AppProvider } from '@/providers'
+import { Document, FooterSection, HeaderSection, SectionWrapper, AuthProvider } from '@/components'
 import { autoLogInUser, getUserRecipePreview } from '@/actions'
+import { AppProvider } from '@/providers'
+import { WishProvider } from '@/components/recipes/pages'
+import { Locale } from '@/utils/languages'
 
 interface ILocaleProps extends PropsWithChildren {
     params: {

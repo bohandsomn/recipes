@@ -20,7 +20,7 @@ export const RecipeHeroSection = () => {
         return <RecipeHeroSkeleton />
     }
     return (
-        <Hero imageClassName="lg:block">
+        <Hero lg>
             <Container className="lg:absolute lg:left-0 lg:right-0 grid lg:grid-cols-2 items-center">
                 <div>
                     <h1 className="text-4xl font-bold lg:text-white">{name}</h1>

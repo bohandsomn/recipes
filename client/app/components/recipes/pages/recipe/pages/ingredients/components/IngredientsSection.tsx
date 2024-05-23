@@ -1,16 +1,26 @@
 'use client'
 
 import React from 'react'
-import { useRecipeState } from '../../../context'
 import { useLanguages } from '@/utils/languages/useLanguages'
+import { getUniqueList } from '@/components/recipes/utils'
+import { useRecipeState } from '../../../context'
+import { RecalculationSection } from '../../../components'
 
 export const IngredientsSection = () => {
-    const ingredients = useRecipeState((state) => state.data?.ingredients)
+    const ingredients = useRecipeState((state) => {
+        const ingredients = state.data?.ingredients 
+        if (!ingredients) {
+            return null
+        }
+        return getUniqueList(ingredients, ({ name }) => name!)
+    })
     const translate = useLanguages()
     const header = translate('recipe.ingredients.header')
+    if (ingredients?.length === 0) {
+        return null
+    }
     return (
-        <section>
-            <h2 className="text-3xl">{header}</h2>
+        <RecalculationSection header={header}>
             <ul className="space-y-2">
                 {ingredients?.map(({ name, text, measurements }) => (
                     <li key={name}>
@@ -23,6 +33,6 @@ export const IngredientsSection = () => {
                     </li>
                 ))}
             </ul>
-        </section>
+        </RecalculationSection>
     )
 }

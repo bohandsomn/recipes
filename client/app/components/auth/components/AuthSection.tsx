@@ -9,9 +9,9 @@ export const AuthSection: FC<PropsWithChildren> = async ({
     const span = translate('home.hero.cook')
     const restHeader = translate('home.hero.header')
     return (
-        <Hero imageClassName="lg:block">
+        <Hero lg>
             <Container className="lg:grid lg:grid-cols-2 lg:items-center lg:space-y-0 lg:absolute lg:left-0 lg:right-0 space-y-2">
-                <Header span={span} restHeader={restHeader} auth />
+                <Header span={span} restHeader={restHeader} lg />
                 {children}
             </Container>
         </Hero>

@@ -11,6 +11,7 @@ import { useFormState } from 'react-dom'
 import { useAuthDispatch } from '../context'
 import { useRouter } from 'next/navigation'
 import { useNotification } from '@/utils/notification'
+import { MAX_PASSWORD, MIN_PASSWORD } from '../constants'
 
 interface IAuthFormSectionProps {
     header: string
@@ -63,22 +64,26 @@ export const AuthFormSection: FC<IAuthFormSectionProps> = ({
                 <input 
                     name="email" 
                     type="email" 
-                    className="input" 
+                    required
                     placeholder={emailPlaceholder}
                 />
                 <input 
                     name="password" 
                     type="password" 
-                    className="input" 
+                    required
+                    minLength={MIN_PASSWORD}
+                    maxLength={MAX_PASSWORD}
                     placeholder={passwordPlaceholder}
                 />
                 {link === Page.LOG_IN && <input 
                     name="confirm-password"
                     type="password" 
-                    className="input" 
+                    required
+                    minLength={MIN_PASSWORD}
+                    maxLength={MAX_PASSWORD}
                     placeholder={confirmPasswordPlaceholder}
                 />}
-                <button type="submit" className="button">
+                <button type="submit">
                     {submit}
                 </button>
             </form>

@@ -18,7 +18,7 @@ export const SearchRecipeForm = async () => {
         <form action={sendHandler} className="flex flex-col items-start space-y-2">
             <div className="flex flex-row space-x-1">
                 <SearchRecipeDatalist />
-                <button type="submit" className="button">{submit}</button>
+                <button type="submit">{submit}</button>
             </div>
             <label className="flex flex-row space-x-2">
                 <p>{sortLabel}</p>

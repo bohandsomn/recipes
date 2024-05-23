@@ -5,7 +5,7 @@ import { Container } from '@/components'
 import { RecipeProvider } from '@/components/recipes/pages/recipe/context'
 import { getRecipe, getSimilarRecipePreview } from '@/actions'
 import { RecipesProvider } from '@/context/preview'
-import { IngredientsSection, RecipeHeroSection, RecipeTopics, SimilarRecipesSection, StagesSection, VideoSection } from '@/components/recipes/pages'
+import { IngredientsSection, RecipeHeroSection, RecipeTopicsSection, SimilarRecipesSection, StagesSection, VideoSection } from '@/components/recipes/pages'
 
 interface IRecipeProps {
     params: {
@@ -20,7 +20,7 @@ export async function generateMetadata({
 }: IRecipeProps): Promise<Metadata> {
     const { data: recipe } = await getRecipe(recipeCredentials)
     if (!recipe) {
-        return notFound()
+        return {}
     }
     return {
         title: recipe.name,
@@ -43,14 +43,14 @@ const RecipePage: FC<IRecipeProps> = async ({
         <RecipeProvider state={recipe}>
             <RecipesProvider state={similarRecipes}>
                 <RecipeHeroSection />
-                <RecipeTopics />
-                <Container className="grid lg:grid-cols-2">
+                <Container className="grid lg:grid-cols-2 lg:space-x-4">
                     <div className="order-1 lg:order-[0]">
-                        <IngredientsSection />
                         <StagesSection />
+                        <IngredientsSection />
                     </div>
                     <VideoSection />
                 </Container>
+                <RecipeTopicsSection />
                 <SimilarRecipesSection />
             </RecipesProvider>
         </RecipeProvider>

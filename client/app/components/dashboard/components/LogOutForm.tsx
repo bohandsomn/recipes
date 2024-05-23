@@ -5,9 +5,9 @@ import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { useNotification } from '@/utils/notification'
 import { IServerResponse } from '@/types'
-import { useAuthDispatch } from '@/components/auth'
+import { useAuthDispatch } from '@/components/auth/context'
 
-interface IEmailFormProps {
+interface ILogOutFormProps {
     submit: string
     success: string
     action: (prevState: unknown) => Promise<IServerResponse<200>>
@@ -18,7 +18,7 @@ const initialState = {
     error: null,
 } as never as IServerResponse<200>
 
-export const EmailForm: FC<IEmailFormProps> = ({
+export const LogOutForm: FC<ILogOutFormProps> = ({
     submit,
     success,
     action
@@ -26,9 +26,15 @@ export const EmailForm: FC<IEmailFormProps> = ({
     const [state, formAction] = useFormState(action, initialState)
     const router = useRouter()
     const notify = useNotification()
+    const dispatch = useAuthDispatch()
     useEffect(() => {
         if (state.data) {
             notify.success(success)
+            dispatch({
+                data: null,
+                isLoading: true,
+                error: null,
+            })
             router.push('/')
         }
         if (state.error) {

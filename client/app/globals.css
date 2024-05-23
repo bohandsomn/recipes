@@ -22,8 +22,16 @@ h1, h2, h3, h4, h5, h6 {
     @apply bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded
 }
 
+button:not([type="button"]) {
+    @apply button
+}
+
 .input {
     @apply py-2 px-4 rounded border border-[#FCD9C5] border-solid
+}
+
+input {
+    @apply input
 }
 
 .hide-scrollbar {

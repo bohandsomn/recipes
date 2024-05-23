@@ -128,11 +128,18 @@
     "dashboard": {
         "password": {
             "header": "Change your password",
-            "submit": "Submit"
+            "submit": "Submit",
+            "success":"You are successfully changed your password"
         },
         "email": {
             "header": "Confirm your email",
-            "submit": "Send email"
+            "submit": "Send email",
+            "success":"You are successfully sent confirmation email"
+        },
+        "log-out": {
+            "header": "Log out",
+            "submit": "Log out",
+            "success":"You are successfully logged out"
         }
     }
 }

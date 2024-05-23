@@ -1,9 +1,9 @@
 import React from 'react'
 import { getRecipePreview } from '@/actions'
 import { DEFAULT_PAGE, DEFAULT_SIZE, HeroSection, HomeRecipesSection, SectionWrapper, SortRecipes } from '@/components'
-import { RecipesProvider } from '@/context/preview'
+import { RecipesProvider } from '@/context'
 
-const HomePage = async () => {
+const LocalePage = async () => {
     const recipeList = await getRecipePreview({
         page: DEFAULT_PAGE,
         size: DEFAULT_SIZE,
@@ -20,4 +20,4 @@ const HomePage = async () => {
     )
 }
 
-export default HomePage
+export default LocalePage

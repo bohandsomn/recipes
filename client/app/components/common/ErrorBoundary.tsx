@@ -1,21 +1,16 @@
 'use client'
 
-import React, { FC, ReactElement, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useNotification } from '@/utils/notification'
-import { LinkIcon } from './icons'
 
 interface IErrorBoundaryProps {
     errorMessage: string
     notNotify?: boolean
-    onClick?(): void
-    rightElement?: ReactElement
     className?: string
 }
 
 export const ErrorBoundary: FC<IErrorBoundaryProps> = ({
     errorMessage,
-    onClick,
-    rightElement,
     notNotify = false,
     className = '',
 }) => {
@@ -27,19 +22,8 @@ export const ErrorBoundary: FC<IErrorBoundaryProps> = ({
         notify.error(errorMessage)
     }, [errorMessage, notNotify])
     return (
-        <div
-            className={`${className} ${rightElement ? 'border-l-yellow-800 bg-yellow-600' : 'border-l-red-500 bg-red-400'} flex items-center space-x-5 border-l-4 p-5`}
-        >
-            {onClick && <LinkIcon />}
-            <div className="flex flex-1 justify-between text-white">
-                <p
-                    onClick={onClick}
-                    className={`${onClick ? 'cursor-pointer underline' : ''}`}
-                >
-                    {errorMessage}
-                </p>
-                {rightElement}
-            </div>
+        <div className={`${className} border-l-red-500 bg-red-400 border-l-4 p-5 text-white`}>
+            {errorMessage}
         </div>
     )
 }

@@ -6,9 +6,6 @@ import { devtools } from 'zustand/middleware'
 import { withSetter } from '@/utils'
 import { IRecipeContext, IRecipeState } from './types'
 import { IUseState } from '@/types'
-import { client } from '@/context'
-import { GET_USER_RECIPE_PREVIEW } from '@/graphql'
-import { IRecipeListPreview } from '@/components/recipes/types'
 
 const useState = create<IRecipeContext>()(
     devtools(
@@ -17,6 +14,9 @@ const useState = create<IRecipeContext>()(
             isLoading: true,
             error: null,
         })),
+        {
+            name: 'recipe',
+        }
     ),
 )
 

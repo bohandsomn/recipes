@@ -26,7 +26,7 @@ export const RecipePreviewList: FC<IRecipePreviewListProps> = ({
         return <EmptyList message={emptyErrorMessage} />
     }
     return (
-        <ul className="flex flex-wrap justify-center">
+        <ul className="flex flex-wrap">
             {data?.data.map((recipe) => (
                 <li key={recipe.recipeCredentials} className="flex m-2">
                     <RecipePreview {...recipe} />

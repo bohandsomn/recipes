@@ -10,7 +10,7 @@ export const HeroSection = async () => {
     const restHeader = translate('home.hero.header')
     const button = translate('home.hero.button')
     return (
-        <Hero imageClassName="sm:block">
+        <Hero>
             <Container className="sm:absolute sm:left-0 sm:right-0">
                 <figure className="flex items-center flex-row-reverse">
                     <Image

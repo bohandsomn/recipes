@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import { checkEmail, checkPassword, DEFAULT_EXPIRES, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
+import { checkEmail, checkPassword, IGetRecipePreviewInput, IRecipe, IRecipeListPreview } from '@/components'
 import { authService, IUserPayloadDto } from '@/services'
 import { getServerErrorMessage } from '@/utils'
 import { getLanguages } from '@/utils/languages'
@@ -41,12 +41,6 @@ export async function registerUser(_prevState: unknown, formData: FormData): Pro
             email,
             password,
         })
-        cookies().set('accessToken', response.accessToken, {
-            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
-        })
-        cookies().set('refreshToken', response.refreshToken, {
-            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
-        })
         return {
             data: response,
             error: null
@@ -86,12 +80,6 @@ export async function logInUser(_prevState: unknown, formData: FormData): Promis
             email,
             password,
         })
-        cookies().set('accessToken', response.accessToken, {
-            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
-        })
-        cookies().set('refreshToken', response.refreshToken, {
-            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
-        })
         return {
             data: response,
             error: null,
@@ -122,12 +110,12 @@ export async function autoLogInUser(): Promise<IServerResponse<IUserPayloadDto>>
     }
 }
 
-export async function logOutUser(): Promise<IServerResponse<void>> {
+export async function logOutUser(_prevState: unknown): Promise<IServerResponse<200>> {
     'use server'
     try {
-        const response = await authService.logOutUser()
+        await authService.logOutUser()
         return {
-            data: response,
+            data: 200,
             error: null,
         }
     } catch (error) {
@@ -197,12 +185,6 @@ export async function setPassword(_prevState: unknown, formData: FormData): Prom
         const response = await authService.setPassword({
             password,
         })
-        cookies().set('accessToken', response.accessToken, {
-            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
-        })
-        cookies().set('refreshToken', response.refreshToken, {
-            expires: new Date(Date.now() + DEFAULT_EXPIRES * 1000)
-        })
         return {
             data: response,
             error: null,
@@ -217,6 +199,7 @@ export async function setPassword(_prevState: unknown, formData: FormData): Prom
 }
 
 export async function getRecipePreview(input: IGetRecipePreviewInput): Promise<IServerResponse<IRecipeListPreview>> {
+    'use server'
     const client = getClient()
     try {
         const { data } = await client.query({
@@ -237,6 +220,7 @@ export async function getRecipePreview(input: IGetRecipePreviewInput): Promise<I
 }
 
 export async function getRecipe(recipeCredentials: string): Promise<IServerResponse<IRecipe>> {
+    'use server'
     const client = getClient()
     try {
         const { data } = await client.query({
@@ -259,6 +243,7 @@ export async function getRecipe(recipeCredentials: string): Promise<IServerRespo
 }
 
 export async function getSimilarRecipePreview(recipeCredentials: string): Promise<IServerResponse<IRecipeListPreview>> {
+    'use server'
     const client = getClient()
     try {
         const { data } = await client.query({
@@ -281,6 +266,7 @@ export async function getSimilarRecipePreview(recipeCredentials: string): Promis
 }
 
 export async function getUserRecipePreview(): Promise<IServerResponse<IRecipeListPreview>> {
+    'use server'
     const client = getClient()
     try {
         const accessToken = cookies().get('accessToken')?.value
@@ -306,6 +292,7 @@ export async function getUserRecipePreview(): Promise<IServerResponse<IRecipeLis
 }
 
 export async function searchRecipe(query: string): Promise<IServerResponse<string[]>> {
+    'use server'
     const client = getClient()
     try {
         const { data } = await client.query({

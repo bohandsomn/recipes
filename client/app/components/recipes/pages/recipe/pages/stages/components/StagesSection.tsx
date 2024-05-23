@@ -1,17 +1,27 @@
 'use client'
 
 import React from 'react'
-import { useRecipeState } from '../../../context'
 import { useLanguages } from '@/utils/languages/useLanguages'
 import { Time } from '@/components/recipes/components'
+import { getUniqueList } from '@/components/recipes/utils'
+import { useRecipeState } from '../../../context'
+import { RecalculationSection } from '../../../components'
 
 export const StagesSection = () => {
-    const stages = useRecipeState((state) => state.data?.stages)
+    const stages = useRecipeState((state) => {
+        const stages = state.data?.stages 
+        if (!stages) {
+            return null
+        }
+        return getUniqueList(stages, ({ name }) => name!)
+    })
     const translate = useLanguages()
     const header = translate('recipe.stages.header')
+    if (stages?.length === 0) {
+        return null
+    }
     return (
-        <section>
-            <h2 className="text-3xl">{header}</h2>
+        <RecalculationSection header={header} width={496} height={72}>
             <ul className="space-y-2">
                 {stages?.map(({ id, name, time }) => (
                     <li key={id}>
@@ -20,6 +30,6 @@ export const StagesSection = () => {
                     </li>
                 ))}
             </ul>
-        </section>
+        </RecalculationSection>
     )
 }

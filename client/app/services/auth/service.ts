@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers'
 import { getServerErrorMessage, HttpMethod, IAppApi } from '@/utils'
+import { DEFAULT_EXPIRES } from '@/components'
 import {
     IActivateUserDto,
     IAuthService,
@@ -24,6 +25,13 @@ export class AuthService implements IAuthService {
             withCredentials: true,
         })
         if (data) {
+            cookies()
+                .set('accessToken', data.accessToken, {
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                })
+                .set('refreshToken', data.refreshToken, {
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                })
             return data
         }
         throw error
@@ -40,6 +48,13 @@ export class AuthService implements IAuthService {
             withCredentials: true,
         })
         if (data) {
+            cookies()
+                .set('accessToken', data.accessToken, {
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                })
+                .set('refreshToken', data.refreshToken, {
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                })
             return data
         }
         throw error
@@ -73,7 +88,9 @@ export class AuthService implements IAuthService {
             url: '/log-out',
             withCredentials: true,
         })
-        if (data) {
+        if (data !== null) {
+            cookies().delete('accessToken')
+            cookies().delete('refreshToken')
             return data
         }
         throw error
@@ -109,7 +126,7 @@ export class AuthService implements IAuthService {
     async setPassword(dto: ISetPasswordDto): Promise<IUserPayloadDto> {
         const accessToken = cookies().get('accessToken')?.value
         const { data, error } = await this.appApi.request<
-            void,
+            IUserPayloadDto,
             IServerErrorDto
         >({
             method: HttpMethod.PATCH,
@@ -120,6 +137,13 @@ export class AuthService implements IAuthService {
             body: dto
         })
         if (data) {
+            cookies()
+                .set('accessToken', data.accessToken, {
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                })
+                .set('refreshToken', data.refreshToken, {
+                    expires: new Date(Date.now() + DEFAULT_EXPIRES)
+                })
             return data
         }
         throw error

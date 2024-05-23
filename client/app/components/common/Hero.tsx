@@ -2,12 +2,12 @@ import Image from 'next/image'
 import React, { FC, PropsWithChildren } from 'react'
 
 interface IHerpProps extends PropsWithChildren {
-    imageClassName?: string
+    lg?: boolean
 }
 
 export const Hero: FC<IHerpProps> = ({ 
     children,
-    imageClassName = '',
+    lg = false,
 }) => {
     return (
         <section className="flex items-center">
@@ -17,7 +17,7 @@ export const Hero: FC<IHerpProps> = ({
                 width="1920" 
                 height="768" 
                 draggable={false}
-                className={`hidden ${imageClassName}`}
+                className={`hidden ${lg ? 'lg:block' : 'sm:block'}`}
                 priority
             />
             {children}

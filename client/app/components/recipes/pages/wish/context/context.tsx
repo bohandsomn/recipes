@@ -17,6 +17,9 @@ const useState = create<IWishContext>()(
             isLoading: true,
             error: null,
         })),
+        {
+            name: 'wish',
+        },
     ),
 )
 

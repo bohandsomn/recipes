@@ -30,7 +30,6 @@ export const SearchRecipeDatalist = () => {
                 onChange={changeHandler}
                 list="search" 
                 type="text" 
-                className="input" 
                 placeholder={placeholder} 
             />
             <datalist id="search">

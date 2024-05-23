@@ -3,9 +3,11 @@
 import React from 'react'
 import { useLanguages } from '@/utils/languages/useLanguages'
 import { useRecipeState } from '../../../context'
+import { NutritionSkeleton } from './NutritionSkeleton'
 
 export const Nutrition = () => {
     const translate = useLanguages()
+    const isLoading = useRecipeState((state) => state.isLoading)
     const calories = useRecipeState((state) => state.data?.calories)
     const carbohydrate = useRecipeState((state) => state.data?.carbohydrate)
     const fat = useRecipeState((state) => state.data?.fat)
@@ -26,6 +28,9 @@ export const Nutrition = () => {
         {value: protein, title: proteinTitle}, 
         {value: sugar, title: sugarTitle}
     ].filter(({ value }) => !!value)
+    if (isLoading) {
+        return <NutritionSkeleton />
+    }
     if (!nutrition.length) {
         return null
     }

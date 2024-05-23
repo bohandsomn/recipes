@@ -1,17 +1,18 @@
 import React from 'react'
 import { getLanguages } from '@/utils/languages'
-import { PasswordForm } from './PasswordForm'
 import { setPassword } from '@/actions'
+import { PasswordForm } from './PasswordForm'
+import { DashboardFormSection } from './DashboardFormSection'
 
 export const PasswordFormSection = async () => {
     const translate = await getLanguages()
     const header = translate('dashboard.password.header')
     const placeholder = translate('auth.constants.placeholder.password')
     const submit = translate('dashboard.password.submit')
+    const success = translate('dashboard.password.success')
     return (
-        <section>
-            <h2 className="text-3xl">{header}</h2>
-            <PasswordForm submit={submit} placeholder={placeholder} action={setPassword} />
-        </section>
+        <DashboardFormSection header={header}>
+            <PasswordForm submit={submit} success={success} placeholder={placeholder} action={setPassword} />
+        </DashboardFormSection>
     )
 }

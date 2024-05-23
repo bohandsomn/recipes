@@ -7,10 +7,12 @@ import { IUserPayloadDto } from '@/services'
 import { IServerResponse } from '@/types'
 import { useAuthDispatch } from '@/components/auth/context'
 import { useNotification } from '@/utils/notification'
+import { MAX_PASSWORD, MIN_PASSWORD } from '@/components/auth/constants'
 
 interface IPasswordFormProps {
     submit: string
     placeholder: string
+    success: string
     action: (prevState: unknown, formData: FormData) => Promise<IServerResponse<IUserPayloadDto>>
 }
 
@@ -22,6 +24,7 @@ const initialState = {
 export const PasswordForm: FC<IPasswordFormProps> = ({
     submit,
     placeholder,
+    success,
     action
 }) => {
     const [state, formAction] = useFormState(action, initialState)
@@ -34,6 +37,7 @@ export const PasswordForm: FC<IPasswordFormProps> = ({
                 isLoading: false,
                 ...state,
             })
+            notify.success(success)
             router.push('/')
         }
         if (state.error) {
@@ -42,8 +46,15 @@ export const PasswordForm: FC<IPasswordFormProps> = ({
     }, [state])
     return (
         <form action={formAction} className="flex flex-col space-y-2 w-fit">
-            <input name="password" type="password" className="input" placeholder={placeholder} />
-            <button className="button">{submit}</button>
+            <input 
+                name="password" 
+                type="password" 
+                required
+                minLength={MIN_PASSWORD}
+                maxLength={MAX_PASSWORD}
+                placeholder={placeholder} 
+            />
+            <button>{submit}</button>
         </form>
     )
 }
