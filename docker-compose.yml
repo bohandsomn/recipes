@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  client:
+    depends_on:
+      - server
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    env_file:
+      - client/.env
+    volumes:
+      - ./client:/app
+      - client-node-modules:/app/node_modules
+
+  server:
+    depends_on:
+      - database
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    env_file:
+      - server/.env.production
+    volumes:
+      - ./server:/app
+      - server-node-modules:/app/node_modules
+
+  database:
+    image: postgres:16.2
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - :5432
+    env_file:
+      - ./server/.env.production
+
+volumes:
+  postgres:
+  client-node-modules:
+  server-node-modules:

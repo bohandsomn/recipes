@@ -3,8 +3,6 @@ import { Inject, Injectable } from '@nestjs/common'
 
 import { Cache } from 'cache-manager'
 
-import { Environment } from '../../../app-config/constants/environment'
-import { AppConfigService } from '../../../app-config/services/app-config/app-config.service'
 import { ICacheService } from '../../interfaces/cache-service.interface'
 
 @Injectable()
@@ -14,14 +12,9 @@ export class CacheRedisService<Value = unknown>
     constructor(
         @Inject(CACHE_MANAGER)
         private readonly cacheManager: Cache,
-        private readonly appConfigService: AppConfigService,
     ) {}
 
-    async save<V = Value>(
-        key: string,
-        value: V,
-        ttl = parseInt(this.appConfigService.get(Environment.CACHING_TTL)),
-    ): Promise<void> {
+    async save<V = Value>(key: string, value: V, ttl: number): Promise<void> {
         await this.cacheManager.set(key, value, ttl)
     }
 
