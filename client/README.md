@@ -2,7 +2,7 @@
 
 ## Description
 
-Recipes is an app that lets you find recipes, how to cook them, add to wishlist, get tips etc.
+Recipes is an app that lets you find recipes, how to cook them, add to wishlist etc. I used `Next.js` framework and corresponding features, `TailwindCSS` styling tool, `GraphQL` to communicate with server, `Zustand` state manager etc.
 
 ### Installation
 
@@ -48,4 +48,4 @@ npm start
 
 ### Information
 
-Before running the project, make sure you have all the `.env` variables. Look at the [.env.example](/.env.example).
+Before running the project, make sure you have all the `.env` variables. Look at the `.env.example`.
