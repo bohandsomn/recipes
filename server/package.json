@@ -100,5 +100,10 @@
         ],
         "coverageDirectory": "../coverage",
         "testEnvironment": "node"
+    },
+    "engines": {
+        "node": "20.12.2",
+        "npm": "10.8.0",
+        "yarn": "1.22.22"
     }
 }

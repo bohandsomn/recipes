@@ -2,7 +2,7 @@
 
 ## Description
 
-Recipes is an app that lets you find recipes, how to cook them, add to wishlist etc. I used `Next.js` framework and corresponding features, `GraphQL` to communicate with server, `Zustand` state manager etc.
+Recipes is an app that lets you find recipes, how to cook them, add to wishlist etc. I used `Next.js` framework and corresponding features, `TailwindCSS` styling tool, `GraphQL` to communicate with server, `Zustand` state manager etc.
 
 ### Installation
 
